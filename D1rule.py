@@ -23,8 +23,6 @@ from nltk.chat.suntsu import suntsu_chat
 from nltk.chat.util import Chat, reflections
 from nltk.chat.zen import zen_chat
 
-from nltk.chat.util import Chat, reflections
-
 persona_pairs = [
     [
         r"hello|hi|hey",
