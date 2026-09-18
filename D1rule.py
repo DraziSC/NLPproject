@@ -1,4 +1,6 @@
+import random
 import nltk
+import spacy
 
 #nltk.download('popular')
 
@@ -7,6 +9,45 @@ import nltk
 #    nltk.data.find('tokenizers/punkt')
 #except LookupError:
 #    nltk.download('punkt')
+
+# Spacy 
+# load English mlp model
+nlp = spacy.load("en_core_web_sm")
+
+# function to remove stop words from users input
+def remove_stopwords(text):
+    doc = nlp(text)
+    filtered_tokens = [token.text for token in doc if not token.is_stop and not token.is_punct]
+    return " ".join(filtered_tokens)
+
+# function to extract key topics (nouns / proper nouns) using spaCy NLP pipeline
+def extract_key_topics(text):
+    doc = nlp(text)
+    nouns = [token.text for token in doc if not token.is_stop and not token.is_punct and token.pos_ in ("NOUN", "PROPN")]
+    if nouns:
+        return ", ".join(nouns)
+    # fallback to all non-stopwords
+    return remove_stopwords(text)
+
+# function to generate intelligent fallback response using extracted content/topic words
+def generate_fallback_response(topic):
+    if not topic:
+        return random.choice([
+            "I am listening. Tell me more about what is on your mind.",
+            "I am here to support you. Please go ahead.",
+            "Take your time. What would you like to talk about?",
+            "I am here for you. How can I help today?"
+        ])
+
+    templates = [
+        f"You mentioned '{topic}'. Tell me more about that.",
+        f"What specifically about '{topic}' is on your mind?",
+        f"I hear you talking about '{topic}'. How does that make you feel?",
+        f"Thanks for sharing that. How is '{topic}' affecting your day?",
+        f"I believe things can improve with '{topic}'. What happened next?"
+    ]
+    return random.choice(templates)
+
 
 """
 A class for simple chatbots.  These perform simple pattern matching on sentences
@@ -209,14 +250,6 @@ persona_pairs = [
          "Take care and have a great day!",
          "I hope to chat with you again soon.",
          "Remember to stay positive and keep moving forward."]
-    ],
-    [
-        r".*",
-        ["That is interesting. Tell me more.",
-        "I believe things can improve. What happened next?",
-        "I am listening.",
-        "I am here to support you. Please continue.",
-        "I am glad you are sharing this with me. What else is on your mind?"]
     ]
 ]
 
@@ -232,15 +265,31 @@ def persona_bot():
             break
 
         user_input = user_input.strip()
-        while user_input and user_input[-1] in "!.":
-            user_input = user_input[:-1]
-
         if not user_input:
             continue
 
-        print(persona_chat.respond(user_input))
-        if user_input == "quit":
+        print(f"User input: {user_input}")  # Debugging line to print user input
+        stopwords_removed = remove_stopwords(user_input)
+        print(f"User input after removing stopwords: {stopwords_removed}")  # Debugging line
+        key_topics = extract_key_topics(user_input)
+        print(f"Key topics extracted (POS NOUN/PROPN): {key_topics}")  # Debugging line
+
+        clean_input = user_input
+        while clean_input and clean_input[-1] in "!.?":
+            clean_input = clean_input[:-1]
+
+        if not clean_input:
+            continue
+
+        if clean_input.lower() in ["quit", "exit"]:
+            print("Goodbye! Take care and have a great day!")
             break
+
+        response = persona_chat.respond(clean_input)
+        if response is None:
+            response = generate_fallback_response(key_topics)
+
+        print(response)
 
 bots = [
     (eliza_chat, "Eliza (psycho-babble)"),
@@ -267,4 +316,5 @@ def chatbots():
     chatbot = bots[int(choice) - 1][0]
     chatbot()
 
-chatbots()
+if __name__ == "__main__":
+    chatbots()
