@@ -14,6 +14,11 @@ import spacy
 # load English mlp model
 nlp = spacy.load("en_core_web_sm")
 
+# function that generates a lemmatized version of the input
+def lemmatize_text(text):
+    doc = nlp(text)
+    return " ".join([token.lemma_.lower() for token in doc])
+
 # function to remove stop words from users input
 def remove_stopwords(text):
     doc = nlp(text)
@@ -274,6 +279,9 @@ def persona_bot():
         key_topics = extract_key_topics(user_input)
         print(f"Key topics extracted (POS NOUN/PROPN): {key_topics}")  # Debugging line
 
+        lemmatized_input = lemmatize_text(user_input)
+        print(f"User input after lemmatization: {lemmatized_input}")  # Debugging line
+
         clean_input = user_input
         while clean_input and clean_input[-1] in "!.?":
             clean_input = clean_input[:-1]
@@ -297,7 +305,7 @@ bots = [
     (rude_chat, "Rude (abusive bot)"),
     (suntsu_chat, "Suntsu (Chinese sayings)"),
     (zen_chat, "Zen (gems of wisdom)"),
-     (persona_bot, "Optimist (cheerful support)"),
+    (persona_bot, "Optimist (cheerful support)"),
 ]
 
 
