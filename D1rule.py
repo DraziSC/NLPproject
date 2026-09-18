@@ -224,7 +224,23 @@ persona_chat = Chat(persona_pairs, reflections)
 
 def persona_bot():
     print("Hello! I am the optimistic chatbot. Type quit to exit.")
-    persona_chat.converse()
+    while True:
+        try:
+            user_input = input(">")
+        except EOFError:
+            print("quit")
+            break
+
+        user_input = user_input.strip()
+        while user_input and user_input[-1] in "!.":
+            user_input = user_input[:-1]
+
+        if not user_input:
+            continue
+
+        print(persona_chat.respond(user_input))
+        if user_input == "quit":
+            break
 
 bots = [
     (eliza_chat, "Eliza (psycho-babble)"),
