@@ -103,7 +103,7 @@ persona_pairs = [
     ],
     [
         r"^(?:hello|hi|hey)(?:\s+there)?\b[\s!.]*$|^good\s+(?:morning|afternoon|evening)\b.*",
-        ["Hello! I am your cheerful guide."]
+        ["Hello! I am your optimistic guide, How can I help you maaan?"]
     ],
     [
         r".*\bi (?:am|be) (\d+)(?:\s+year(?:s)?\s+old)?\b.*",
@@ -363,7 +363,7 @@ def persona_bot():
     print("Hello! I am the optimistic chatbot. Type quit to exit.\n")
     while True:
         try:
-            user_input = input(">")
+            user_input = input("> ")
         except EOFError:
             print("quit")
             break
