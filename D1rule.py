@@ -1,17 +1,6 @@
 import random
-import nltk
 import spacy
 
-#nltk.download('popular')
-
-# do a quick check to see if the user has the necessary NLTK data files
-#try:
-#    nltk.data.find('tokenizers/punkt')
-#except LookupError:
-#    nltk.download('punkt')
-
-# Spacy 
-# load English mlp model
 nlp = spacy.load("en_core_web_sm")
 
 # function that generates a lemmatized version of the input
@@ -301,7 +290,7 @@ def persona_bot():
         if not user_input:
             continue
 
-        print(f"User input: {user_input}")  # Debugging line to print user input
+        #print(f"User input: {user_input}")  # Debugging line to print user input
 
         key_topics = extract_key_topics(user_input)
         #print(f"Key topics extracted (POS NOUN/PROPN): {key_topics}")  # Debugging line
