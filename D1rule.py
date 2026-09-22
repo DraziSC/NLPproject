@@ -1,3 +1,24 @@
+"""
+================================================================================
+Course:      Natural Language Interaction (ILN)
+Institution: Universidade de Coimbra
+Project:     Deliverable 1 (D1) - Rule-Based Chatbot ("The Optimist")
+Authors:     Mohammed Abdelqader & Michael O'Shea
+Date:        September 22, 2026
+
+Description:
+A rule-based conversational agent developed using NLTK and spaCy.
+The chatbot embodies an optimistic, cheerful support persona that helps students
+working through stress, academic pressure, and daily life challenges.
+
+Key NLP & Architectural Features:
+- spaCy NLP pipeline for tokenization, lemmatization, and POS tagging
+- Custom reflections mapping adapted for lemmatized verbs and pronouns
+- Intelligent fallback mechanism leveraging topic extraction (NOUN/PROPN)
+- Prioritized regular expressions with negation handling
+================================================================================
+"""
+
 import random
 import spacy
 
@@ -66,11 +87,6 @@ def generate_fallback_response(topic):
     ]
     return random.choice(templates)
 
-
-"""
-A class for simple chatbots.  These perform simple pattern matching on sentences
-typed by users, and respond with automatically generated sentences.
-"""
 
 from nltk.chat.util import Chat, reflections
 
