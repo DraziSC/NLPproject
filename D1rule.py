@@ -17,7 +17,7 @@ nlp = spacy.load("en_core_web_sm")
 # function that generates a lemmatized version of the input
 def lemmatize_text(text):
     doc = nlp(text)
-    return " ".join([token.lemma_.lower() for token in doc])
+    return " ".join([token.lemma_.lower() for token in doc if not token.is_punct])
 
 # function to remove stop words from users input
 def remove_stopwords(text):
@@ -49,7 +49,7 @@ def generate_fallback_response(topic):
         f"What specifically about '{topic}' is on your mind?",
         f"I hear you talking about '{topic}'. How does that make you feel?",
         f"Thanks for sharing that. How is '{topic}' affecting your day?",
-        f"I believe things can improve with '{topic}'. What happened next?"
+        f"I believe things can improve with '{topic}'. What do you want to talk about next?"
     ]
     return random.choice(templates)
 
@@ -57,9 +57,6 @@ def generate_fallback_response(topic):
 """
 A class for simple chatbots.  These perform simple pattern matching on sentences
 typed by users, and respond with automatically generated sentences.
-
-These chatbots may not work using the windows command line or the
-windows IDLE GUI.
 """
 
 from nltk.chat.eliza import eliza_chat
@@ -71,17 +68,17 @@ from nltk.chat.zen import zen_chat
 
 persona_pairs = [
     [
-        r"hello|hi|hey",
-        ["Hello! I am your cheerful guide."]
-    ],
-    [
-        r"my name is (.*)",
+        r".*\bmy name (?:is|be|'s) (.*)",
         ["Nice to meet you, %1. I am the optimistic chatbot.",
          "Hello, %1! I hope you are having a good day.",
          "It is a pleasure to meet you, %1."]
     ],
     [
-        r"I am (\d+) years? old",
+        r"^(?:hello|hi|hey)(?:\s+there)?\b[\s!.]*$|^good\s+(?:morning|afternoon|evening)\b.*",
+        ["Hello! I am your cheerful guide."]
+    ],
+    [
+        r".*\bi (?:am|be) (\d+)(?:\s+year(?:s)?\s+old)?\b.*",
         [
             "It is nice to meet you! Being %1 years old is a great stage of life.",
             "Thanks for telling me. You have plenty of opportunities ahead of you.",
@@ -90,7 +87,7 @@ persona_pairs = [
         ]
     ],
     [
-        r"(?:I live in|I am from) (.*)",
+        r".*\b(?:i live in|i (?:am|be) from) (.*)",
         [
             "That sounds interesting. What do you like most about %1?",
             "Thanks for sharing that with me.",
@@ -99,149 +96,7 @@ persona_pairs = [
         ]
     ],
     [
-        r"(?:I study|I work as) (.*)",
-        [
-            "That sounds interesting! What do you enjoy most about %1?",
-            "I hope you are enjoying %1 and making progress toward your goals.",
-            "It is great to see you pursuing your studies or career in %1.",
-            "I am proud of you for choosing %1 as your path."
-        ]
-    ],
-    [
-        r"(?:my hobby is|I like) (.*)",
-        [
-            "%1 sounds like a great interest! Tell me more about it.",
-            "That is wonderful. Hobbies can be a great way to relax and grow.",
-            "I am glad you have a hobby like %1. What do you enjoy most about it?",
-            "It is great to hear that you enjoy %1. How did you get started with it?"
-        ]
-    ],
-    [
-        r"(.*)\bsad(.*)",
-        ["I am sorry you are feeling that way. Want to talk about it?",
-         "I understand that you are feeling sad. I am here to listen.",
-         "It is okay to feel sad sometimes. I am here for you.",
-         "Remember that it is okay to express your feelings. I am here to support you."]
-    ],
-    [
-        r"how are you|how do you feel",
-        [
-            "I am feeling positive and ready to chat!",
-            "I am doing great. How are you?",
-            "I am feeling optimistic today. How about you?",
-            "I am feeling energized and ready to help you today."
-        ]
-    ],
-    [
-        r"(.*) happy(.*)",
-        [
-            "That is wonderful to hear!",
-            "Your happiness is contagious.",
-            "I am glad you are feeling happy. What is making you feel that way?",
-            "It is great to see you in such a good mood!"
-        ]
-    ],
-    [
-        r"(.*) worried(.*)|(.*) anxious(.*)",
-        [
-            "It is understandable to feel worried. What might help you feel calmer?",
-            "Take things one step at a time. You do not have to solve everything at once.",
-            "I am here to listen and support you. What is on your mind?",
-            "Remember that it is okay to feel anxious sometimes. You are not alone."
-        ]
-    ],
-    [
-        r"(.*) exam(.*)|(.*) test(.*)",
-        [
-            "You have prepared for this. Take a deep breath and do your best.",
-            "Try reviewing the key topics and taking short breaks.",
-            "One exam does not define your abilities.",
-            "Remember to take care of yourself and get enough rest before the exam."
-        ]
-    ],
-    [
-        r"(.*) assignment(.*)|(.*) homework(.*)",
-        [
-            "Break the assignment into smaller steps.",
-            "Start with the easiest part to build momentum.",
-            "You can make progress one section at a time.",
-            "Remember to take breaks and reward yourself for completing tasks."
-        ]
-    ],
-    [
-        r"(.*) deadline(.*)|(.*) due tomorrow(.*)",
-        [
-            "Make a quick plan and focus on the most important tasks first.",
-            "You still have time to make meaningful progress.",
-            "Prioritize your tasks and tackle them one at a time.",
-            "Remember to take care of yourself and not overwork."
-        ]
-    ],
-    [
-        r"(.*) help(.*)",
-        [
-            "Of course! Tell me what you need help with.",
-            "I would be glad to help you think through it.",
-            "Let's work together to find a solution.",
-            "I am here to support you. What do you need help with?"
-        ]
-    ],
-    [
-        r"thank you|thanks",
-        [
-            "You are welcome!",
-            "Any time!",
-            "Happy to help.",
-            "I am glad I could support you."
-        ]
-    ],
-    [
-        r"what can you do",
-        [
-            "I can chat with you and offer encouragement.",
-            "I can listen and respond to your questions.",
-            "I can provide support and positive feedback.",
-            "I can help you work through challenges."
-        ]
-    ],
-    [
-        r"what should I do|what do you suggest|can you give me advice",
-        [
-            "Start with one small step and build from there.",
-            "Consider your options and choose the next action that feels manageable.",
-            "Make a short plan, then focus on the most important task first.",
-            "Remember to take care of yourself and not overwork."
-        ]
-    ],
-    [
-        r"why am I stressed|why do I feel stressed|why am I worried",
-        [
-            "Stress can build up when you have too many things to manage at once.",
-            "It may help to identify what is worrying you and deal with one part at a time.",
-            "Take a breath and think about what you can control right now.",
-            "Remember to take breaks and practice self-care to reduce stress."
-        ]
-    ],
-    [
-        r"how can I improve|how can I get better|how do I succeed",
-        [
-            "Set a clear goal and make steady progress toward it.",
-            "Learn from mistakes, keep practicing, and celebrate small improvements.",
-            "Ask for feedback and use it to decide what to try next.",
-            "Stay positive and keep moving forward, even if progress is slow."
-        ]
-    ],
-    [
-        r"I cannot do it|I can't do it|this is too hard|I want to give up|I need motivation|I feel unmotivated",
-        [
-            "You do not have to do everything at once. Start with one small step.",
-            "Difficult does not mean impossible. Keep going at your own pace.",
-            "Take a short break, then try the next manageable part.",
-            "You have overcome difficult things before, and you can make progress here too."
-        ]
-    ],
-    [
-        r"you are (nice|kind|helpful|great|amazing)|good chatbot|I like talking to you",
+        r".*\b(?:you (?:are|be) (?:very\s+|so\s+|really\s+)?(?:nice|kind|helpful|great|amazing)|good chatbot|i like (?:talking|talk) to you)\b.*",
         [
             "Thank you! I am happy that I can support you.",
             "That is kind of you to say. I enjoy talking with you too.",
@@ -250,7 +105,158 @@ persona_pairs = [
         ]
     ],
     [
-        r"quit|exit",
+        r".*\b(?:i (?:be\s+)?(?:study|work as|work in))\s+(.*)",
+        [
+            "That sounds interesting! What do you enjoy most about %1?",
+            "I hope you are enjoying %1 and making progress toward your goals.",
+            "It is great to see you pursuing your studies or career in %1.",
+            "I am proud of you for choosing %1 as your path."
+        ]
+    ],
+    [
+        r".*\b(?:my hobby (?:is|be)|i like) (.*)",
+        [
+            "%1 sounds like a great interest! Tell me more about it.",
+            "That is wonderful. Hobbies can be a great way to relax and grow.",
+            "I am glad you have a hobby like %1. What do you enjoy most about it?",
+            "It is great to hear that you enjoy %1. How did you get started with it?"
+        ]
+    ],
+    [
+        r".*\b(?:how (?:are|be) you|how do you feel)\b.*",
+        [
+            "I am feeling positive and ready to chat!",
+            "I am doing great. How are you?",
+            "I am feeling optimistic today. How about you?",
+            "I am feeling energized and ready to help you today."
+        ]
+    ],
+    [
+        r".*\bwhat can you do\b.*",
+        [
+            "I can chat with you and offer encouragement.",
+            "I can listen and respond to your questions.",
+            "I can provide support and positive feedback.",
+            "I can help you work through challenges."
+        ]
+    ],
+    [
+        r".*\b(?:what should i do|what do you suggest|can you give (?:me|i) advice)\b.*",
+        [
+            "Start with one small step and build from there.",
+            "Consider your options and choose the next action that feels manageable.",
+            "Make a short plan, then focus on the most important task first.",
+            "Remember to take care of yourself and not overwork."
+        ]
+    ],
+    [
+        r".*\bhow (?:can|do) i (?:improve|get (?:better|well)|succeed)\b.*",
+        [
+            "Set a clear goal and make steady progress toward it.",
+            "Learn from mistakes, keep practicing, and celebrate small improvements.",
+            "Ask for feedback and use it to decide what to try next.",
+            "Stay positive and keep moving forward, even if progress is slow."
+        ]
+    ],
+    [
+        r".*\b(?:why (?:am|be) i (?:stressed|stress)|why do i feel (?:stressed|stress)|why (?:am|be) i (?:worried|worry))\b.*",
+        [
+            "Stress can build up when you have too many things to manage at once.",
+            "It may help to identify what is worrying you and deal with one part at a time.",
+            "Take a breath and think about what you can control right now.",
+            "Remember to take breaks and practice self-care to reduce stress."
+        ]
+    ],
+    [
+        r".*\bi (?:am|be|feel|be\s+feel)\s+(?:stressed|stress)\b.*",
+        [
+            "I am sorry you are feeling stressed. Take a deep breath and take things one step at a time.",
+            "It is okay to feel stressed sometimes. Remember to take breaks and be kind to yourself.",
+            "Stress can feel overwhelming. What is the main thing causing you stress right now?",
+            "Take a moment to pause. You do not have to solve everything right this second."
+        ]
+    ],
+    [
+        r".*\bsad\b.*",
+        ["I am sorry you are feeling that way. Want to talk about it?",
+         "I understand that you are feeling sad. I am here to listen.",
+         "It is okay to feel sad sometimes. I am here for you.",
+         "Remember that it is okay to express your feelings. I am here to support you."]
+    ],
+    [
+        r".*\bhappy\b.*",
+        [
+            "That is wonderful to hear!",
+            "Your happiness is contagious.",
+            "I am glad you are feeling happy. What is making you feel that way?",
+            "It is great to see you in such a good mood!"
+        ]
+    ],
+    [
+        r".*\b(?:worried|worry|anxious|anxiety)\b.*",
+        [
+            "It is understandable to feel worried. What might help you feel calmer?",
+            "Take things one step at a time. You do not have to solve everything at once.",
+            "I am here to listen and support you. What is on your mind?",
+            "Remember that it is okay to feel anxious sometimes. You are not alone."
+        ]
+    ],
+    [
+        r".*\b(?:exam|test)\b.*",
+        [
+            "You have prepared for this. Take a deep breath and do your best.",
+            "Try reviewing the key topics and taking short breaks.",
+            "One exam does not define your abilities.",
+            "Remember to take care of yourself and get enough rest before the exam."
+        ]
+    ],
+    [
+        r".*\b(?:assignment|homework)\b.*",
+        [
+            "Break the assignment into smaller steps.",
+            "Start with the easiest part to build momentum.",
+            "You can make progress one section at a time.",
+            "Remember to take breaks and reward yourself for completing tasks."
+        ]
+    ],
+    [
+        r".*\b(?:deadline|due\s+(?:tomorrow|today|soon|next\s+week))\b.*",
+        [
+            "Make a quick plan and focus on the most important tasks first.",
+            "You still have time to make meaningful progress.",
+            "Prioritize your tasks and tackle them one at a time.",
+            "Remember to take care of yourself and not overwork."
+        ]
+    ],
+    [
+        r".*\b(?:i can not do it|.*too hard|i want to give up|i need motivation|i feel unmotivated)\b.*",
+        [
+            "You do not have to do everything at once. Start with one small step.",
+            "Difficult does not mean impossible. Keep going at your own pace.",
+            "Take a short break, then try the next manageable part.",
+            "You have overcome difficult things before, and you can make progress here too."
+        ]
+    ],
+    [
+        r".*\bhelp\b.*",
+        [
+            "Of course! Tell me what you need help with.",
+            "I would be glad to help you think through it.",
+            "Let's work together to find a solution.",
+            "I am here to support you. What do you need help with?"
+        ]
+    ],
+    [
+        r".*\b(?:thank\s+you|thank(?:s)?)\b.*",
+        [
+            "You are welcome!",
+            "Any time!",
+            "Happy to help.",
+            "I am glad I could support you."
+        ]
+    ],
+    [
+        r"^(?:quit|exit|bye|goodbye)$",
         ["Goodbye!",
          "Take care and have a great day!",
          "I hope to chat with you again soon.",
@@ -258,7 +264,29 @@ persona_pairs = [
     ]
 ]
 
-persona_chat = Chat(persona_pairs, reflections)
+# NLTK's Chat engine uses the 'reflections' dictionary to swap 1st and 2nd person
+# pronouns and verbs when echoing captured wildcards (%1, %2, etc.) back to the user
+# (e.g., transforming "my" -> "your", "I am" -> "you are").
+#
+# Standard NLTK reflections only cover inflected surface forms like "i am" and "you are".
+# However, because we preprocess user input with spaCy lemmatization (lemmatize_text),
+# verbs like "am", "is", and "are" are normalized to their base lemma "be" (e.g., "i be").
+#
+# Without these custom additions:
+# 1. "i be" would not be recognized by NLTK and would echo back awkwardly as "i be".
+# 2. spaCy sometimes lemmatizes "me" to the base pronoun "i", so explicit mappings
+#    ensure proper pronoun reflection back to natural conversational English.
+custom_reflections = dict(reflections)
+custom_reflections.update({
+    "i be": "you are",
+    "you be": "I am",
+    "i": "you",
+    "me": "you",
+    "my": "your",
+    "your": "my"
+})
+
+persona_chat = Chat(persona_pairs, custom_reflections)
 
 def persona_bot():
     print("Hello! I am the optimistic chatbot. Type quit to exit.")
@@ -274,30 +302,28 @@ def persona_bot():
             continue
 
         print(f"User input: {user_input}")  # Debugging line to print user input
-        stopwords_removed = remove_stopwords(user_input)
-        print(f"User input after removing stopwords: {stopwords_removed}")  # Debugging line
+
         key_topics = extract_key_topics(user_input)
-        print(f"Key topics extracted (POS NOUN/PROPN): {key_topics}")  # Debugging line
+        #print(f"Key topics extracted (POS NOUN/PROPN): {key_topics}")  # Debugging line
 
         lemmatized_input = lemmatize_text(user_input)
-        print(f"User input after lemmatization: {lemmatized_input}")  # Debugging line
+        #print(f"User input after lemmatization: {lemmatized_input}")  # Debugging line
 
-        clean_input = user_input
+        clean_input = lemmatized_input.strip()
         while clean_input and clean_input[-1] in "!.?":
-            clean_input = clean_input[:-1]
+            clean_input = clean_input[:-1].strip()
 
         if not clean_input:
             continue
-
-        if clean_input.lower() in ["quit", "exit"]:
-            print("Goodbye! Take care and have a great day!")
-            break
 
         response = persona_chat.respond(clean_input)
         if response is None:
             response = generate_fallback_response(key_topics)
 
         print(response)
+
+        if clean_input.lower() in ["quit", "exit", "bye", "goodbye"]:
+            break
 
 bots = [
     (eliza_chat, "Eliza (psycho-babble)"),
