@@ -3,7 +3,31 @@ import spacy
 
 nlp = spacy.load("en_core_web_sm")
 
-# function that generates a lemmatized version of the input
+# ==============================================================================
+# Lemmatization Preprocessing:
+# Lemmatization reduces words to their canonical base form (lemma) using spaCy's
+# pre-trained English model (en_core_web_sm). Unlike rule-based stemming which
+# blindly chops off suffixes, spaCy uses part-of-speech (POS) tagging and vocabulary
+# lookup tables to accurately determine root lemmas based on sentence context:
+#
+# How it works in this pipeline:
+#   1. doc = nlp(text): Tokenizes the user text and runs POS tagging & morphological
+#      analysis on each token.
+#   2. token.lemma_.lower(): Retrieves the canonical base lemma for each word and
+#      normalizes it to lowercase for case-insensitive regex matching.
+#      Examples:
+#        - Inflected verbs: "am", "is", "are", "'m", "'re" -> "be"
+#        - Gerunds/past tenses: "studying", "studied" -> "study"
+#        - Plural nouns: "exams" -> "exam", "hobbies" -> "hobby"
+#        - Irregulars: "better" -> "well"
+#   3. not token.is_punct: Filters out punctuation tokens (e.g., ",", ".", "!") so
+#      they do not interfere with regex word boundaries (\b).
+#   4. " ".join(...): Reassembles the filtered lemmas into a single whitespace-
+#      delimited string ready for pattern matching against persona_pairs.
+#
+# This drastically simplifies regex rules by matching base lemmas rather than
+# having to write exhaustive patterns for every verb tense and noun inflection.
+# ==============================================================================
 def lemmatize_text(text):
     doc = nlp(text)
     return " ".join([token.lemma_.lower() for token in doc if not token.is_punct])
