@@ -24,6 +24,7 @@ import spacy
 
 nlp = spacy.load("en_core_web_sm")
 
+"""
 # ==============================================================================
 # Lemmatization Preprocessing:
 # Lemmatization reduces words to their canonical base form (lemma) using spaCy's
@@ -49,6 +50,7 @@ nlp = spacy.load("en_core_web_sm")
 # This drastically simplifies regex rules by matching base lemmas rather than
 # having to write exhaustive patterns for every verb tense and noun inflection.
 # ==============================================================================
+"""
 def lemmatize_text(text):
     doc = nlp(text)
     return " ".join([token.lemma_.lower() for token in doc if not token.is_punct])
@@ -316,6 +318,7 @@ persona_pairs = [
     ]
 ]
 
+"""
 # NLTK's Chat engine uses the 'reflections' dictionary to swap 1st and 2nd person
 # pronouns and verbs when echoing captured wildcards (%1, %2, etc.) back to the user
 # (e.g., transforming "my" -> "your", "I am" -> "you are").
@@ -328,6 +331,7 @@ persona_pairs = [
 # 1. "i be" would not be recognized by NLTK and would echo back awkwardly as "i be".
 # 2. spaCy sometimes lemmatizes "me" to the base pronoun "i", so explicit mappings
 #    ensure proper pronoun reflection back to natural conversational English.
+"""
 custom_reflections = dict(reflections)
 custom_reflections.update({
     "i be": "you are",
