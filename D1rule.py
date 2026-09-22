@@ -48,13 +48,10 @@ A class for simple chatbots.  These perform simple pattern matching on sentences
 typed by users, and respond with automatically generated sentences.
 """
 
-from nltk.chat.eliza import eliza_chat
-from nltk.chat.iesha import iesha_chat
-from nltk.chat.rude import rude_chat
-from nltk.chat.suntsu import suntsu_chat
 from nltk.chat.util import Chat, reflections
-from nltk.chat.zen import zen_chat
 
+# Initialize the persona chatbot with a set of patterns and responses. Each pattern is a regular expression that matches user input, 
+# and the corresponding responses are templates that can include captured groups from the input.
 persona_pairs = [
     [
         r".*\bmy name (?:is|be|'s) (.*)",
@@ -166,11 +163,29 @@ persona_pairs = [
         ]
     ],
     [
+        r".*\b(?:not|never)\s+(?:(?:feel|be)\s+)?(?:very\s+|so\s+|that\s+|too\s+)?sad\b.*",
+        [
+            "I am glad to hear that you are not feeling sad.",
+            "That is good to hear! What is on your mind today?",
+            "I am pleased to hear that. How are things going for you?"
+        ]
+    ],
+    [
         r".*\bsad\b.*",
         ["I am sorry you are feeling that way. Want to talk about it?",
          "I understand that you are feeling sad. I am here to listen.",
          "It is okay to feel sad sometimes. I am here for you.",
          "Remember that it is okay to express your feelings. I am here to support you."]
+    ],
+    [
+        r".*\b(?:(?:not|never)\s+(?:(?:feel|be|do)\s+)?(?:very\s+|so\s+|that\s+|too\s+)?(?:happy|good|well|okay|great)|unhappy)\b.*",
+        [
+            "I am sorry to hear you are not feeling happy. What has been on your mind?",
+            "It is completely okay not to feel okay. I am here to listen whenever you want to talk.",
+            "Take things one moment at a time. Even tough days can get better.",
+            "I am here to support you. Would you like to talk about what is bothering you?",
+            "Be kind to yourself today. Remember that difficult feelings will pass."
+        ]
     ],
     [
         r".*\bhappy\b.*",
@@ -179,6 +194,14 @@ persona_pairs = [
             "Your happiness is contagious.",
             "I am glad you are feeling happy. What is making you feel that way?",
             "It is great to see you in such a good mood!"
+        ]
+    ],
+    [
+        r".*\b(?:not|never)\s+(?:(?:feel|be)\s+)?(?:very\s+|so\s+|that\s+|too\s+)?(?:worried|worry|anxious|anxiety)\b.*",
+        [
+            "I am glad you are feeling calm and not worried.",
+            "That is wonderful to hear! A calm mind is a great foundation.",
+            "I am happy to hear that. What would you like to talk about today?"
         ]
     ],
     [
@@ -275,10 +298,25 @@ custom_reflections.update({
     "your": "my"
 })
 
+# Initialize the persona chat with the custom reflections
 persona_chat = Chat(persona_pairs, custom_reflections)
 
+ASCII_BANNER = r"""
+=======================================================================
+          \   |   /       ___        _   _           _     _   
+           .-'''-.       / _ \ _ __ | |_(_)_ __ ___ (_)___| |_ 
+        -=(  ^_^  )=-   | | | | '_ \| __| | '_ ` _ \| / __| __|
+           '-...-'      | |_| | |_) | |_| | | | | | | \__ \ |_ 
+          /   |   \      \___/| .__/ \__|_|_| |_| |_|_|___/\__|
+                              |_|                              
+                 ~ Cheerful Support & Positivity ~
+=======================================================================
+"""
+
+# Create a function to run the persona chatbot
 def persona_bot():
-    print("Hello! I am the optimistic chatbot. Type quit to exit.")
+    print(ASCII_BANNER)
+    print("Hello! I am the optimistic chatbot. Type quit to exit.\n")
     while True:
         try:
             user_input = input(">")
@@ -314,30 +352,6 @@ def persona_bot():
         if clean_input.lower() in ["quit", "exit", "bye", "goodbye"]:
             break
 
-bots = [
-    (eliza_chat, "Eliza (psycho-babble)"),
-    (iesha_chat, "Iesha (teen anime junky)"),
-    (rude_chat, "Rude (abusive bot)"),
-    (suntsu_chat, "Suntsu (Chinese sayings)"),
-    (zen_chat, "Zen (gems of wisdom)"),
-    (persona_bot, "Optimist (cheerful support)"),
-]
-
-
-def chatbots():
-    print("Which chatbot would you like to talk to?")
-    botcount = len(bots)
-    for i in range(botcount):
-        print("  %d: %s" % (i + 1, bots[i][1]))
-    while True:
-        choice = input(f"\nEnter a number in the range 1-{botcount}: ").strip()
-        if choice.isdigit() and (int(choice) - 1) in range(botcount):
-            break
-        else:
-            print("   Error: bad chatbot number")
-
-    chatbot = bots[int(choice) - 1][0]
-    chatbot()
 
 if __name__ == "__main__":
-    chatbots()
+    persona_bot()
