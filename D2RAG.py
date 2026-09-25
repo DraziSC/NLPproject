@@ -547,6 +547,13 @@ def display_retrieval_results(query: str, results: List[Dict[str, Any]], mission
 # 5. Ollama LLM Generation Pipeline & Prompt Engineering
 # =============================================================================
 
+def extract_citations(text: str) -> List[str]:
+    """
+    Extracts citation references like [Document.pdf, Page X] or [Doc, Page X] from text.
+    """
+    pattern = r"\[([^\]]+?,\s*Page\s*\d+)\]"
+    return re.findall(pattern, text, re.IGNORECASE)
+
 def get_ollama_client(host: str = OLLAMA_HOST):
     """
     Initializes and verifies the local Ollama client connection.
