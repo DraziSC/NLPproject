@@ -175,7 +175,7 @@ class SBERTRouterClassifier:
         self.classifier = LogisticRegression(C=1.0, max_iter=1000, random_state=42)
         self.is_fitted = False
 
-        # Class prototypes for geometric centroid distance (Option B Paradigm 2)
+        # Class prototypes for geometric centroid distance
         self.centroid_d1: np.ndarray = None
         self.centroid_d2: np.ndarray = None
 
