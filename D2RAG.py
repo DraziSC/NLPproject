@@ -17,9 +17,6 @@ Key Pipeline Components:
 2. Vector Database: ChromaDB persistent vector store with all-MiniLM-L6-v2 embeddings.
 3. LLM Generation: Local Ollama integration using open-source Qwen2.5:7B.
 4. Prompt Engineering: Strict grounding templates with verified inline citations.
-5. Evaluation Suite: Automated quantitative benchmark comparing With-RAG vs.
-   Without-RAG answer quality across fact recall, citation coverage, hallucination
-   reduction, and LLM-as-Judge academic scoring.
 ================================================================================
 """
 
@@ -60,6 +57,7 @@ COLLECTION_NAME = "nasa_missions"
 EMBEDDING_MODEL_NAME = "all-MiniLM-L6-v2"
 DEFAULT_LLM_MODEL = "qwen2.5:7b"
 OLLAMA_HOST = "http://127.0.0.1:11434"
+DEFAULT_TOP_K = 8
 
 # -----------------------------------------------------------------------------
 # NASA Technical Document Registry (NTRS authoritative publications)
@@ -474,7 +472,7 @@ def build_or_load_vector_db(
 def retrieve_context(
     collection: chromadb.Collection,
     query: str,
-    top_k: int = 4,
+    top_k: int = DEFAULT_TOP_K,
     mission_filter: Optional[str] = None
 ) -> List[Dict[str, Any]]:
     """
@@ -623,7 +621,7 @@ def generate_rag_response(
     collection: chromadb.Collection,
     client,
     model: str = DEFAULT_LLM_MODEL,
-    top_k: int = 4,
+    top_k: int = DEFAULT_TOP_K,
     mission_filter: Optional[str] = None,
     temperature: float = 0.2
 ) -> Dict[str, Any]:
@@ -734,14 +732,19 @@ def generate_baseline_response(
 # 7. Interactive Agent Shell
 # =============================================================================
 
-def interactive_agent_session(collection: chromadb.Collection, client, model: str = DEFAULT_LLM_MODEL):
+def interactive_agent_session(
+    collection: chromadb.Collection,
+    client,
+    model: str = DEFAULT_LLM_MODEL,
+    top_k: int = DEFAULT_TOP_K
+):
     """
     Starts an interactive conversation loop where users can ask questions and receive
     answers grounded in the NASA technical corpus with source citations.
     """
     print("\n" + "=" * 80)
     print("NASA SPACE EXPLORATION RAG AGENT (OLLAMA + CHROMADB)")
-    print(f"Model: {model} | Collection: {COLLECTION_NAME} (1,600 chunks)")
+    print(f"Model: {model} | Collection: {COLLECTION_NAME} (1,600 chunks) | Top-K: {top_k}")
     print("Ask any technical question about NASA flagship missions.")
     print("Commands:")
     print("  '<question>' -> Generates With-RAG answers")
@@ -765,7 +768,7 @@ def interactive_agent_session(collection: chromadb.Collection, client, model: st
                 print("1. Querying Baseline (Without-RAG)...")
                 base_resp = generate_baseline_response(q, client, model=model)
                 print("2. Querying Expert Agent (With-RAG)...")
-                rag_resp = generate_rag_response(q, collection, client, model=model, top_k=4)
+                rag_resp = generate_rag_response(q, collection, client, model=model, top_k=top_k)
 
                 print("\n" + "=" * 80)
                 print(f"QUERY: \"{q}\"")
@@ -782,13 +785,13 @@ def interactive_agent_session(collection: chromadb.Collection, client, model: st
 
             if user_input.startswith("sources:"):
                 q = user_input.replace("sources:", "").strip()
-                results = retrieve_context(collection, query=q, top_k=4)
+                results = retrieve_context(collection, query=q, top_k=top_k)
                 display_retrieval_results(q, results)
                 continue
 
             # Standard RAG query
             print("Searching NASA knowledge base and generating grounded response...")
-            res = generate_rag_response(user_input, collection, client, model=model, top_k=4)
+            res = generate_rag_response(user_input, collection, client, model=model, top_k=top_k)
 
             print("\n" + "=" * 80)
             print(f"ANSWER (Model: {model} with ChromaDB RAG)")
@@ -846,8 +849,8 @@ def main():
     parser.add_argument(
         "-k", "--top-k",
         type=int,
-        default=8,
-        help="Number of retrieved chunks for context grounding (default: 4)",
+        default=DEFAULT_TOP_K,
+        help=f"Number of retrieved chunks for context grounding (default: {DEFAULT_TOP_K})",
     )
     parser.add_argument(
         "--model",
@@ -918,14 +921,14 @@ def main():
         return
 
     if args.interactive:
-        interactive_agent_session(collection, client, model=args.model)
+        interactive_agent_session(collection, client, model=args.model, top_k=args.top_k)
         return
 
     # Default action: run the benchmark suite and generate the report
     list_stored_documents(DATA_DIR)
 
     # default run interactive session if no other flags are provided
-    interactive_agent_session(collection, client, model=args.model)
+    interactive_agent_session(collection, client, model=args.model, top_k=args.top_k)
 
 if __name__ == "__main__":
     main()
