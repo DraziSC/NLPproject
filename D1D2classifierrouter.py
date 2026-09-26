@@ -51,6 +51,7 @@ from D1rule import (
 import D2RAG
 from D2RAG import (
     build_or_load_vector_db,
+    download_nasa_documents,
     generate_rag_response,
     get_ollama_client,
     extract_citations,
@@ -390,13 +391,14 @@ def handle_d2_request(user_input: str, chroma_collection, ollama_client, top_k: 
     Executes Deliverable 2: Expert NASA RAG Agent with ChromaDB retrieval and Qwen2.5:7b.
     Returns grounded technical answer with citations and retrieval latency.
     """
+        
     res = generate_rag_response(
         query=user_input,
         collection=chroma_collection,
         client=ollama_client,
         top_k=top_k
     )
-    citations = extract_citations(res["answer"])
+    citations = res.get("citations") or extract_citations(res["answer"], res.get("retrieved_chunks", []))
     return {
         "agent": "D2 (NASA Space Missions Expert RAG Agent)",
         "response": res["answer"],
@@ -427,6 +429,9 @@ class UnifiedConversationalAssistant:
             self.router.save(ROUTER_MODEL_PATH)
 
         # Lazy initialization for D2 RAG components
+        NASA_DATA_DIR = DATA_DIR / "nasa_docs"
+        if not any(NASA_DATA_DIR.glob("*.pdf")):
+            download_nasa_documents(NASA_DATA_DIR)
         print("\n[Unified Assistant] Connecting to ChromaDB vector store...")
         self.chroma_collection = build_or_load_vector_db()
         self.ollama_client = get_ollama_client()

@@ -545,12 +545,50 @@ def display_retrieval_results(query: str, results: List[Dict[str, Any]], mission
 # 5. Ollama LLM Generation Pipeline & Prompt Engineering
 # =============================================================================
 
-def extract_citations(text: str) -> List[str]:
+def extract_citations(text: str, chunks: Optional[List[Dict[str, Any]]] = None) -> List[str]:
     """
     Extracts citation references like [Document.pdf, Page X] or [Doc, Page X] from text.
+    If citations use numeric excerpt indices (e.g. [7, Page 1]), resolves them using
+    the provided chunks list, and deduplicates the results.
     """
-    pattern = r"\[([^\]]+?,\s*Page\s*\d+)\]"
-    return re.findall(pattern, text, re.IGNORECASE)
+    pattern = r"\[([^\]]+?),\s*(?:Page|p\.?)\s*(\d+)\]"
+    matches = re.findall(pattern, text, re.IGNORECASE)
+    resolved = []
+    for doc_ref, page in matches:
+        doc_clean = doc_ref.strip()
+        idx_match = re.search(r"^(?:excerpt\s*|source\s*|#\s*)?(\d+)$", doc_clean, re.IGNORECASE)
+        if idx_match and chunks:
+            idx = int(idx_match.group(1)) - 1
+            if 0 <= idx < len(chunks):
+                doc_clean = chunks[idx].get("source", doc_clean)
+        citation = f"{doc_clean}, Page {page}"
+        if citation not in resolved:
+            resolved.append(citation)
+    return resolved
+
+
+def resolve_inline_citations(text: str, chunks: List[Dict[str, Any]]) -> str:
+    """
+    Replaces numerical excerpt citations in the text like [7, Page 1] with the actual
+    document filename [Document.pdf, Page 1] using the retrieved chunks.
+    """
+    if not chunks:
+        return text
+
+    def _replace_cite(match):
+        doc_ref = match.group(1).strip()
+        page = match.group(2)
+        idx_match = re.search(r"^(?:excerpt\s*|source\s*|#\s*)?(\d+)$", doc_ref, re.IGNORECASE)
+        if idx_match:
+            idx = int(idx_match.group(1)) - 1
+            if 0 <= idx < len(chunks):
+                doc_name = chunks[idx].get("source", doc_ref)
+                return f"[{doc_name}, Page {page}]"
+        return match.group(0)
+
+    pattern = r"\[([^\]]+?),\s*(?:Page|p\.?)\s*(\d+)\]"
+    return re.sub(pattern, _replace_cite, text, flags=re.IGNORECASE)
+
 
 def get_ollama_client(host: str = OLLAMA_HOST):
     """
@@ -584,7 +622,7 @@ Your objective is to provide precise, rigorous engineering and scientific answer
 
 CRITICAL INSTRUCTIONS:
 1. Grounding: Answer ONLY based on the facts provided in the Context Excerpts. Do NOT extrapolate, speculate, or introduce external unverified claims.
-2. Citations: You MUST substantiate every technical claim and metric with an inline bracketed citation citing the source file and page number, in the exact format: [Document Name, Page X].
+2. Citations: You MUST substantiate every technical claim and metric with an inline bracketed citation citing the exact source file name and page number, in the exact format: [Document Name, Page X] (for example: [JWST_Mission_Overview_and_Status.pdf, Page 12]). You MUST use the exact file name given in "Source Document:", NEVER cite using excerpt numbers like [1, Page 12] or [Excerpt 1].
 3. Transparency: If the provided excerpts do not contain enough information to answer any part of the query, explicitly state: "The provided NASA documentation does not contain sufficient data to address this aspect."
 4. Tone: Technical, concise, professional, and fact-focused.
 """
@@ -606,7 +644,7 @@ def format_rag_context_blocks(chunks: List[Dict[str, Any]]) -> str:
         doc_text = c.get("document", "").strip()
 
         block = (
-            f"--- EXCERPT [{idx}] ---\n"
+            f"--- EXCERPT {idx} ---\n"
             f"Source Document: {source} (Page {page})\n"
             f"Mission Category: {mission}\n"
             f"Content: {doc_text}\n"
@@ -653,7 +691,8 @@ def generate_rag_response(
         f"User Technical Query: {query}\n\n"
         f"Instructions: Provide a detailed, technically rigorous response to the query using ONLY "
         f"the excerpts above. Include exact inline citations [Document Name, Page X] for every key fact, "
-        f"parameter, and specification."
+        f"parameter, and specification (e.g. [JWST_Mission_Overview_and_Status.pdf, Page 4]). Use the exact "
+        f"filename from 'Source Document:', not excerpt numbers."
     )
 
     # Step 3: LLM Generation
@@ -667,18 +706,21 @@ def generate_rag_response(
             ],
             options={"temperature": temperature}
         )
-        answer_text = response["message"]["content"]
+        raw_answer = response["message"]["content"]
+        answer_text = resolve_inline_citations(raw_answer, retrieved_chunks)
     except Exception as e:
         answer_text = f"[ERROR: Ollama generation failed: {e}]"
 
     generation_time = time.time() - llm_start
     total_latency = time.time() - start_time
+    citations = extract_citations(answer_text, retrieved_chunks)
 
     return {
         "query": query,
         "mode": "with_rag",
         "answer": answer_text,
         "retrieved_chunks": retrieved_chunks,
+        "citations": citations,
         "retrieval_latency": retrieval_time,
         "generation_latency": generation_time,
         "total_latency": total_latency,
