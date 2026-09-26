@@ -36,7 +36,9 @@ os.environ["no_proxy"] = "localhost,127.0.0.1"
 
 import chromadb
 from chromadb.utils import embedding_functions
+import numpy as np
 from pypdf import PdfReader
+from sentence_transformers import SentenceTransformer
 
 try:
     import ollama
@@ -284,12 +286,78 @@ def list_stored_documents(target_dir: Path = DATA_DIR):
 
 
 # =============================================================================
-# 2. Text Extraction & Sliding-Window Chunking Pipeline
+# 2. Text Extraction & Semantic Chunking Pipeline
 # =============================================================================
 
+def semantic_chunk_text(
+    text: str,
+    encoder: SentenceTransformer,
+    distance_percentile_threshold: float = 85.0,
+    min_chunk_chars: int = 150,
+    max_chunk_chars: int = 800
+) -> List[str]:
+    """
+    Partitions continuous text into semantically cohesive chunks by detecting
+    topic shifts (cosine distance spikes) between consecutive sentences.
+    """
+    raw_sentences = re.split(r"(?<=[.!?])\s+", text.strip())
+    sentences = [s.strip() for s in raw_sentences if len(s.strip()) > 15]
+
+    if not sentences:
+        return []
+    if len(sentences) <= 1:
+        return sentences
+
+    # Encode all sentences in a single batched pass with normalized embeddings
+    sentence_embeddings = encoder.encode(
+        sentences,
+        convert_to_numpy=True,
+        normalize_embeddings=True,
+        show_progress_bar=False
+    )
+
+    # Compute cosine distances between adjacent sentences (1.0 - dot_product)
+    distances = [
+        max(0.0, 1.0 - float(np.dot(sentence_embeddings[i], sentence_embeddings[i + 1])))
+        for i in range(len(sentence_embeddings) - 1)
+    ]
+
+    # Calculate dynamic breakpoint threshold (spikes above the percentile indicate topic shift)
+    breakpoint_threshold = float(np.percentile(distances, distance_percentile_threshold))
+
+    chunks = []
+    current_chunk = [sentences[0]]
+    current_length = len(sentences[0])
+
+    for i in range(len(distances)):
+        dist = distances[i]
+        next_sentence = sentences[i + 1]
+        next_length = len(next_sentence)
+
+        # Break conditions:
+        # 1. Cosine distance spike above threshold AND chunk meets minimum size
+        # 2. Hard limit guard to never exceed max_chunk_chars (fitting 256 tokens)
+        is_topic_shift = (dist >= breakpoint_threshold) and (current_length >= min_chunk_chars)
+        exceeds_max = (current_length + next_length > max_chunk_chars)
+
+        if is_topic_shift or exceeds_max:
+            chunks.append(" ".join(current_chunk))
+            current_chunk = [next_sentence]
+            current_length = next_length
+        else:
+            current_chunk.append(next_sentence)
+            current_length += next_length + 1
+
+    if current_chunk:
+        chunks.append(" ".join(current_chunk))
+
+    return chunks
+
+# No longer needed as use of semantic_chunk_text is preferred for RAG context retrieval
+# keep just in case for fallback or testing purposes
 def chunk_text(text: str, chunk_size: int = 700, chunk_overlap: int = 100) -> List[str]:
     """
-    Splits text into overlapping segments respecting natural punctuation boundaries.
+    Splits text into overlapping segments respecting natural punctuation boundaries (sliding-window fallback).
     """
     text = re.sub(r"\s+", " ", text).strip()
     if not text:
@@ -330,17 +398,21 @@ def chunk_text(text: str, chunk_size: int = 700, chunk_overlap: int = 100) -> Li
 
 def extract_and_chunk_corpus(data_dir: Path = DATA_DIR) -> Dict[str, List[Any]]:
     """
-    Extracts text from all stored NASA PDFs and generates metadata-tagged chunks.
+    Extracts text from all stored NASA PDFs and generates semantically bounded chunks
+    using SentenceTransformer ('all-MiniLM-L6-v2') inter-sentence cosine distance gradients.
     """
     pdf_files = sorted(list(data_dir.glob("*.pdf")))
     catalog_map = {item["filename"]: item for item in NASA_DOCUMENT_CATALOG}
+
+    print(f"[Semantic Chunking] Initializing encoder '{EMBEDDING_MODEL_NAME}' for topic boundary detection...")
+    encoder = SentenceTransformer(EMBEDDING_MODEL_NAME)
 
     documents: List[str] = []
     metadatas: List[Dict[str, Any]] = []
     ids: List[str] = []
 
     print("\n" + "=" * 80)
-    print(f"CORPUS TEXT EXTRACTION & CHUNKING ({len(pdf_files)} PDF Files)")
+    print(f"CORPUS TEXT EXTRACTION & SEMANTIC CHUNKING ({len(pdf_files)} PDF Files)")
     print("=" * 80)
 
     total_pages = 0
@@ -362,7 +434,7 @@ def extract_and_chunk_corpus(data_dir: Path = DATA_DIR) -> Dict[str, List[Any]]:
 
             for page_idx, page in enumerate(reader.pages, start=1):
                 raw_text = page.extract_text() or ""
-                p_chunks = chunk_text(raw_text)
+                p_chunks = semantic_chunk_text(raw_text, encoder=encoder)
 
                 for c_idx, c_text in enumerate(p_chunks, start=1):
                     chunk_id = f"{pdf_path.stem}_p{page_idx}_c{c_idx}"
