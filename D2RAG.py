@@ -288,6 +288,10 @@ def list_stored_documents(target_dir: Path = DATA_DIR):
 # =============================================================================
 # 2. Text Extraction & Semantic Chunking Pipeline
 # =============================================================================
+# The semantic_chunk_text function partitions continuous text into semantically cohesive chunks by 
+# detecting topic shifts (cosine distance spikes) between consecutive sentences. 
+# It uses a SentenceTransformer encoder to generate embeddings for each sentence and computes cosine distances 
+# to identify natural breakpoints for chunking. 
 
 def semantic_chunk_text(
     text: str,
@@ -354,7 +358,7 @@ def semantic_chunk_text(
     return chunks
 
 # No longer needed as use of semantic_chunk_text is preferred for RAG context retrieval
-# keep just in case for fallback or testing purposes
+# keep just in case for fallback or testing purposes but could really be removed in future
 def chunk_text(text: str, chunk_size: int = 700, chunk_overlap: int = 100) -> List[str]:
     """
     Splits text into overlapping segments respecting natural punctuation boundaries (sliding-window fallback).
