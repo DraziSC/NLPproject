@@ -81,6 +81,7 @@ DEFAULT_RESULTS_MD = PROJECT_DIR / "data" / "nasa_eval_results.md"
 COLLECTION_NAME = "nasa_missions"
 EMBEDDING_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 DEFAULT_LLM_MODEL = "qwen2.5:7b"
+DEFAULT_JUDGE_LLM_MODEL = "mistral-small:24b"
 DEFAULT_TOP_K = 6
 OLLAMA_HOST = "http://127.0.0.1:11434"
 
@@ -393,7 +394,8 @@ def judge_answer_with_llm(
     ground_truth_answer: str,
     candidate_answer: str,
     client,
-    model: str = DEFAULT_LLM_MODEL
+    #model: str = DEFAULT_LLM_MODEL
+    model: str = DEFAULT_JUDGE_LLM_MODEL
 ) -> Dict[str, Any]:
     """
     Invokes LLM-as-a-judge to evaluate the candidate answer against the ground truth.
