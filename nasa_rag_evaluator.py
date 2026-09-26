@@ -669,8 +669,10 @@ def run_evaluation(
         # Step D: Optional LLM-as-a-Judge Evaluation
         if enable_judge:
             print("  -> Running LLM-as-a-Judge evaluation...", end="", flush=True)
-            rag_judge = judge_answer_with_llm(query, gt_answer, rag_res["answer"], client, model)
-            base_judge = judge_answer_with_llm(query, gt_answer, base_res["answer"], client, model)
+            #rag_judge = judge_answer_with_llm(query, gt_answer, rag_res["answer"], client, model)
+            #base_judge = judge_answer_with_llm(query, gt_answer, base_res["answer"], client, model)
+            rag_judge = judge_answer_with_llm(query, gt_answer, rag_res["answer"], client, DEFAULT_JUDGE_LLM_MODEL)
+            base_judge = judge_answer_with_llm(query, gt_answer, base_res["answer"], client, DEFAULT_JUDGE_LLM_MODEL)
             rag_res["judge"] = rag_judge
             base_res["judge"] = base_judge
             print(f" done (RAG: {rag_judge['overall_score']:.1f}/5.0 | No-RAG: {base_judge['overall_score']:.1f}/5.0)")
