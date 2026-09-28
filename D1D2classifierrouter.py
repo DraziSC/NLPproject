@@ -271,88 +271,6 @@ class SBERTRouterClassifier:
             "latency_ms": inference_time_ms,
         }
 
-
-# =============================================================================
-# 3. Model Cross-Validation & Polysemy Stress-Testing
-# =============================================================================
-
-def run_classifier_cross_validation(training_data: List[Tuple[str, str]] = ROUTER_TRAINING_DATA):
-    """
-    Executes a 5-fold Stratified Cross-Validation on the router dataset
-    and stress-tests polysemous edge cases ("mechanical stress" vs "exam stress").
-    """
-    print("\n" + "=" * 80)
-    print("INTENT ROUTER EVALUATION: 5-FOLD STRATIFIED CROSS-VALIDATION")
-    print("=" * 80)
-
-    encoder = SentenceTransformer(EMBEDDING_MODEL_NAME)
-    texts = [item[0] for item in training_data]
-    y = np.array([1 if item[1] == LABEL_D2_NASA else 0 for item in training_data])
-
-    print(f"Vectorizing {len(texts)} samples with '{EMBEDDING_MODEL_NAME}'...")
-    X = encoder.encode(texts, convert_to_numpy=True, normalize_embeddings=True)
-
-    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
-    y_true_all = []
-    y_pred_all = []
-
-    fold = 1
-    for train_idx, test_idx in skf.split(X, y):
-        clf = LogisticRegression(C=1.0, max_iter=1000)
-        clf.fit(X[train_idx], y[train_idx])
-        preds = clf.predict(X[test_idx])
-        acc = np.mean(preds == y[test_idx]) * 100
-        print(f"  Fold {fold}: Accuracy = {acc:.1f}% ({len(test_idx)} test samples)")
-        y_true_all.extend(y[test_idx])
-        y_pred_all.extend(preds)
-        fold += 1
-
-    print("\n" + "-" * 80)
-    print("CLASSIFICATION REPORT ACROSS ALL 5 FOLDS:")
-    print("-" * 80)
-    target_names = [f"D1 ({LABEL_D1_CHITCHAT})", f"D2 ({LABEL_D2_NASA})"]
-    print(classification_report(y_true_all, y_pred_all, target_names=target_names, digits=3))
-
-    cm = confusion_matrix(y_true_all, y_pred_all)
-    print("CONFUSION MATRIX:")
-    print(f"                Predicted D1    Predicted D2")
-    print(f"  Actual D1:    {cm[0][0]:>12}    {cm[0][1]:>12}")
-    print(f"  Actual D2:    {cm[1][0]:>12}    {cm[1][1]:>12}")
-
-    # Stress testing tricky polysemy and edge cases
-    print("\n" + "=" * 80)
-    print("POLYSEMY & AMBIGUITY STRESS TESTS (THE 'STRESS' & 'WORK' PROBLEM)")
-    print("=" * 80)
-
-    # Train full model for demonstration
-    router = SBERTRouterClassifier()
-    router.fit(training_data)
-
-    stress_test_cases = [
-        # Ambiguous word "stress":
-        ("I feel an immense amount of stress about my exams tomorrow", LABEL_D1_CHITCHAT),
-        ("What aerodynamic stress does the rocket core stage experience at Max-Q?", LABEL_D2_NASA),
-        # Ambiguous word "work":
-        ("I need to work on my motivation and daily study habits", LABEL_D1_CHITCHAT),
-        ("How does the ChemCam laser work on Mars soil targets?", LABEL_D2_NASA),
-        # Ambiguous word "help":
-        ("Can you help me feel less lonely today?", LABEL_D1_CHITCHAT),
-        ("Can you help explain the cryogenic sunshield of the James Webb telescope?", LABEL_D2_NASA),
-        # Out-of-domain / Conversational:
-        ("Do you like pizza or coffee?", LABEL_D1_CHITCHAT),
-        ("What is the Apollo 11 Saturn V thrust?", LABEL_D2_NASA),
-    ]
-
-    for utterance, expected in stress_test_cases:
-        res = router.predict_intent(utterance)
-        status = "PASSED" if res["predicted_label"] == expected else "FAILED"
-        print(f"\nUtterance: \"{utterance}\"")
-        print(f"  Expected:    {expected}")
-        print(f"  Predicted:   {res['predicted_label']} (Confidence: {res['confidence']*100:.1f}%) | Latency: {res['latency_ms']:.2f}ms")
-        print(f"  Status:      [{status}]")
-    print("=" * 80)
-
-
 # =============================================================================
 # 4. Agent Handlers & Execution Routing
 # =============================================================================
@@ -491,7 +409,6 @@ def interactive_unified_shell(assistant: UnifiedConversationalAssistant):
   • Agent 2:  D2 NASA Flagship RAG (ChromaDB 1,600 chunks + Ollama Qwen2.5:7b)
 -------------------------------------------------------------------------------
 Type any message: chat, share how you feel, or ask NASA technical questions.
-Type 'eval' to run classifier cross-validation, or 'quit' / 'exit' to end.
 ===============================================================================
 """
     print(banner)
@@ -504,9 +421,6 @@ Type 'eval' to run classifier cross-validation, or 'quit' / 'exit' to end.
             if user_input.lower() in ["exit", "quit", "q"]:
                 print("Exiting unified assistant. Have a wonderful day!")
                 break
-            if user_input.lower() in ["eval", "evaluate", "test"]:
-                run_classifier_cross_validation()
-                continue
 
             print("[Thinking: Routing utterance through semantic classifier...]")
             res = assistant.process_message(user_input)
@@ -549,11 +463,6 @@ def main():
         description="Unified NLP Assistant Router (D1 Rule Bot + D2 NASA RAG Agent)"
     )
     parser.add_argument(
-        "--eval",
-        action="store_true",
-        help="Run 5-fold Stratified Cross-Validation on the router dataset",
-    )
-    parser.add_argument(
         "--retrain",
         action="store_true",
         help="Force re-embedding and re-training of the router classifier head",
@@ -583,10 +492,6 @@ def main():
     )
 
     args = parser.parse_args()
-
-    if args.eval:
-        run_classifier_cross_validation()
-        return
 
     # Initialize the unified assistant
     assistant = UnifiedConversationalAssistant(threshold=args.threshold, force_retrain=args.retrain)
