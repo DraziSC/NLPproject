@@ -195,6 +195,28 @@ NASA_DOCUMENT_CATALOG = [
         "mission": "Apollo 11",
         "description": "Historic engineering summary of Saturn V launch vehicle AS-506, Lunar Module Eagle propulsion, descent/ascent engine staging, and guidance computer metrics.",
     },
+      # --- Non-NASA Distractor Documents (Corpus Randomness & Domain Differentiation) ---
+    {
+        "filename": "Bitcoin_Peer_to_Peer_Electronic_Cash.pdf",
+        "url": "https://bitcoin.org/bitcoin.pdf",
+        "title": "Bitcoin: A Peer-to-Peer Electronic Cash System",
+        "mission": "Cryptocurrency & Decentralized Systems",
+        "description": "Satoshi Nakamoto's foundational paper on decentralized cryptographic cash, proof-of-work consensus, blockchain hashing, and double-spending prevention.",
+    },
+    {
+        "filename": "Global_Coffee_Market_Report.pdf",
+        "url": "https://www.ico.org/documents/cy2020-21/cmr-0621-e.pdf",
+        "title": "International Coffee Organization Monthly Coffee Market Report",
+        "mission": "Global Agriculture & Commodity Markets",
+        "description": "Economic analysis of international coffee trade, composite indicator prices, Arabica/Robusta bean supply, export statistics, and agricultural production in Brazil, Vietnam, and Colombia.",
+    },
+    {
+        "filename": "Attention_Is_All_You_Need.pdf",
+        "url": "https://arxiv.org/pdf/1706.03762.pdf",
+        "title": "Attention Is All You Need",
+        "mission": "Natural Language Processing & Deep Learning",
+        "description": "Foundational Transformer deep learning architecture by Vaswani et al. introducing multi-head self-attention mechanisms, encoder-decoder attention, and positional encodings for machine translation.",
+    },
 ]
 
 
