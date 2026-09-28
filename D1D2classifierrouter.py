@@ -18,7 +18,6 @@ Classification Paradigm:
   - Feature Extractor: Dense Semantic Embeddings via 'all-MiniLM-L6-v2' (SBERT / 384-d).
     Reuses the exact transformer model cached for ChromaDB with zero extra memory overhead.
   - Classifier Head: Calibrated Linear Probe (Logistic Regression with probability output).
-  - Also includes Cosine Centroid Distance as an ablation baseline.
 ================================================================================
 """
 
