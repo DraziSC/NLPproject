@@ -3,7 +3,7 @@
 **Course:** Natural Language Interaction (ILN) 2026/2027  
 **Institution:** Universidade de Coimbra (DEI-FCTUC)  
 **Authors:** Mohammed Abdelqader & Michael O'Shea  
-**Evaluation Timestamp:** 2026-09-28 12:49:43  
+**Evaluation Timestamp:** 2026-09-29 11:23:13  
 **Generator Model:** `qwen2.5:7b`  
 **Judge Model:** `mistral-small:24b`  
 **Total Questions Evaluated:** 20
@@ -14,13 +14,13 @@
 
 | Metric Dimension | With-RAG (Augmented) | Without-RAG (Parametric) | Delta (Δ) |
 |:---|:---:|:---:|:---:|
-| **Fact Recall %** | **15.4%** | 18.5% | `-3.1%` |
-| **Telemetry Metric Coverage %** | **6.5%** | 6.9% | `-0.5%` |
-| **Average Citations / Answer** | **2.70** | 0.00 | `+2.70` |
-| **Average Latency (s)** | 10.23s | 7.78s | `+2.45s` |
-| **LLM Judge Score (1-5)** | **3.09 / 5.0** | 3.39 / 5.0 | `-0.30` |
-| **Judge: Factual Accuracy** | **3.00** | 3.15 | `-0.15` |
-| **Judge: Groundedness** | **3.45** | 3.25 | `+0.20` |
+| **Fact Recall %** | **13.2%** | 19.9% | `-6.6%` |
+| **Telemetry Metric Coverage %** | **4.0%** | 8.5% | `-4.5%` |
+| **Average Citations / Answer** | **3.05** | 0.00 | `+3.05` |
+| **Average Latency (s)** | 9.88s | 8.13s | `+1.75s` |
+| **LLM Judge Score (1-5)** | **3.17 / 5.0** | 3.36 / 5.0 | `-0.19` |
+| **Judge: Factual Accuracy** | **3.05** | 3.05 | `+0.00` |
+| **Judge: Groundedness** | **3.60** | 3.10 | `+0.50` |
 
 ---
 
@@ -28,26 +28,26 @@
 
 | ID | Domain | With-RAG Recall | No-RAG Recall | With-RAG Telem | No-RAG Telem | With-RAG Cites | RAG Latency |
 |:---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|
-| **NASA_Q01** | James Webb Space Telescope (JWST) | 50% | 58% | 0% | 0% | 2 | 10.36s |
-| **NASA_Q02** | James Webb Space Telescope (JWST) | 0% | 17% | 29% | 29% | 2 | 13.16s |
-| **NASA_Q03** | James Webb Space Telescope (JWST) | 0% | 0% | 14% | 14% | 3 | 9.33s |
-| **NASA_Q04** | Planetary Defense (DART) | 40% | 50% | 38% | 25% | 2 | 7.97s |
-| **NASA_Q05** | Planetary Defense (DART) | 36% | 27% | 0% | 0% | 3 | 11.45s |
-| **NASA_Q06** | Planetary Defense (DART) | 18% | 18% | 0% | 0% | 4 | 11.75s |
-| **NASA_Q07** | Mars Exploration (Curiosity MSL) | 8% | 8% | 0% | 25% | 2 | 8.72s |
-| **NASA_Q08** | Mars Exploration (Curiosity MSL) | 17% | 17% | 0% | 0% | 3 | 9.16s |
-| **NASA_Q09** | Mars 2020 (Perseverance) | 31% | 23% | 0% | 0% | 2 | 13.50s |
-| **NASA_Q10** | Mars 2020 (Perseverance) | 9% | 9% | 0% | 17% | 4 | 10.51s |
-| **NASA_Q11** | Mars Rotorcraft (Ingenuity) | 8% | 8% | 12% | 12% | 2 | 6.90s |
-| **NASA_Q12** | Mars Rotorcraft (Mars Science Helicopter) | 9% | 9% | 20% | 0% | 4 | 13.12s |
-| **NASA_Q13** | Artemis Program (SLS / Orion) | 9% | 36% | 0% | 0% | 3 | 9.39s |
-| **NASA_Q14** | Artemis Program (SLS / Orion) | 8% | 8% | 0% | 0% | 2 | 7.52s |
-| **NASA_Q15** | Artemis Program (Lunar Science) | 20% | 30% | 0% | 0% | 5 | 11.03s |
-| **NASA_Q16** | Artemis Program (Human Landing System) | 18% | 18% | 0% | 0% | 3 | 8.28s |
-| **NASA_Q17** | Flagship Space Telescopes (Hubble) | 17% | 8% | 17% | 17% | 1 | 9.07s |
-| **NASA_Q18** | Historic Lunar Missions (Apollo 11) | 0% | 8% | 0% | 0% | 1 | 4.46s |
-| **NASA_Q19** | Cross-Mission Planetary Systems Engineering | 0% | 7% | 0% | 0% | 2 | 14.56s |
-| **NASA_Q20** | Planetary Defense & Orbital Mechanics | 9% | 9% | 0% | 0% | 4 | 14.34s |
+| **NASA_Q01** | James Webb Space Telescope (JWST) | 50% | 67% | 0% | 12% | 3 | 13.02s |
+| **NASA_Q02** | James Webb Space Telescope (JWST) | 0% | 8% | 29% | 29% | 3 | 10.49s |
+| **NASA_Q03** | James Webb Space Telescope (JWST) | 0% | 0% | 14% | 0% | 3 | 10.86s |
+| **NASA_Q04** | Planetary Defense (DART) | 30% | 60% | 25% | 25% | 2 | 8.20s |
+| **NASA_Q05** | Planetary Defense (DART) | 36% | 27% | 0% | 0% | 5 | 10.72s |
+| **NASA_Q06** | Planetary Defense (DART) | 18% | 18% | 0% | 0% | 4 | 11.96s |
+| **NASA_Q07** | Mars Exploration (Curiosity MSL) | 8% | 8% | 0% | 38% | 1 | 10.53s |
+| **NASA_Q08** | Mars Exploration (Curiosity MSL) | 17% | 17% | 0% | 0% | 4 | 9.94s |
+| **NASA_Q09** | Mars 2020 (Perseverance) | 23% | 23% | 0% | 0% | 2 | 14.86s |
+| **NASA_Q10** | Mars 2020 (Perseverance) | 0% | 18% | 0% | 0% | 3 | 11.05s |
+| **NASA_Q11** | Mars Rotorcraft (Ingenuity) | 8% | 8% | 12% | 0% | 5 | 10.38s |
+| **NASA_Q12** | Mars Rotorcraft (Mars Science Helicopter) | 9% | 9% | 0% | 0% | 4 | 10.01s |
+| **NASA_Q13** | Artemis Program (SLS / Orion) | 9% | 36% | 0% | 0% | 3 | 8.05s |
+| **NASA_Q14** | Artemis Program (SLS / Orion) | 0% | 0% | 0% | 33% | 2 | 8.60s |
+| **NASA_Q15** | Artemis Program (Lunar Science) | 20% | 30% | 0% | 0% | 5 | 10.66s |
+| **NASA_Q16** | Artemis Program (Human Landing System) | 18% | 18% | 0% | 0% | 3 | 6.58s |
+| **NASA_Q17** | Flagship Space Telescopes (Hubble) | 8% | 17% | 0% | 33% | 2 | 8.74s |
+| **NASA_Q18** | Historic Lunar Missions (Apollo 11) | 0% | 23% | 0% | 0% | 0 | 3.91s |
+| **NASA_Q19** | Cross-Mission Planetary Systems Engineering | 0% | 0% | 0% | 0% | 3 | 8.36s |
+| **NASA_Q20** | Planetary Defense & Orbital Mechanics | 9% | 9% | 0% | 0% | 4 | 10.62s |
 
 ---
 
@@ -80,22 +80,34 @@ The James Webb Space Telescope (JWST) Integrated Science Instrument Module (ISIM
 <summary><b>View With-RAG Answer (Grounded)</b></summary>
 
 
-**Latency:** 10.357084512710571s | **Fact Recall:** 50.0% | **Telemetry:** 0.0%
+**Latency:** 13.018826723098755s | **Fact Recall:** 50.0% | **Telemetry:** 0.0%
 
-**Citations:** `['JWST_Science_Instrument_Payload.pdf, Page 2', 'JWST_Cryogenic_Thermal_Distortion_Model.pdf, Page 3']`
+**Citations:** `['JWST_Science_Instrument_Payload.pdf, Page 2', 'JWST_Cryogenic_Thermal_Distortion_Model.pdf, Page 3', 'JWST_Mission_Overview_and_Status.pdf, Page 38']`
 
 
 The four core science instruments housed in the JWST Integrated Science Instrument Module (ISIM) are:
 
-1. **NIRCam (Near-Infrared Camera)**: This instrument observes in the near-infrared wavelength range of approximately 0.6 to 5 micrometers. It uses a detector technology of HgCdTe (Indium Antimonide) arrays. The cryogenic operating temperature for NIRCam is ~35 K [JWST_Science_Instrument_Payload.pdf, Page 2].
+1. **NIRCam (Near-Infrared Camera)**:
+   - **Wavelength Range**: 0.6 to 5 micrometers [JWST_Science_Instrument_Payload.pdf, Page 2]
+   - **Detector Technology**: HgCdTe (Mercury Cadmium Telluride) [JWST_Science_Instrument_Payload.pdf, Page 2]
+   - **Cryogenic Operating Temperature**: ~35 K [JWST_Cryogenic_Thermal_Distortion_Model.pdf, Page 3]
 
-2. **MIRI (Mid-Infrared Instrument)**: This instrument observes in the mid-infrared wavelength range of approximately 5 to 28.3 micrometers. It uses a detector technology of HgCdTe (Indium Antimonide) arrays. The cryogenic operating temperature for MIRI is ~35 K [JWST_Science_Instrument_Payload.pdf, Page 2].
+2. **MIRI (Mid-Infrared Instrument)**:
+   - **Wavelength Range**: 5 to 28.3 micrometers [JWST_Science_Instrument_Payload.pdf, Page 2]
+   - **Detector Technology**: HgCdTe (Mercury Cadmium Telluride) [JWST_Science_Instrument_Payload.pdf, Page 2]
+   - **Cryogenic Operating Temperature**: ~35 K [JWST_Cryogenic_Thermal_Distortion_Model.pdf, Page 3]
 
-3. **NIRSpec (Near-Infrared Spectrograph)**: This instrument observes in the near-infrared wavelength range of approximately 0.6 to 5 micrometers. It uses a detector technology of HgCdTe (Indium Antimonide) arrays. The cryogenic operating temperature for NIRSpec is ~35 K [JWST_Science_Instrument_Payload.pdf, Page 2].
+3. **NIRSpec (Near-Infrared Spectrograph)**:
+   - **Wavelength Range**: 0.6 to 5 micrometers [JWST_Science_Instrument_Payload.pdf, Page 2]
+   - **Detector Technology**: HgCdTe (Mercury Cadmium Telluride) [JWST_Science_Instrument_Payload.pdf, Page 2]
+   - **Cryogenic Operating Temperature**: ~35 K [JWST_Cryogenic_Thermal_Distortion_Model.pdf, Page 3]
 
-4. **NIRISS (Near-Infrared Imager and Slitless Spectrograph)**: This instrument observes in the near-infrared wavelength range of approximately 0.6 to 5 micrometers. It uses a detector technology of HgCdTe (Indium Antimonide) arrays. The cryogenic operating temperature for NIRISS is ~35 K [JWST_Science_Instrument_Payload.pdf, Page 2].
+4. **NIRISS (Near-Infrared Imager and Slitless Spectrograph)**:
+   - **Wavelength Range**: 0.6 to 5 micrometers [JWST_Science_Instrument_Payload.pdf, Page 2]
+   - **Detector Technology**: HgCdTe (Mercury Cadmium Telluride) [JWST_Science_Instrument_Payload.pdf, Page 2]
+   - **Cryogenic Operating Temperature**: ~35 K [JWST_Cryogenic_Thermal_Distortion_Model.pdf, Page 3]
 
-The ISIM is designed to operate at cryogenic temperatures of approximately 35 K, which is consistent across all the mentioned instruments [JWST_Cryogenic_Thermal_Distortion_Model.pdf, Page 3].
+The fine guidance sensor (FGS) is also part of the ISIM but is not a science instrument. The ISIM is designed to operate at cryogenic temperatures of approximately 35 K to ensure the detectors function effectively in the infrared range. [JWST_Cryogenic_Thermal_Distortion_Model.pdf, Page 3] [JWST_Science_Instrument_Payload.pdf, Page 2] [JWST_Mission_Overview_and_Status.pdf, Page 38]
 
 </details>
 
@@ -104,43 +116,41 @@ The ISIM is designed to operate at cryogenic temperatures of approximately 35 K,
 <summary><b>View Without-RAG Answer (Baseline)</b></summary>
 
 
-**Latency:** 8.420320272445679s | **Fact Recall:** 58.3% | **Telemetry:** 0.0%
+**Latency:** 7.221449613571167s | **Fact Recall:** 66.7% | **Telemetry:** 12.5%
 
 
-The James Webb Space Telescope (JWST) Integrated Science Instrument Module (ISIM) houses four core science instruments, each designed to observe specific wavelength ranges and equipped with advanced detector technologies. Here's a detailed breakdown:
+The James Webb Space Telescope (JWST) Integrated Science Instrument Module (ISIM) houses four core science instruments, each designed to observe specific wavelength ranges and utilize advanced detector technologies. Here's a detailed breakdown:
 
 1. **Near-Infrared Camera (NIRCam)**
    - **Wavelength Range:** 0.6 to 5 microns
-   - **Detector Technology:** 2,048 x 2,048 pixel arrays of HgCdTe (Indium-Antimonide) detectors
-   - **Cryogenic Operating Temperature:** -23 degrees Celsius (relative to the telescope) or -233 degrees Celsius (absolute)
+   - **Detector Technology:** 2560 x 2048 pixel arrays of HgCdTe (Indium-Antimonide) detectors
+   - **Cryogenic Operating Temperature:** ~30 K (-243.15°C)
 
 2. **Near-Infrared Spectrograph (NIRSpec)**
    - **Wavelength Range:** 0.6 to 5 microns
-   - **Detector Technology:** 2,048 x 2,048 pixel arrays of HgCdTe (Indium-Antimonide) detectors
-   - **Cryogenic Operating Temperature:** -23 degrees Celsius (relative to the telescope) or -233 degrees Celsius (absolute)
+   - **Detector Technology:** 2560 x 2048 pixel arrays of HgCdTe (Indium-Antimonide) detectors
+   - **Cryogenic Operating Temperature:** ~30 K (-243.15°C)
 
 3. **Mid-Infrared Instrument (MIRI)**
    - **Wavelength Range:** 5 to 28.3 microns
-   - **Detector Technology:** 1,024 x 1,024 pixel arrays of HgCdTe (Indium-Antimonide) detectors for imaging and 256 x 256 pixel arrays for spectroscopy
-   - **Cryogenic Operating Temperature:** -266 degrees Celsius (absolute)
+   - **Detector Technology:** 1024 x 1024 pixel arrays of HgCdTe (Indium-Antimonide) detectors for the camera and 256 x 256 pixel arrays of photodiodes for the spectrometer
+   - **Cryogenic Operating Temperature:** ~7 K (-266.15°C)
 
 4. **Fine Guidance Sensor/Near-Infrared Imager and Slitless Spectrograph (FGS/NIRISS)**
-   - **Wavelength Range:** 0.8 to 5 microns
-   - **Detector Technology:** 2,048 x 2,048 pixel arrays of HgCdTe (Indium-Antimonide) detectors
-   - **Cryogenic Operating Temperature:** -23 degrees Celsius (relative to the telescope) or -233 degrees Celsius (absolute)
+   - **Wavelength Range:** 0.6 to 2.8 microns
+   - **Detector Technology:** 2560 x 2048 pixel arrays of HgCdTe (Indium-Antimonide) detectors
+   - **Cryogenic Operating Temperature:** ~30 K (-243.15°C)
 
-These instruments are designed to work in the cryogenic environment of the JWST, which operates at extremely low temperatures to minimize thermal noise and maximize sensitivity. The relative temperature of -23 degrees Celsius for NIRCam, NIRSpec, and FGS/NIRISS is relative to the telescope, meaning it's about 200 degrees Celsius colder than the ambient temperature of the telescope. MIRI operates at a much lower temperature of -266 degrees Celsius, which is about 6 degrees above absolute zero.
-
-The choice of HgCdTe (Indium-Antimonide) detectors is crucial for these instruments as they are highly sensitive in the infrared range, which is essential for observing the faint and distant objects that JWST is designed to study.
+These instruments are designed to work in the cryogenic environment of the JWST, which operates at extremely low temperatures to minimize thermal noise and maximize sensitivity. The HgCdTe detectors are particularly well-suited for infrared astronomy due to their high quantum efficiency and wide temperature range. The cryogenic temperatures are maintained by the telescope's cryocoolers, which are part of the ISIM and are responsible for keeping the instruments at their required operating temperatures.
 
 </details>
 
 
 **Judge Analysis:**
 
-- **With-RAG Overall Score:** 2.5 / 5.0 | *Strengths:* Mentions correct wavelength ranges and general detector technology.
+- **With-RAG Overall Score:** 3.0 / 5.0 | *Strengths:* Clear and concise language, correct wavelength ranges for NIRCam, NIRSpec, and NIRISS.
 
-- **Without-RAG Overall Score:** 3.25 / 5.0 | *Weaknesses:* Incorrect detector technology for MIRI, incorrect wavelength range for MIRI, incorrect cryogenic temperatures for all instruments, incorrect detector technology for NIRCam and NIRSpec, incorrect wavelength range for FGS/NIRISS.
+- **Without-RAG Overall Score:** 3.25 / 5.0 | *Weaknesses:* Incorrect detector technology for MIRI, incorrect operating temperatures for NIRCam, NIRSpec, and FGS/NIRISS. Incorrect wavelength range for FGS/NIRISS. Missing details on MIRI's cryocooler and MSA for NIRSpec.
 
 
 ---
@@ -172,26 +182,22 @@ NASA addressed the primary mirror cryogenic distortion through an integrated eng
 <summary><b>View With-RAG Answer (Grounded)</b></summary>
 
 
-**Latency:** 13.162030220031738s | **Fact Recall:** 0.0% | **Telemetry:** 28.6%
+**Latency:** 10.4895179271698s | **Fact Recall:** 0.0% | **Telemetry:** 28.6%
 
-**Citations:** `['JWST_Cryogenic_Thermal_Distortion_Model.pdf, Page 16', 'JWST_Cryogenic_Thermal_Distortion_Model.pdf, Page 5']`
+**Citations:** `['JWST_Cryogenic_Thermal_Distortion_Model.pdf, Page 5', 'JWST_Cryogenic_Thermal_Distortion_Model.pdf, Page 16', 'JWST_Mission_Overview_and_Status.pdf, Page 32']`
 
 
-The provided NASA documentation does not contain sufficient data to address the specific technical details of how NASA models and compensates for the cryogenic thermal distortion of JWST's 18 primary mirror segments as they cool from room temperature to deep cryogenic operational temperatures (~35-50 K). However, based on the information provided, we can infer the following:
+NASA models and compensates for the cryogenic thermal distortion of JWST's 18 primary mirror segments through a series of rigorous testing and analysis phases. The primary mirror segments are subject to significant thermal contraction as the telescope cools from room temperature to its operational temperature of approximately 35-50 K.
 
-1. **Cryogenic Testing and Validation**:
-   - Cryogenic testing and associated thermal distortion model validation for the JWST Integrated Science Instrument Module (ISIM) structure were successfully completed in 2010. [JWST_Cryogenic_Thermal_Distortion_Model.pdf, Page 16]
+During the cryogenic thermal testing, the hardware under test is thermal cycled between ambient and cryogenic temperatures, with metrology performed via photogrammetry at both warm and cold states. This process validates the thermal distortion models [JWST_Cryogenic_Thermal_Distortion_Model.pdf, Page 5].
 
-2. **Thermal Distortion Model Validation**:
-   - During these tests, the hardware under test was thermal cycled between ambient and cryogenic temperatures with metrology performed via photogrammetry at the warm and cold states. [JWST_Cryogenic_Thermal_Distortion_Model.pdf, Page 5]
+The Cryoset and Cryoproof tests were conducted to validate the thermal distortion model at the JWST level. These tests involved the combined ISIM and OTE (optical telescope element) system to characterize optical and thermal performance [JWST_Cryogenic_Thermal_Distortion_Model.pdf, Page 16].
 
-3. **Final Cryo Thermal Vacuum Test**:
-   - A final cryo thermal vacuum test of the combined ISIM and Optical Telescope Element (OTE) system will be performed to characterize optical and thermal performance for the observatory. [JWST_Cryogenic_Thermal_Distortion_Model.pdf, Page 16]
+The testing and model validation were successfully completed in 2010, with detailed comparisons made between test measurements and analytical predictions from nominal and stochastic analyses for the cooldown performance of the protoflight ISIM structure and critical MGSE (Mirror Support Equipment) [JWST_Cryogenic_Thermal_Distortion_Model.pdf, Page 16].
 
-4. **Comparisons Between Test Measurements and Predictions**:
-   - Detailed comparisons were made between test measurements and analytical predictions from nominal and stochastic analyses for the cooldown performance of the protoflight ISIM Structure and critical Mission Ground Support Equipment (MGSE). [JWST_Cryogenic_Thermal_Distortion_Model.pdf, Page 16]
+These tests and models are crucial for ensuring the optical performance of the primary mirror segments during the mission. The space simulation chamber at MSFC, capable of testing the primary mirror segments at 50 K, plays a significant role in this process [JWST_Mission_Overview_and_Status.pdf, Page 32].
 
-From these excerpts, it is clear that NASA conducted extensive testing and modeling to understand and mitigate the effects of thermal distortion on the JWST's primary mirror segments. However, the exact modeling techniques and compensation strategies are not detailed in the provided excerpts. For a more comprehensive understanding, additional technical documentation or reports would be required.
+In summary, the cryogenic thermal distortion of JWST's primary mirror segments is managed through comprehensive testing and modeling, ensuring that the telescope can maintain its optical performance at operational temperatures. [JWST_Cryogenic_Thermal_Distortion_Model.pdf, Page 16]
 
 </details>
 
@@ -200,39 +206,44 @@ From these excerpts, it is clear that NASA conducted extensive testing and model
 <summary><b>View Without-RAG Answer (Baseline)</b></summary>
 
 
-**Latency:** 9.338929176330566s | **Fact Recall:** 16.7% | **Telemetry:** 28.6%
+**Latency:** 10.091726064682007s | **Fact Recall:** 8.3% | **Telemetry:** 28.6%
 
 
-NASA models and compensates for the cryogenic thermal distortion of the James Webb Space Telescope's (JWST) 18 primary mirror segments through a combination of precise engineering, thermal modeling, and active control systems. Here’s a detailed technical explanation:
+NASA's James Webb Space Telescope (JWST) employs sophisticated thermal modeling and compensation techniques to address the cryogenic thermal distortion of its 18 primary mirror segments as they cool from room temperature to operational temperatures of about 35-50 Kelvin. Here's a detailed technical explanation:
 
-1. **Initial Design and Modeling:**
-   - **Material Selection:** The primary mirror segments are made of beryllium, a lightweight and rigid material that can withstand the extreme temperature changes. Beryllium has a low coefficient of thermal expansion, which is crucial for maintaining the mirror's shape during temperature variations.
-   - **Thermal Modeling:** NASA uses sophisticated thermal modeling software to simulate the temperature changes and resulting distortions. This involves detailed finite element analysis (FEA) to predict how each segment will deform as it cools from room temperature to operational temperatures of about 35-50 K.
-   - **Shape and Alignment:** The mirror segments are designed with a specific shape at room temperature, which is then adjusted to account for the expected distortions at cryogenic temperatures. This initial design accounts for the material's thermal properties and the expected temperature gradient across the mirror.
+1. **Thermal Modeling:**
+   - **Finite Element Analysis (FEA):** NASA uses advanced FEA software to model the thermal behavior of the mirror segments and their support structures. This involves creating detailed 3D models of the mirror substrates, backplanes, and support structures.
+   - **Thermal Conductivity and Expansion:** The models account for the thermal conductivity and expansion coefficients of the materials used, such as beryllium for the mirror substrates and carbon composite for the backplanes.
+   - **Heat Transfer Analysis:** The models simulate heat transfer through conduction, convection, and radiation, considering the effects of the cryogenic environment and the thermal control blankets.
 
-2. **Active Control Systems:**
-   - **Hexapod Actuators:** Each primary mirror segment is attached to a hexapod actuator, which consists of six motorized legs. These actuators can independently adjust the position and orientation of each segment to correct for any distortions that occur during the cooling process.
-   - **Thermal Stabilization:** The mirror segments are cooled using a combination of radiative cooling and a small cryocooler. The cryocooler, located in the Integrated Science Instrument Module (ISIM), actively cools the mirror to the desired temperature.
-   - **Real-Time Monitoring and Adjustment:** During the cooldown process, the mirror segments are monitored using a system of sensors and cameras. The data from these sensors is fed into the control system, which adjusts the hexapod actuators in real-time to maintain the desired mirror shape.
+2. **Mirror Segment Design:**
+   - **Active Cooling:** Each primary mirror segment is actively cooled by a small cryocooler, which helps maintain a uniform temperature across the segment. This active cooling is crucial for minimizing thermal distortion.
+   - **Shape Memory Alloys (SMAs):** The backplane of each mirror segment is made from SMAs, which can change shape in response to temperature changes. This allows for precise control of the mirror's shape and alignment.
+   - **Hexagonal Shape:** The hexagonal shape of the mirror segments is chosen to optimize the distribution of thermal loads and minimize distortion.
 
-3. **Calibration and Fine-Tuning:**
-   - **Ground Testing:** Extensive ground testing is conducted to calibrate the mirror segments and the control system. This includes thermal cycling tests where the mirrors are exposed to temperature changes similar to those in space.
-   - **In-Space Calibration:** Once in orbit, the JWST undergoes a series of in-space calibration steps to fine-tune the mirror segments. These steps include precise alignment and wavefront sensing to ensure that the mirror segments are correctly positioned and oriented.
+3. **Compensation Mechanisms:**
+   - **Actuators and Fine Guidance Sensors:** JWST has 48 actuators, 24 on each side of the primary mirror, that can adjust the position of the mirror segments. These actuators are controlled by the Fine Guidance Sensor (FGS) and the Near-Infrared Camera (NIRCam) to maintain the mirror's shape and alignment.
+   - **Mirror Segment Alignment:** The actuators can adjust the mirror segments to compensate for any thermal distortion. The alignment is maintained within a few microns, ensuring that the mirror's optical performance remains high even as the temperature changes.
+   - **Mirror Segment Stiffness:** The stiffness of the mirror segments is carefully designed to minimize thermal distortion. The segments are made from beryllium, which has a low coefficient of thermal expansion.
 
-4. **Software and Algorithms:**
-   - **Control Algorithms:** Advanced control algorithms are used to manage the complex interactions between the mirror segments and the actuators. These algorithms take into account the thermal properties of the materials, the expected temperature gradients, and the desired optical performance.
-   - **Data Processing:** The data collected from the sensors is processed using sophisticated software to determine the necessary adjustments to the mirror segments. This involves complex calculations to account for the mirror's thermal expansion and contraction.
+4. **In-Space Calibration:**
+   - **On-Orbit Testing:** After deployment, JWST undergoes extensive on-orbit testing to verify the mirror's performance and make any necessary adjustments. The Fine Guidance Sensor and the Near-Infrared Camera are used to monitor the mirror's alignment and make fine adjustments as needed.
+   - **Thermal Cycle Testing:** The telescope undergoes thermal cycle testing to ensure that it can handle the temperature changes and maintain its optical performance.
 
-By combining these elements, NASA ensures that the JWST's primary mirror maintains its precise shape and optical performance, even as it cools from room temperature to cryogenic operational temperatures. This level of precision is critical for the telescope's ability to capture the faint and distant light from the early universe.
+5. **Operational Considerations:**
+   - **Thermal Control System:** The JWST's thermal control system is designed to maintain a stable temperature environment for the mirrors. This includes the use of thermal control blankets and the active cooling of the mirror segments.
+   - **Operational Temperature Range:** The operational temperature range of 35-50 Kelvin is carefully chosen to balance the need for low temperature and the practical limitations of the materials and systems used.
+
+By combining advanced thermal modeling, precise mirror segment design, and sophisticated compensation mechanisms, NASA ensures that the JWST's primary mirror can maintain its optical performance even as it cools to cryogenic temperatures.
 
 </details>
 
 
 **Judge Analysis:**
 
-- **With-RAG Overall Score:** 2.25 / 5.0 | *Strengths:* Mentions cryogenic testing and validation, references specific documents.
+- **With-RAG Overall Score:** 2.75 / 5.0 | *Strengths:* Mentions key testing phases and the importance of cryogenic thermal testing.
 
-- **Without-RAG Overall Score:** 4.0 / 5.0 | *Weaknesses:* Lacks specific details on cryo-null figuring and wavefront sensing and control (WFS&C). Misidentifies the cryocooler location and omits the 7th actuator for radius of curvature control.
+- **Without-RAG Overall Score:** 3.25 / 5.0 | *Weaknesses:* Incorrect details on cryo-null figuring, incorrect materials for backplane, incorrect number of actuators, missing details on cryogenic testing and validation, incorrect operational temperature range.
 
 
 ---
@@ -264,29 +275,35 @@ JWST's five-layer sunshield is a passive thermal isolation system measuring appr
 <summary><b>View With-RAG Answer (Grounded)</b></summary>
 
 
-**Latency:** 9.32975149154663s | **Fact Recall:** 0.0% | **Telemetry:** 14.3%
+**Latency:** 10.855962038040161s | **Fact Recall:** 0.0% | **Telemetry:** 14.3%
 
 **Citations:** `['JWST_Mission_Overview_and_Status.pdf, Page 2', 'JWST_Mission_Overview_and_Status.pdf, Page 35', 'JWST_Mission_Overview_and_Status.pdf, Page 52']`
 
 
-The James Webb Space Telescope (JWST) features a five-layer deployable sunshield with specific mechanical design, material composition, and thermal gradient performance characteristics, as detailed below:
+The mechanical design, material composition, and thermal gradient performance of the James Webb Space Telescope's (JWST) five-layer deployable sunshield are as follows:
 
 1. **Mechanical Design and Deployment**:
    - The sunshield is designed to be stowed within the Ariane 5 m diameter fairing and will deploy into its operational configuration after launch [JWST_Mission_Overview_and_Status.pdf, Page 2].
 
 2. **Material Composition**:
-   - The sunshield is composed of five layers, with each layer made of different materials:
-     - **Layer 1**: Made of heat-resistant Kapton, coated with silicon on the sun-facing side [JWST_Mission_Overview_and_Status.pdf, Page 35].
-     - **Layers 2-5**: The materials for these layers are not explicitly detailed in the provided excerpts, but they are likely similar to Layer 1, given the uniformity in the design [JWST_Mission_Overview_and_Status.pdf, Page 35].
-   - The layers are designed to reject heat to space in a controlled manner to achieve the required thermal balance and avoid thermal stray light [JWST_Mission_Overview_and_Status.pdf, Page 52].
+   - The sunshield consists of five layers, with each layer made of different materials:
+     - **Layer 1**: Made of heat-resistant Kapton, coated with silicon on the sun side [JWST_Mission_Overview_and_Status.pdf, Page 35].
+     - **Layers 2-5**: Composed of a combination of materials including:
+       - **Baffles**: E765 1 k FW Carbon Rber, E765 120 Fiber Glass, and Vapor Depooit Gold [JWST_Mission_Overview_and_Status.pdf, Page 52].
+       - **Core Material**: NomexCore and Rohacell [JWST_Mission_Overview_and_Status.pdf, Page 52].
+       - **Inserts**: Titanium [JWST_Mission_Overview_and_Status.pdf, Page 52].
 
 3. **Thermal Gradient Performance**:
-   - The sunshield has a significant temperature gradient:
-     - The sun-facing side reaches 358 K (850°C) [JWST_Mission_Overview_and_Status.pdf, Page 35].
-     - The opposite, dark side stays at 40 K (-233°C) [JWST_Mission_Overview_and_Status.pdf, Page 35].
-   - The sunshield measures 73 x 40 feet and contains 400 temperature sensors to monitor its performance [JWST_Mission_Overview_and_Status.pdf, Page 35].
+   - The sunshield has a significant thermal gradient between its sun-facing and dark sides:
+     - **Sun Side**: Reaches 358 K (850°C) [JWST_Mission_Overview_and_Status.pdf, Page 35].
+     - **Dark Side**: Stays at 40 K (-233°C) [JWST_Mission_Overview_and_Status.pdf, Page 35].
+   - The sunshield measures 73 x 40 feet [JWST_Mission_Overview_and_Status.pdf, Page 35].
 
-The provided NASA documentation does not contain sufficient data to address the specific mechanical design and deployment mechanisms of the sunshield beyond the basic stowage and deployment within the Ariane 5 fairing. For a more detailed mechanical design, one would need to refer to additional technical documents or reports.
+4. **Thermal Management**:
+   - The sunshield is designed to reject -220 W of power to space in a controlled beam pattern to achieve the required observatory thermal balance and avoid thermal stray light [JWST_Mission_Overview_and_Status.pdf, Page 52].
+   - The thermal balance is verified through prototype tests [JWST_Mission_Overview_and_Status.pdf, Page 52].
+
+The provided NASA documentation does not contain sufficient data to address the specific details of the thermal distortion model validation or the exact thermal gradient performance during the deployment phase. However, the thermal gradient performance during the operational phase is well-documented [JWST_Mission_Overview_and_Status.pdf, Page 35].
 
 </details>
 
@@ -295,32 +312,38 @@ The provided NASA documentation does not contain sufficient data to address the 
 <summary><b>View Without-RAG Answer (Baseline)</b></summary>
 
 
-**Latency:** 6.823542356491089s | **Fact Recall:** 0.0% | **Telemetry:** 14.3%
+**Latency:** 9.15883493423462s | **Fact Recall:** 0.0% | **Telemetry:** 0.0%
 
 
-The James Webb Space Telescope's (JWST) five-layer deployable sunshield is a critical component for maintaining the telescope's sensitive instruments at extremely cold temperatures. Here's a detailed technical overview of its mechanical design, material composition, and thermal gradient performance:
+The James Webb Space Telescope (JWST) features a deployable five-layer sunshield designed to protect the telescope's optics and instruments from the heat of the Sun. Here's a detailed technical overview of its mechanical design, material composition, and thermal gradient performance:
 
 Mechanical Design:
-The sunshield is a deployable structure that consists of five layers of thin, reflective material. Each layer is designed to fold and stow within the launch vehicle, then deploy to its full, operational configuration once in space. The layers are arranged in a specific order to maximize their effectiveness in reflecting sunlight and heat. The sunshield is attached to the telescope via a deployable boom system, which allows it to unfold and deploy in space.
+The sunshield is a deployable structure that consists of five layers of a composite material called Kapton E. Each layer is coated with a reflective material, typically aluminum. The layers are arranged in a specific sequence to maximize their effectiveness in reflecting sunlight. The sunshield is deployed after launch when the telescope is in space, and it is designed to withstand the harsh environment of space for the duration of the mission.
+
+The sunshield is composed of a central truss structure that supports the five layers. This truss structure is made of lightweight, yet strong materials such as aluminum and titanium. The truss is designed to be rigid enough to maintain the proper shape of the sunshield while being flexible enough to allow for deployment. The truss structure is also designed to minimize the amount of heat it absorbs, which could otherwise interfere with the sunshield's performance.
 
 Material Composition:
-The sunshield is made primarily of a composite material called Nextel 610, which is a ceramic fiber fabric. The layers are coated with a reflective material, typically a silver-based coating, to maximize their reflectivity. The specific composition of the reflective coating is proprietary information, but it is designed to have high reflectivity over a wide range of wavelengths, including visible light, near-infrared, and mid-infrared.
+The primary material used in the sunshield is a composite called Kapton E. Each layer of the sunshield is made of two layers of Kapton E, with a reflective coating applied to the outer layer. Kapton E is a polyimide film that is known for its excellent thermal stability, chemical resistance, and flexibility. The reflective coating is typically aluminum, which is applied using a vacuum deposition process to ensure a uniform and high-quality finish.
+
+The layers are arranged in a specific sequence to maximize their effectiveness in reflecting sunlight. The first layer is the thickest and has the highest reflectivity, while the subsequent layers are progressively thinner and have slightly lower reflectivity. This arrangement helps to ensure that the sunshield can effectively block the majority of the Sun's radiation while still allowing some heat to escape from the telescope.
 
 Thermal Gradient Performance:
-The sunshield is designed to maintain a temperature difference of about 300°C between the warm side (facing the Sun) and the cold side (facing the telescope). This temperature difference is crucial for maintaining the telescope's instruments at cryogenic temperatures, which is necessary for their operation. The thermal gradient performance is achieved through a combination of the reflective properties of the layers, the low thermal conductivity of the materials used, and the deployment of the sunshield to maximize its reflective surface area.
+The sunshield is designed to maintain a significant temperature difference between the sun-facing side and the side facing the telescope. This temperature difference is crucial for maintaining the telescope's operational temperature range, which is critical for the performance of its sensitive instruments.
 
-Each layer of the sunshield is designed to reflect sunlight and heat away from the telescope, while the layers themselves are separated by small gaps to allow heat to escape from the warm side to the cold side. The outermost layer is the most reflective, with a reflectivity of about 99.5% for sunlight. The inner layers have slightly lower reflectivity, but still maintain high thermal performance.
+The sunshield's thermal performance is optimized through the use of its multi-layer design. Each layer reflects a portion of the incoming sunlight, and the combination of these reflections helps to create a significant temperature gradient between the sun-facing side and the side facing the telescope. The temperature on the sun-facing side can reach up to 230°C (446°F), while the temperature on the side facing the telescope is kept at around -223°C (-369°F).
 
-In summary, the JWST's sunshield is a complex, multi-layered structure designed to protect the telescope's sensitive instruments from the heat of the Sun. Its mechanical design allows for compact stowage and deployment, while its material composition and thermal gradient performance ensure that the telescope can operate at the extremely cold temperatures required for its scientific observations.
+The sunshield's performance is further enhanced by its deployment after launch, which allows it to be folded for launch and then deployed in space. This deployment process helps to ensure that the sunshield is in the correct position and orientation to maximize its effectiveness.
+
+In summary, the JWST's five-layer deployable sunshield is a complex and sophisticated system designed to protect the telescope's optics and instruments from the Sun's heat. Its mechanical design, material composition, and thermal gradient performance are all carefully engineered to ensure that the telescope can operate effectively in the harsh environment of space.
 
 </details>
 
 
 **Judge Analysis:**
 
-- **With-RAG Overall Score:** 3.0 / 5.0 | *Strengths:* Correctly identifies key materials and thermal performance aspects.
+- **With-RAG Overall Score:** 2.5 / 5.0 | *Strengths:* Provides some correct details on deployment and thermal gradient.
 
-- **Without-RAG Overall Score:** 2.75 / 5.0 | *Weaknesses:* Incorrect material composition (Nextel 610 instead of Kapton E), incorrect coating details, and missing specific thermal telemetry data.
+- **Without-RAG Overall Score:** 3.25 / 5.0 | *Weaknesses:* Incorrect layer thicknesses and coating details. Incorrect temperature values for both hot and cold sides. Misses specific geometric design details and thermal isolation mechanisms. Incorrect material composition of the truss structure.
 
 
 ---
@@ -350,18 +373,20 @@ NASA's Double Asteroid Redirection Test (DART)—humanity's first planetary defe
 <summary><b>View With-RAG Answer (Grounded)</b></summary>
 
 
-**Latency:** 7.974234342575073s | **Fact Recall:** 40.0% | **Telemetry:** 37.5%
+**Latency:** 8.20206332206726s | **Fact Recall:** 30.0% | **Telemetry:** 25.0%
 
 **Citations:** `['DART_Planetary_Defense_Technical_Report.pdf, Page 24', 'DART_Planetary_Defense_Technical_Report.pdf, Page 7']`
 
 
-The Double Asteroid Redirection Test (DART) executed its kinetic impact on September 26, 2022, on the asteroid Dimorphos [DART_Planetary_Defense_Technical_Report.pdf, Page 24].
+The Double Asteroid Redirection Test (DART) executed its kinetic impact on 26 September 2022 on the asteroid Dimorphos [DART_Planetary_Defense_Technical_Report.pdf, Page 24].
 
-The pre-impact orbital period of Dimorphos was 11 hours and 55 minutes, while the post-impact orbital period was shortened to 11 hours and 23 minutes [DART_Planetary_Defense_Technical_Report.pdf, Page 7]. The orbital period change was measured to be approximately 32 ± 2 minutes [DART_Planetary_Defense_Technical_Report.pdf, Page 7].
+Pre-impact, Dimorphos had an orbital period of 11 hours and 55 minutes. Post-impact, the orbital period was shortened to 11 hours and 23 minutes [DART_Planetary_Defense_Technical_Report.pdf, Page 7].
 
-NASA's minimum mission success criterion for the DART mission was a 10% change in the orbital period of Dimorphos. The measured change of 32 ± 2 minutes, which corresponds to a 7.2% change in the orbital period, exceeded the minimum mission success criterion [DART_Planetary_Defense_Technical_Report.pdf, Page 7].
+The measured change in the orbital period was a reduction of approximately 32 ± 2 minutes [DART_Planetary_Defense_Technical_Report.pdf, Page 7]. According to NASA's minimum mission success criterion, the mission was considered successful if the orbital period change was at least 73 minutes [DART_Planetary_Defense_Technical_Report.pdf, Page 7]. The measured change of 32 minutes significantly exceeded the minimum success criterion, indicating a successful mission.
 
-The momentum transfer enhancement parameter (β) was reported to be 3.6, indicating that the impact was more effective than the minimum mission success criterion [DART_Planetary_Defense_Technical_Report.pdf, Page 7]. The accuracy of the orbital period change measurement improved over time, with subsequent observations providing a more precise measurement of -33.24 minutes ± 1.4 seconds [DART_Planetary_Defense_Technical_Report.pdf, Page 7].
+The momentum transfer enhancement parameter, β, was reported to be 3.6, further confirming the mission's success [DART_Planetary_Defense_Technical_Report.pdf, Page 7]. This value indicates that the impactor's momentum was effectively transferred to Dimorphos, altering its orbit as predicted [DART_Planetary_Defense_Technical_Report.pdf, Page 7].
+
+[Note: The exact minimum mission success criterion value of 73 minutes was not directly cited in the provided excerpts, but it is a well-known fact from the DART mission documentation and is commonly referenced in mission reports and summaries.]
 
 </details>
 
@@ -370,25 +395,25 @@ The momentum transfer enhancement parameter (β) was reported to be 3.6, indicat
 <summary><b>View Without-RAG Answer (Baseline)</b></summary>
 
 
-**Latency:** 3.4435689449310303s | **Fact Recall:** 50.0% | **Telemetry:** 25.0%
+**Latency:** 3.76814341545105s | **Fact Recall:** 60.0% | **Telemetry:** 25.0%
 
 
-The Double Asteroid Redirection Test (DART) executed its kinetic impact on September 26, 2022, at 07:14 UTC on the smaller asteroid Dimorphos, which is a moonlet of the larger asteroid Didymos. The target for the impact was Dimorphos, which orbits Didymos.
+The Double Asteroid Redirection Test (DART) executed its kinetic impact on September 26, 2022, at 07:14 UTC. The target of the mission was the smaller of the Didymos binary asteroid system, Dimorphos. Prior to the impact, Dimorphos had an orbital period of approximately 11 hours and 55 minutes around its larger partner, Didymos A.
 
-Pre-impact, the orbital period of Dimorphos around Didymos was approximately 11 hours and 55 minutes. Post-impact, the orbital period was reduced to about 11 hours and 23 minutes. This change in the orbital period was a direct result of the kinetic impactor's collision with Dimorphos.
+After the impact, the orbital period of Dimorphos was reduced to approximately 11 hours and 23 minutes. This change in the orbital period of Dimorphos was a direct result of the kinetic impactor's collision with the asteroid, which imparted a small but measurable change to Dimorphos's orbit.
 
-The measured change in the orbital period of Dimorphos was 32 minutes, which is significantly more than the NASA minimum mission success criterion of a 73-second change in the orbital period. This substantial change in the orbital period demonstrates the success of the DART mission in demonstrating a kinetic impactor technique for planetary defense.
+The measured change in the orbital period of Dimorphos was 32 minutes, which is significantly more than the mission's minimum success criterion of a 73-second change. This substantial increase in the orbital period change indicates that DART successfully demonstrated the kinetic impactor technique as a potential method for planetary defense against potentially hazardous asteroids.
 
-The DART mission was designed to test the effectiveness of this technique, and the results far exceeded the mission's minimum success criteria, providing valuable data for future asteroid deflection missions.
+The mission's success in achieving a much larger than expected change in Dimorphos's orbit validated the effectiveness of the DART spacecraft and its impactor, providing valuable data for future asteroid deflection missions.
 
 </details>
 
 
 **Judge Analysis:**
 
-- **With-RAG Overall Score:** 3.75 / 5.0 | *Strengths:* Correct date, target, and orbital period changes; mentions momentum transfer enhancement parameter.
+- **With-RAG Overall Score:** 4.0 / 5.0 | *Strengths:* Accurate date, target, and orbital period changes. Correctly identifies mission success.
 
-- **Without-RAG Overall Score:** 4.25 / 5.0 | *Weaknesses:* Incorrect UTC time for impact, missing specific details on impact mass and velocity, and slight rounding error in post-impact orbital period.
+- **Without-RAG Overall Score:** 4.0 / 5.0 | *Weaknesses:* Incorrect UTC time for impact. Slightly inaccurate post-impact orbital period. Does not mention the impact mass, relative velocity, or the specific measurement techniques used for the orbital period.
 
 
 ---
@@ -423,22 +448,20 @@ $$\beta = \frac{\Delta P}{m v_{imp}} = 1 + \frac{p_{ejecta}}{m v_{imp}}$$
 <summary><b>View With-RAG Answer (Grounded)</b></summary>
 
 
-**Latency:** 11.454358100891113s | **Fact Recall:** 36.4% | **Telemetry:** 0.0%
+**Latency:** 10.716052055358887s | **Fact Recall:** 36.4% | **Telemetry:** 0.0%
 
-**Citations:** `['DART_Planetary_Defense_Technical_Report.pdf, Page 9', 'DART_Planetary_Defense_Technical_Report.pdf, Page 10', 'DART_Kinetic_Impactor_Deflection_Results.pdf, Page 2']`
+**Citations:** `['DART_Planetary_Defense_Technical_Report.pdf, Page 9', 'DART_Planetary_Defense_Technical_Report.pdf, Page 10', 'DART_Planetary_Defense_Technical_Report.pdf, Page 52', 'DART_Kinetic_Impactor_Deflection_Results.pdf, Page 2', 'DART_Planetary_Defense_Technical_Report.pdf, Page 45']`
 
 
-The momentum enhancement factor \(\beta\) is defined and calculated based on the ejecta produced during the DART impact on Dimorphos. Specifically, \(\beta\) quantifies how the ejecta contributes to the momentum imparted to the target asteroid. In a perfectly inelastic collision, with zero ejecta momentum, \(\beta = 1\) by definition [DART_Planetary_Defense_Technical_Report.pdf, Page 9].
+The momentum enhancement factor, denoted as β, quantifies how the ejecta produced during a deflection attempt contributes to the momentum imparted to the target. In a perfectly inelastic collision, with zero ejecta momentum, β = 1 by definition [DART_Planetary_Defense_Technical_Report.pdf, Page 9].
 
-The DART project uses the velocity change imparted to the target to obtain a measure of the momentum transfer enhancement parameter, \(\beta\), using the best available estimate of the mass of Didymos B (Dimorphos). Impact simulations indicated that ejecta could enhance the momentum transferred to Dimorphos, depending on the material strength, impact conditions, and other properties of Dimorphos and DART’s impact [DART_Planetary_Defense_Technical_Report.pdf, Page 10].
+For the DART impact on Dimorphos, the DART project will use the velocity change imparted to the target to obtain a measure of the momentum transfer enhancement parameter, β, using the best available estimate of the mass of Didymos B. The required value of 7.3 seconds was derived from ensuring the post-impact orbital period was determined with an accuracy of at least 10%, even if only the minimum 73-second period change resulted from DART’s impact [DART_Planetary_Defense_Technical_Report.pdf, Page 9].
 
-Cratering ejecta recoil played a significant role in the deflection. The ejecta produced during the impact can increase the effective momentum transfer to the target asteroid, thereby enhancing the deflection effect. The DART mission aimed to measure \(\beta\) to understand the extent of this enhancement [DART_Kinetic_Impactor_Deflection_Results.pdf, Page 2].
+Impact simulations conducted in preparation for DART’s kinetic impact test indicated that there could be considerable enhancement to the momentum transferred to Dimorphos because of the ejecta produced, depending on the material strength, impact conditions, and other properties of Dimorphos and DART’s impact [DART_Planetary_Defense_Technical_Report.pdf, Page 10].
 
-Post-impact observations and simulations have been crucial in characterizing the ejecta from the DART impact. For instance, the ejecta plume evolution and its implications for Dimorphos have been studied [Momentum transfer from the DART mission kinetic impact on asteroid Dimorphos, Nature, 616, 457-460; DART impact ejecta plume evolution: Implications for Dimorphos, Planetary Science Journal, submitted].
+Cratering ejecta recoil played a significant role in the deflection. The DART mission's kinetic impact on Dimorphos generated ejecta plumes, which were characterized using various observational techniques. For instance, the VLT/MUSE characterization of Dimorphos ejecta from the DART impact provided insights into the ejecta plume evolution and its implications for Dimorphos [DART_Planetary_Defense_Technical_Report.pdf, Page 52]. Additionally, the DART impact ejecta plume evolution was studied in detail, showing that a particular direction-specific β will be directly determined by the DART results, and that a related direction-specific β is a figure of merit for a kinetic impact mission [DART_Kinetic_Impactor_Deflection_Results.pdf, Page 2].
 
-Additionally, the VLT/MUSE characterization of Dimorphos ejecta from the DART impact provided further insights into the ejecta dynamics and their role in the deflection process [VLT/MUSE characterization of Dimorphos ejecta from the DART impact, Planetary Science Journal, submitted].
-
-In summary, \(\beta\) is a critical parameter in assessing the effectiveness of the DART impact, and the ejecta recoil significantly contributed to the overall momentum transfer to Dimorphos, enhancing the deflection outcome. [DART_Planetary_Defense_Technical_Report.pdf, Page 9, 10; DART_Kinetic_Impactor_Deflection_Results.pdf, Page 2; Momentum transfer from the DART mission kinetic impact on asteroid Dimorphos, Nature, 616, 457-460; DART impact ejecta plume evolution: Implications for Dimorphos, Planetary Science Journal, submitted; VLT/MUSE characterization of Dimorphos ejecta from the DART impact, Planetary Science Journal, submitted].
+The characterization of the ejecta from the NASA/DART impact on Dimorphos, including observations and Monte Carlo models, further refined our understanding of the ejecta's role in the momentum transfer [DART_Planetary_Defense_Technical_Report.pdf, Page 45]. The results from these studies will help refine knowledge of the physical properties of asteroidal materials and predictive power of impact simulations, providing valuable information for future planetary defense missions [DART_Kinetic_Impactor_Deflection_Results.pdf, Page 2].
 
 </details>
 
@@ -447,39 +470,47 @@ In summary, \(\beta\) is a critical parameter in assessing the effectiveness of 
 <summary><b>View Without-RAG Answer (Baseline)</b></summary>
 
 
-**Latency:** 8.353484869003296s | **Fact Recall:** 27.3% | **Telemetry:** 0.0%
+**Latency:** 8.672434329986572s | **Fact Recall:** 27.3% | **Telemetry:** 0.0%
 
 
-The momentum enhancement factor (β) is a crucial concept in the study of asteroid deflection missions, particularly in the context of the DART (Double Asteroid Redirection Test) mission. It quantifies the additional momentum imparted to the target asteroid Dimorphos as a result of the impactor's collision. The β factor is defined as the ratio of the momentum delivered to the asteroid to the momentum of the impactor itself.
+The momentum enhancement factor (β) is a crucial concept in understanding the effectiveness of the DART mission in deflecting the asteroid Dimorphos. This factor is defined as the ratio of the momentum delivered to the asteroid to the momentum of the impactor spacecraft before impact. For the DART mission, the β factor is particularly important as it helps quantify the change in Dimorphos' orbit around its primary body, the asteroid Didymos.
 
-For the DART mission, the β factor is calculated using the following formula:
+### Definition and Calculation of β
 
-\[ \beta = \frac{m_{impactor} \cdot v_{impactor}}{m_{asteroid} \cdot v_{cratering\ ejecta}} \]
+The momentum enhancement factor (β) is calculated using the following formula:
+
+\[ \beta = \frac{m_{\text{imp}} v_{\text{imp}}}{m_{\text{target}} v_{\text{target}}} \]
 
 Where:
-- \( m_{impactor} \) is the mass of the DART impactor
-- \( v_{impactor} \) is the velocity of the impactor at impact
-- \( m_{asteroid} \) is the mass of the Dimorphos asteroid
-- \( v_{cratering\ ejecta} \) is the velocity of the cratering ejecta
+- \( m_{\text{imp}} \) is the mass of the impactor (DART spacecraft).
+- \( v_{\text{imp}} \) is the velocity of the impactor just before impact.
+- \( m_{\text{target}} \) is the mass of the asteroid (Dimorphos).
+- \( v_{\text{target}} \) is the velocity of the asteroid relative to the impactor.
 
-The β factor for DART is estimated to be around 0.6 to 0.7. This value is based on simulations and models of the impact, taking into account the mass and velocity of the DART impactor, the mass of Dimorphos, and the expected velocity of the cratering ejecta.
+For the DART mission, the β factor was designed to be around 0.1, meaning that the momentum delivered to Dimorphos would be 10% of the momentum of the DART spacecraft. This was chosen to ensure a significant but manageable change in Dimorphos' orbit.
 
-Cratering ejecta recoil plays a significant role in the deflection process. When the DART impactor collides with Dimorphos, it creates a crater and ejects material from the asteroid's surface. This ejected material, moving at high velocity, carries a significant amount of momentum away from the asteroid. According to Newton's third law, for every action, there is an equal and opposite reaction. Therefore, the impactor experiences a recoil force, which is transferred to the asteroid as a whole.
+### Role of Cratering Ejecta Recoil
 
-The momentum of the ejecta is calculated using the ejecta mass and its velocity. The total momentum delivered to Dimorphos is the sum of the momentum of the impactor and the momentum of the ejecta. The β factor accounts for the additional momentum imparted to the asteroid beyond what would be expected from the impactor alone.
+Cratering ejecta recoil played a significant role in the deflection mechanism of the DART mission. When the DART spacecraft impacted Dimorphos, it created a crater and ejected a substantial amount of material from the asteroid's surface. This ejected material, due to the high velocity of the impact, imparted a significant amount of momentum back onto the asteroid.
 
-In the context of DART, the cratering ejecta recoil contributes to the overall momentum transfer to Dimorphos. This additional momentum helps to increase the effective change in the asteroid's orbit, enhancing the deflection effect. The precise calculation of the β factor and the role of ejecta recoil are critical for understanding the mission's success in altering Dimorphos' orbit around its primary body, Didymos.
+The physical role of this ejecta recoil can be understood through the conservation of momentum. The momentum of the ejecta, which is moving away from the asteroid at high speeds, must be balanced by an equal and opposite momentum change in the asteroid itself. This momentum transfer effectively increases the overall momentum delivered to Dimorphos, enhancing the deflection effect.
 
-The DART mission's success in achieving a significant change in Dimorphos' orbital period (from 11.92 hours to 11.23 hours) demonstrates the effectiveness of the momentum transfer, including the contributions from both the impactor and the cratering ejecta.
+### Quantitative Impact
+
+The ejecta recoil contributed to the overall momentum transfer by providing additional momentum to the asteroid. While the primary momentum transfer is due to the direct impact of the DART spacecraft, the ejecta can significantly increase the total momentum delivered, especially if the impact is oblique or if the ejecta is ejected at a high velocity.
+
+### Conclusion
+
+In summary, the momentum enhancement factor (β) for the DART mission was carefully calculated to ensure a significant but controlled deflection of Dimorphos. The cratering ejecta recoil played a crucial role in enhancing the overall momentum transfer, contributing to the observed change in Dimorphos' orbit around Didymos. This mechanism demonstrated the effectiveness of kinetic impactor technology in asteroid deflection, paving the way for future planetary defense strategies.
 
 </details>
 
 
 **Judge Analysis:**
 
-- **With-RAG Overall Score:** 4.25 / 5.0 | *Strengths:* Accurately defines β and its role in momentum transfer. Cites authoritative sources and provides a clear overview of the ejecta recoil's physical role.
+- **With-RAG Overall Score:** 3.75 / 5.0 | *Strengths:* Provides accurate definition of β, mentions key observational techniques, and references authoritative documents.
 
-- **Without-RAG Overall Score:** 2.5 / 5.0 | *Weaknesses:* Incorrect formula for β, incorrect β value range, and lack of specific details on ejecta velocity and mass estimates.
+- **Without-RAG Overall Score:** 2.5 / 5.0 | *Weaknesses:* Incorrect formula for β, incorrect β value, and lack of specific details on ejecta velocity and mass estimates.
 
 
 ---
@@ -510,24 +541,24 @@ Because DART was approximately 11 million kilometers from Earth at impact, round
 <summary><b>View With-RAG Answer (Grounded)</b></summary>
 
 
-**Latency:** 11.747146606445312s | **Fact Recall:** 18.2% | **Telemetry:** 0.0%
+**Latency:** 11.958693504333496s | **Fact Recall:** 18.2% | **Telemetry:** 0.0%
 
-**Citations:** `['DART_Planetary_Defense_Technical_Report.pdf, Page 17', 'DART_Planetary_Defense_Technical_Report.pdf, Page 24', 'DART_Kinetic_Impactor_Deflection_Results.pdf, Page 3', 'DART_Planetary_Defense_Technical_Report.pdf, Page 7']`
+**Citations:** `['DART_Planetary_Defense_Technical_Report.pdf, Page 17', 'DART_Kinetic_Impactor_Deflection_Results.pdf, Page 3', 'DART_Planetary_Defense_Technical_Report.pdf, Page 24', 'DART_Planetary_Defense_Technical_Report.pdf, Page 7']`
 
 
-The Small-body Maneuvering Autonomous Real-Time Navigation (SMART Nav) system and the DRACO optical imaging camera guided DART to target Dimorphos during the final hours before impact through a series of sophisticated onboard processes and maneuvers. 
+The Small-body Maneuvering Autonomous Real-Time Navigation (SMART Nav) system and the DRACO optical imaging camera guided DART to target Dimorphos during the final hours before impact through a series of steps and processes. 
 
-The SMART Nav system, a collection of algorithms, firmware, and software, was responsible for asteroid acquisition and tracking throughout the terminal phase and autonomously guided DART onto an impact trajectory with Dimorphos. This system was crucial because the long communication latency with the ground meant that the mission’s Level 1 impact requirement could not be met with ground-based commanding. [DART_Planetary_Defense_Technical_Report.pdf, Page 17]
+First, SMART Nav was responsible for asteroid acquisition and tracking throughout the terminal phase, autonomously guiding DART onto an impact trajectory with Dimorphos B. This was necessary due to the high closing velocity of 6 km/s, which required an onboard, autonomous approach to ensure the mission's Level 1 impact requirement could not be met with ground-based commanding. [DART_Planetary_Defense_Technical_Report.pdf, Page 17]
 
-During the final hours, SMART Nav took control of the spacecraft navigation 4 hours and 5 minutes before impact, as the Didymos system was first detected 61 days prior to impact. [DART_Planetary_Defense_Technical_Report.pdf, Page 24] SMART Nav began maneuvering toward Dimorphos 50 minutes before impact, ensuring the spacecraft was positioned to impact Dimorphos. [DART_Planetary_Defense_Technical_Report.pdf, Page 24]
+DRACO, the Didymos Reconnaissance & Asteroid Camera for OpNav, acquired images for the autonomous navigation system and for the Investigation Team’s analysis. During the terminal approach phase, DRACO acquired and returned images at a rate of approximately one per second, with the highest-resolution images required to have a pixel scale of 50 cm/pixel or finer, to be achieved roughly 16 seconds prior to DART’s impact. [DART_Kinetic_Impactor_Deflection_Results.pdf, Page 3]
 
-The DRACO (Fletcher et al., 2018) optical navigation camera acquired images for the autonomous navigation system and for the Investigation Team’s analysis. During the terminal approach phase, DRACO acquired and returned images at a rate of approximately one per second, with the highest-resolution images required to have a pixel scale of 50 cm/pixel or finer, to be achieved roughly 16 seconds prior to DART’s impact. [DART_Kinetic_Impactor_Deflection_Results.pdf, Page 3]
+Optical navigation was heavily used during the final month to ensure the spacecraft was positioned to impact Dimorphos and to inform the associated trajectory correction maneuvers (TCMs). At 4 hours and 5 minutes before impact, SMART Nav took control of the spacecraft navigation. The SMART Nav system obtained its final stable track for Dimorphos 68 minutes before impact and began maneuvering toward Dimorphos 50 minutes before impact. [DART_Planetary_Defense_Technical_Report.pdf, Page 24]
 
-These images were critical for SMART Nav to process and navigate DART accurately. The image processing was complicated by the uncertainty on Dimorphos' surface reflectivity and shape properties, necessitating that images be processed in an FPGA to ensure timely processing. [DART_Planetary_Defense_Technical_Report.pdf, Page 17]
+On the day of impact, 26 September 2022, the spacecraft’s autonomous systems successfully detected and locked on to Dimorphos, impacting its surface within 2 meters of the center of the illuminated figure. No human intervention was required for a successful impact, demonstrating that humanity possesses the technology to perform a kinetic impact. [DART_Planetary_Defense_Technical_Report.pdf, Page 7]
 
-Evaluation of DART’s impact showed that the spacecraft impacted within 2 m of the center of the illuminated figure and within 25 m of the center of Dimorphos, with an impact angle of ~17° from the surface normal. [DART_Planetary_Defense_Technical_Report.pdf, Page 24] This high level of accuracy was achieved despite the challenges posed by the parametric uncertainty of the asteroid and the transition from tracking the primary asteroid to the secondary. [DART_Planetary_Defense_Technical_Report.pdf, Page 17]
+The SMART Nav system, a collection of algorithms, firmware, and software, was developed as part of an Independent Research and Development effort in collaboration with APL’s Air and Missile Defense Sector. The system was designed to address the challenges of providing the navigation accuracy needed to ensure impact with the Didymos secondary, including the need to distinguish the shadowed side of the asteroid from the background and the transition from tracking the primary asteroid to tracking the secondary. [DART_Planetary_Defense_Technical_Report.pdf, Page 17]
 
-The autonomous design of DART, which did not require human intervention for a successful impact, demonstrated that humanity possesses the technology to perform a kinetic impact. [DART_Planetary_Defense_Technical_Report.pdf, Page 7]
+The SMART Nav system and DRACO camera worked together to ensure DART’s successful impact on Dimorphos, highlighting the importance of autonomous navigation and real-time imaging in planetary defense missions. [DART_Planetary_Defense_Technical_Report.pdf, Page 24]
 
 </details>
 
@@ -536,49 +567,50 @@ The autonomous design of DART, which did not require human intervention for a su
 <summary><b>View Without-RAG Answer (Baseline)</b></summary>
 
 
-**Latency:** 10.170921564102173s | **Fact Recall:** 18.2% | **Telemetry:** 0.0%
+**Latency:** 11.029502391815186s | **Fact Recall:** 18.2% | **Telemetry:** 0.0%
 
 
-The Small-body Maneuvering Autonomous Real-Time Navigation (SMART Nav) system and the DRACO optical imaging camera played crucial roles in guiding the Double Asteroid Redirection Test (DART) spacecraft to its target, the asteroid Dimorphos, during the final hours before impact. Here's a detailed technical explanation:
+The Small-body Maneuvering Autonomous Real-Time Navigation (SMART Nav) system and the DRACO optical imaging camera played crucial roles in guiding the Double Asteroid Redirection Test (DART) spacecraft to its target, the asteroid Dimorphos, during the final hours before impact. Here's a detailed technical explanation of their functions and how they worked together:
 
 1. SMART Nav System:
-   - SMART Nav is an autonomous navigation system designed to guide DART to its target asteroid Dimorphos.
-   - It uses a series of small thruster firings to adjust the spacecraft's trajectory based on real-time navigation data.
-   - The system operates in real-time, providing continuous updates to the spacecraft's navigation computer.
-   - SMART Nav uses a star tracker and a wide-angle camera (the DRACO camera) to acquire images of the target asteroid.
-   - The system processes these images to determine the spacecraft's position relative to Dimorphos.
-   - Based on this information, SMART Nav calculates the necessary small thruster firings to make the necessary trajectory adjustments.
-   - The thruster firings are typically small, with each one lasting only a few seconds, to avoid significant changes in the spacecraft's trajectory.
-   - SMART Nav operates in a closed-loop configuration, continuously refining the trajectory as the spacecraft approaches Dimorphos.
+   - SMART Nav is an autonomous navigation system designed to guide DART to Dimorphos without relying on ground-based commands.
+   - It uses a series of star trackers and a visible-light camera to determine the spacecraft's position relative to Dimorphos.
+   - The system calculates the necessary course corrections in real-time, adjusting DART's trajectory as needed.
+   - SMART Nav continuously measures the spacecraft's velocity and position, comparing them to pre-programmed navigation data.
+   - If the spacecraft deviates from its planned path, SMART Nav automatically calculates and implements small thruster firings to correct the trajectory.
+   - The system operates in real-time, providing continuous guidance during the final hours of the mission.
 
 2. DRACO Optical Imaging Camera:
-   - DRACO (Deep Reticula Autonomous Camera) is a wide-angle camera designed to capture high-resolution images of Dimorphos and its parent asteroid Didymos.
-   - The camera has a field of view of approximately 10 degrees, allowing it to capture a wide area of the asteroid system.
-   - DRACO has a resolution of about 0.5 meters per pixel, providing detailed images of Dimorphos' surface features.
-   - The camera captures images at a rate of about 10 frames per second, allowing SMART Nav to process new data frequently.
-   - DRACO images are used by SMART Nav to determine the spacecraft's position and velocity relative to Dimorphos.
-   - The camera also captures images for scientific analysis of the asteroid system, providing valuable data for future missions.
-   - DRACO's wide field of view and high resolution allow SMART Nav to detect Dimorphos and track its position as DART approaches.
+   - DRACO (Descent, Relative, and Approach Camera) is a high-resolution camera that captures images of Dimorphos and the DART spacecraft.
+   - It provides visual data to SMART Nav, allowing the system to refine the spacecraft's trajectory based on real-time observations.
+   - DRACO captures images of Dimorphos at various distances, enabling SMART Nav to determine the asteroid's size, shape, and relative position.
+   - The camera's high-resolution images help SMART Nav identify any unexpected features or changes in Dimorphos' appearance that could affect the spacecraft's trajectory.
+   - DRACO also captures images of the DART spacecraft, allowing SMART Nav to monitor the spacecraft's orientation and position relative to Dimorphos.
 
-3. Integration of SMART Nav and DRACO:
-   - SMART Nav and DRACO work together to guide DART to its target.
-   - SMART Nav uses DRACO's images to determine the spacecraft's position and velocity relative to Dimorphos.
-   - The system then calculates the necessary small thruster firings to make the necessary trajectory adjustments.
-   - DRACO continuously captures images of Dimorphos, allowing SMART Nav to refine the trajectory as the spacecraft approaches.
-   - The system operates in real-time, providing continuous updates to the spacecraft's navigation computer.
-   - SMART Nav uses the images from DRACO to determine the necessary small thruster firings, typically lasting only a few seconds, to make the necessary trajectory adjustments.
-   - The combination of SMART Nav's autonomous navigation capabilities and DRACO's high-resolution imaging allowed DART to successfully impact Dimorphos and achieve its mission objectives.
+3. Integration and Functionality:
+   - SMART Nav and DRACO work in tandem to guide DART to Dimorphos. DRACO provides visual data, while SMART Nav processes this information and calculates course corrections.
+   - The system uses a combination of star tracker data and DRACO images to create a real-time model of the spacecraft's position and trajectory.
+   - SMART Nav continuously compares the model to pre-programmed navigation data, making real-time adjustments as needed.
+   - The system is designed to handle unexpected situations, such as changes in Dimorphos' appearance or unexpected debris in the vicinity.
+   - SMART Nav and DRACO work together to ensure that DART is on course for a successful impact with Dimorphos, even in the final hours before the event.
 
-In summary, the SMART Nav system and DRACO camera worked together to guide DART to its target asteroid Dimorphos during the final hours before impact. SMART Nav used real-time navigation data from DRACO to make small, precise adjustments to the spacecraft's trajectory, while DRACO provided high-resolution images of Dimorphos to SMART Nav for continuous trajectory refinement.
+4. Final Hours:
+   - In the final hours before impact, SMART Nav and DRACO work together to guide DART to Dimorphos with increasing precision.
+   - The system uses the high-resolution images from DRACO to identify Dimorphos and track its position.
+   - SMART Nav calculates the necessary course corrections based on the real-time data from DRACO and implements them using DART's thrusters.
+   - The system continues to monitor the spacecraft's trajectory and make adjustments as needed, ensuring that DART is on course for a successful impact with Dimorphos.
+   - SMART Nav and DRACO work together to provide real-time guidance, allowing DART to make the necessary adjustments to its trajectory in the final moments before impact.
+
+In summary, the SMART Nav system and DRACO optical imaging camera worked together to guide DART to Dimorphos during the final hours before impact. SMART Nav used real-time data from DRACO to calculate course corrections, while DRACO provided high-resolution images of Dimorphos and the DART spacecraft. This combination of real-time navigation and high-resolution imaging allowed SMART Nav to guide DART to its target with increasing precision in the final moments before the historic impact.
 
 </details>
 
 
 **Judge Analysis:**
 
-- **With-RAG Overall Score:** 3.75 / 5.0 | *Strengths:* Accurately describes the roles of SMART Nav and DRACO, mentions key technical details and mission phases.
+- **With-RAG Overall Score:** 4.25 / 5.0 | *Strengths:* Accurate details on DRACO specifications, SMART Nav's autonomous functions, and the overall process of guiding DART to Dimorphos.
 
-- **Without-RAG Overall Score:** 3.25 / 5.0 | *Weaknesses:* Contains several factual inaccuracies, such as the field of view and resolution of DRACO, the rate of image capture, and the specifics of SMART Nav's operation. Misses key details about the timing and specific functions of SMART Nav.
+- **Without-RAG Overall Score:** 3.5 / 5.0 | *Weaknesses:* Contains inaccuracies in technical details (e.g., star trackers not mentioned in ground truth, incorrect camera name, missing specific technical details about DRACO and SMART Nav operations)
 
 
 ---
@@ -614,26 +646,32 @@ Because the Mars Science Laboratory (Curiosity) weighed nearly 900 kg—far too 
 <summary><b>View With-RAG Answer (Grounded)</b></summary>
 
 
-**Latency:** 8.716232776641846s | **Fact Recall:** 7.7% | **Telemetry:** 0.0%
+**Latency:** 10.527392148971558s | **Fact Recall:** 7.7% | **Telemetry:** 0.0%
 
-**Citations:** `['Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 2', 'Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 20']`
+**Citations:** `['Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 2']`
 
 
-The Mars Science Laboratory (MSL) Curiosity rover's Entry, Descent, and Landing (EDL) architecture consisted of six sequential phases, as described in [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 2]:
+The Mars Science Laboratory (MSL) Curiosity rover's Entry, Descent, and Landing (EDL) architecture consisted of six sequential phases, as detailed in [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 2]:
 
 1. **Exo-atmospheric Flight**: This phase occurred before the rover entered the Martian atmosphere. [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 2]
 
 2. **Guided Entry**: During this phase, the spacecraft was guided through the Martian atmosphere using thrusters to control its trajectory. [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 2]
 
-3. **Parachute Descent**: The largest supersonic parachute ever flown at Mars deployed to slow the spacecraft's descent. [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 2]
+3. **Parachute Descent**: The largest supersonic parachute ever flown at Mars deployed to slow the descent. [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 2]
 
-4. **Powered Descent**: After the parachute deployment, the spacecraft continued its descent using rocket engines to further slow its speed. [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 2]
+4. **Powered Descent**: After the parachute deployment, the rover used its descent stage with retro-rockets to further slow its descent. [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 2]
 
-5. **Sky Crane**: This was a novel and untested landing system that lowered the rover to the Martian surface using cables. The Sky Crane maneuver was crucial for safely delivering the rover to the surface. [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 2]
+5. **Sky Crane**: This was a novel landing system where the rover was lowered to the surface by a hovering descent stage. [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 2]
 
-6. **Flyaway**: After the rover touched down, the descent stage detached and flew away to a safe distance from the rover. [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 2]
+6. **Flyaway**: This phase involved the separation of the descent stage from the rover after touchdown, allowing the descent stage to fly away to a safe distance. [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 2]
 
-The Sky Crane maneuver executed the rover's surface touchdown by lowering the rover on three cables from the descent stage. This allowed the rover to land on the surface while the descent stage continued to hover, providing precise control over the landing site. [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 20]
+The Sky Crane maneuver executed the rover's surface touchdown as follows:
+
+- After the powered descent phase, the rover was detached from the descent stage and lowered to the surface by a series of cables. [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 2]
+- The rover touched down on the surface while the descent stage remained hovering above it, providing additional stability and control. [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 2]
+- Once the rover was safely on the surface, the descent stage separated and flew away to a safe distance, ensuring the rover was not in danger from any potential hazards from the descent stage. [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 2]
+
+These phases and maneuvers were critical for the successful landing of the Curiosity rover on Mars, as detailed in [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 2].
 
 </details>
 
@@ -642,41 +680,39 @@ The Sky Crane maneuver executed the rover's surface touchdown by lowering the ro
 <summary><b>View Without-RAG Answer (Baseline)</b></summary>
 
 
-**Latency:** 8.40192461013794s | **Fact Recall:** 7.7% | **Telemetry:** 25.0%
+**Latency:** 10.561903715133667s | **Fact Recall:** 7.7% | **Telemetry:** 37.5%
 
 
-The Mars Science Laboratory (MSL) Entry, Descent, and Landing (EDL) architecture for the Curiosity rover involved a series of complex and carefully orchestrated phases to safely deliver the rover to the Martian surface. The EDL process can be broken down into several key phases:
+The Mars Science Laboratory (MSL) Entry, Descent, and Landing (EDL) architecture for the Curiosity rover involved a series of carefully orchestrated phases to safely deliver the rover to the Martian surface. Here is a detailed breakdown of the sequential phases and the Sky Crane maneuver:
 
 1. **Entry Phase:**
-   - The spacecraft, containing the Curiosity rover, entered the Martian atmosphere at a speed of about 13,200 meters per second (43,000 feet per second).
-   - The heat shield was deployed to protect the spacecraft from the intense heat generated by atmospheric friction. The heat shield was designed to withstand temperatures up to 1,600°C (2,900°F).
+   - **Atmospheric Entry:** The MSL spacecraft, containing the Curiosity rover, entered the Martian atmosphere at approximately 5,800 meters per second (13,000 mph) and 125 kilometers (78 miles) above the surface. The heat shield, measuring 4.8 meters (16 feet) in diameter, protected the rover from the intense heat generated by atmospheric friction.
+   - **Parachute Deployment:** At an altitude of about 12 kilometers (7.5 miles) and a speed of 1,000 meters per second (2,200 mph), the supersonic parachute deployed. This parachute was the largest ever used on a planetary entry, measuring 15 meters (49 feet) in diameter.
 
-2. **Parachute Deployment:**
-   - At an altitude of about 7.5 kilometers (24,500 feet) and a speed of 1,000 meters per second (3,300 feet per second), the supersonic parachute was deployed. This parachute was the largest ever used on a planetary mission, with a diameter of 5 meters (16.5 feet).
+2. **Descent Phase:**
+   - **Backshell Separation:** After the parachute had slowed the descent to about 425 meters per second (950 mph), the backshell separated from the parachute and the rover. The backshell, along with the parachute, continued to descend to the surface.
+   - **Sky Crane Maneuver:** The descent stage, which included the rover and the Sky Crane system, separated from the backshell. The descent stage had its own rocket engines to control its descent. The Sky Crane maneuver involved several critical steps:
+     - **Rocket Engine Cutoff (RECO):** At an altitude of about 1.2 kilometers (0.75 miles) and a speed of 160 meters per second (360 mph), the rocket engines reduced thrust to allow the rover to descend to the surface.
+     - **Sky Crane Maneuver:** The descent stage, now equipped with a bridle system, lowered the rover to the surface using a tether. The Sky Crane maneuver involved a complex series of actions to ensure the rover touched down safely:
+       - The rover was lowered on three nylon tethers, each 21.5 meters (70.5 feet) long.
+       - The descent stage hovered about 4 meters (13 feet) above the surface.
+       - The rover's wheels were deployed and the bridle system was released.
+       - The descent stage then moved away from the rover, using its rear thrusters, to a safe distance.
 
-3. **Backshell Separation:**
-   - After the parachute deployment, the backshell, which had been attached to the heat shield, separated from the spacecraft. The heat shield then separated and was jettisoned, revealing the descent stage below.
+3. **Landing Phase:**
+   - **Surface Touchdown:** The rover touched down on the surface of Mars, with its wheels in contact, at approximately 1:32 AM UTC on August 6, 2012 (10:32 PM PDT on August 5, 2012). The landing site was named Gale Crater.
+   - **Confirmation of Landing:** After a brief period to ensure the rover was stable and safe, the rover sent a signal to the Mars Reconnaissance Orbiter (MRO), which then relayed the signal to Earth. Confirmation of the landing was received by mission control at the Jet Propulsion Laboratory (JPL) about 14 minutes after the landing.
 
-4. **Sky Crane Maneuver:**
-   - The Sky Crane maneuver was the most critical and innovative part of the landing sequence. The descent stage, with the rover attached, was lowered by three 21.5-meter (70.5-foot) long nylon and Kevlar cords. This allowed the rover to land on its wheels while the descent stage remained a safe distance above the surface.
-   - The descent stage used aero-braking and a retro-rockets to slow down and maintain control during the final descent. The rockets were fired to slow the descent to a speed of about 0.72 meters per second (2.4 feet per second) at touchdown.
-
-5. **Rover Separation and Landing:**
-   - As the descent stage neared the surface, the rover was lowered by the Sky Crane maneuver. Once the rover touched down, the cords were cut, and the descent stage flew away to a safe distance, landing about 210 meters (700 feet) away from the rover.
-
-6. **Post-Landing Operations:**
-   - After landing, the rover began its scientific mission. The first signal confirming a successful landing was received on Earth about 7 minutes after the entry, due to the time it takes for signals to travel from Mars to Earth.
-
-The Sky Crane maneuver was crucial because it allowed the rover to land on its wheels without the risk of the landing rockets damaging the rover. This innovative approach was a significant technical achievement and a key factor in the success of the Curiosity mission.
+The Sky Crane maneuver was a critical and innovative part of the EDL process, allowing for a soft landing and ensuring the rover was placed in a stable position on the Martian surface. This approach was necessary due to the size and weight of the Curiosity rover, which required a more complex landing system compared to previous Mars missions.
 
 </details>
 
 
 **Judge Analysis:**
 
-- **With-RAG Overall Score:** 3.5 / 5.0 | *Strengths:* Correctly identifies key phases and the Sky Crane maneuver; clear and concise language.
+- **With-RAG Overall Score:** 3.0 / 5.0 | *Strengths:* Clear and concise description of the EDL phases and Sky Crane maneuver.
 
-- **Without-RAG Overall Score:** 3.25 / 5.0 | *Weaknesses:* Incorrect values for entry speed, parachute size, and descent stage flyaway distance. Missing details on guided hypersonic entry and powered descent & divert phases.
+- **Without-RAG Overall Score:** 3.25 / 5.0 | *Weaknesses:* Errors in speeds, altitudes, parachute size, and other technical details; omits key aspects like RCS thrusters and TDS radar.
 
 
 ---
@@ -712,18 +748,20 @@ By firing a train of ~30 to 50 laser pulses at a single spot (at 3 to 10 Hz), th
 <summary><b>View With-RAG Answer (Grounded)</b></summary>
 
 
-**Latency:** 9.161258935928345s | **Fact Recall:** 16.7% | **Telemetry:** 0.0%
+**Latency:** 9.93791937828064s | **Fact Recall:** 16.7% | **Telemetry:** 0.0%
 
-**Citations:** `['Mars_Curiosity_ChemCam_LIBS_Instrument.pdf, Page 18', 'Mars_Curiosity_ChemCam_LIBS_Instrument.pdf, Page 1', 'Mars_Curiosity_ChemCam_LIBS_Instrument.pdf, Page 47']`
+**Citations:** `['Mars_Curiosity_ChemCam_LIBS_Instrument.pdf, Page 1', 'Mars_Curiosity_ChemCam_LIBS_Instrument.pdf, Page 18', 'Mars_Curiosity_ChemCam_LIBS_Instrument.pdf, Page 47', 'Mars_Curiosity_ChemCam_LIBS_Instrument.pdf, Page 24']`
 
 
-The ChemCam Laser-Induced Breakdown Spectroscopy (LIBS) instrument on the Curiosity rover determines the elemental composition of rocks and soils from standoff distances by firing a laser at the target, creating a plasma that emits light. This light is then analyzed to determine the elemental composition. Specifically, the LIBS instrument can operate in two modes: active and passive. In the active mode, the laser is fired, and the resulting plasma emits light that is collected and analyzed. In the passive mode, the instrument collects ambient light from the target, which can still provide useful information about the target's composition [Mars_Curiosity_ChemCam_LIBS_Instrument.pdf, Page 18].
+The ChemCam Laser-Induced Breakdown Spectroscopy (LIBS) instrument on the Curiosity rover determines rock and soil elemental composition from standoff distances through a process that involves laser-induced breakdown of the sample material. The laser beam from the instrument is focused on the target, creating a plasma that emits light at specific wavelengths corresponding to the elements present in the sample. This light is then collected by a telescope and analyzed using a spectrometer to determine the elemental composition [Mars_Curiosity_ChemCam_LIBS_Instrument.pdf, Page 1].
 
-The ChemCam LIBS instrument on Curiosity also benefits from the complementary role of the Remote Micro-Imager (RMI). The RMI provides high-resolution imaging of the target area, allowing the science team to select specific points of interest for LIBS analysis. This imaging capability ensures that the LIBS analysis is targeted accurately, enhancing the precision and reliability of the elemental composition data [Mars_Curiosity_ChemCam_LIBS_Instrument.pdf, Page 1].
+The Remote Micro-Imager (RMI) plays a complementary role by providing high-resolution images of the target area. These images are crucial for selecting appropriate targets for LIBS analysis and for context, ensuring that the laser is accurately aimed at the desired location [Mars_Curiosity_ChemCam_LIBS_Instrument.pdf, Page 1].
 
-Regarding the protection of the LIBS baseline raster from dust, the instrument discards the first 5 laser shots to avoid contamination from dust. These early shots often show evidence of dust, and they also help to blow away surface dust from around the LIBS pits. After these initial shots, the data from the remaining shots are used for analysis, with no evidence of residual dust on calibration targets or most rocks after 5 shots. For soils, some soil grains can fall into the hole during the sequence, but this does not significantly affect the analysis [Mars_Curiosity_ChemCam_LIBS_Instrument.pdf, Page 47].
+For instance, ChemCam can operate in two modes: active and passive. In the active mode, the LIBS laser is used to create a plasma, and the RMI captures images of the target area before and after the laser pulse to ensure that the correct area is being analyzed. In the passive mode, the RMI captures images of the target area, and the LIBS instrument analyzes the target based on the RMI images [Mars_Curiosity_ChemCam_LIBS_Instrument.pdf, Page 18].
 
-The ChemCam LIBS instrument has provided significant insights into the elemental composition of Martian rocks and soils, including the detection of hydrated minerals and the ubiquity of water in the soils [Mars_Curiosity_ChemCam_LIBS_Instrument.pdf, Page 24, 45]. These findings contribute to our understanding of the geological history and potential habitability of Mars.
+Regarding the protection of the baseline raster from dust, the instrument discards the first 5 laser shots to avoid contamination from dust. These early shots are known to show evidence of dust, and they also help in blowing away surface dust from around the LIBS pits. After these initial shots, the data from the subsequent shots are considered reliable, as there is no evidence of residual dust on calibration targets or most rocks [Mars_Curiosity_ChemCam_LIBS_Instrument.pdf, Page 47].
+
+The ChemCam LIBS instrument has also provided evidence of the ubiquity of water in the soils of Gale crater, Mars, through the detection of hydrogen in the LIBS spectra [Mars_Curiosity_ChemCam_LIBS_Instrument.pdf, Page 24]. This detection is significant for understanding the history of water on Mars and its potential role in creating a habitable environment [Mars_Curiosity_ChemCam_LIBS_Instrument.pdf, Page 24].
 
 </details>
 
@@ -732,54 +770,40 @@ The ChemCam LIBS instrument has provided significant insights into the elemental
 <summary><b>View Without-RAG Answer (Baseline)</b></summary>
 
 
-**Latency:** 8.271546363830566s | **Fact Recall:** 16.7% | **Telemetry:** 0.0%
+**Latency:** 8.367330551147461s | **Fact Recall:** 16.7% | **Telemetry:** 0.0%
 
 
-The ChemCam instrument on the Curiosity rover uses Laser-Induced Breakdown Spectroscopy (LIBS) to determine the elemental composition of rocks and soils from a standoff distance. Here's a detailed technical explanation of how it works and the role of the Remote Micro-Imager (RMI):
+The ChemCam instrument on the Curiosity rover uses Laser-Induced Breakdown Spectroscopy (LIBS) to determine the elemental composition of rocks and soils from a standoff distance. Here's a detailed explanation of how it works and the role of the Remote Micro-Imager (RMI):
 
-1. LIBS Process:
-   - The ChemCam instrument fires a high-energy laser pulse (typically 30-50 ns duration) at the target surface.
-   - The laser energy is sufficient to vaporize a small amount of material (about 100 μm in diameter and 1 mm deep).
-   - This vaporization creates a plasma plume, a small ball of ionized gas.
-   - The plasma emits light across the electromagnetic spectrum, primarily in the ultraviolet, visible, and near-infrared regions.
+1. **Laser-Induced Breakdown Spectroscopy (LIBS) Process:**
+   - **Laser Firing:** The ChemCam instrument fires a high-energy laser pulse (about 10 ns duration) at the target surface. The laser energy is typically around 30-40 mJ, depending on the target type.
+   - **Plasma Generation:** The intense laser pulse generates a small plasma (a hot, ionized gas) in the target material. This plasma emits light across a wide range of wavelengths.
+   - **Spectral Analysis:** The emitted light is collected by a telescope and directed to a spectrometer. The spectrometer disperses the light into its component wavelengths, creating a spectrum.
+   - **Elemental Identification:** The spectrum is analyzed to identify the elements present in the target. Each element emits light at specific wavelengths, which correspond to its atomic structure. By comparing the observed spectrum to known emission spectra, the instrument can determine the elemental composition of the target.
 
-2. Spectroscopy Analysis:
-   - The emitted light is collected by a telescope and directed to a spectrometer.
-   - The spectrometer disperses the light into its component wavelengths and measures the intensity of the light at each wavelength.
-   - The resulting spectrum contains emission lines corresponding to specific elements.
+2. **Standoff Distance Capability:**
+   - The laser can operate effectively from a standoff distance of up to 7 meters. This allows the rover to analyze targets without having to approach them closely, which is beneficial for safety and to avoid contamination.
+   - The laser and telescope are mounted on a mast above the rover, providing a clear line of sight to the target.
 
-3. Element Identification:
-   - Each element has a unique spectral signature, allowing for identification and quantification of the elements present in the target.
-   - The intensity of the emission lines is proportional to the concentration of the element in the target material.
+3. **Remote Micro-Imager (RMI) Role:**
+   - **Target Identification:** The RMI provides high-resolution images of the target area. These images help the scientists to select specific targets for analysis and to confirm that the laser has hit the intended spot.
+   - **Context Information:** The RMI images provide context about the rock or soil structure, helping to understand the target's geological context and potential for interesting compositions.
+   - **Post-Analysis Verification:** After LIBS analysis, the RMI can be used to take additional images to verify the results and gather more detailed information about the target area.
 
-4. Standoff Distance:
-   - The laser can be fired from a distance of up to 7 meters, allowing Curiosity to analyze targets without direct contact.
-   - This capability is crucial for analyzing distant or potentially hazardous targets.
+4. **Data Integration:**
+   - The data from the LIBS and RMI are often integrated to provide a comprehensive understanding of the target. The RMI images can help in identifying the best targets for analysis, while the LIBS data provides the elemental composition information.
+   - This combination allows for a more thorough scientific investigation of the Martian surface, enhancing the rover's ability to study the planet's geology and potential habitability.
 
-5. Complementary Role of RMI:
-   - The Remote Micro-Imager (RMI) provides high-resolution images of the target area.
-   - RMI captures images with a resolution of 15 μm/pixel, allowing detailed examination of the target's surface texture and structure.
-   - These images help scientists identify suitable targets for LIBS analysis and interpret the LIBS results in context.
-   - RMI can also be used to confirm that the laser has hit the intended target and to assess the impact of the laser on the surface.
-
-6. Data Integration:
-   - The LIBS data and RMI images are integrated to provide a comprehensive analysis of the target's composition and structure.
-   - This combined approach allows for more accurate and detailed characterization of the Martian surface materials.
-
-7. Calibration and Validation:
-   - The ChemCam system includes calibration targets and regular calibration procedures to ensure accurate and consistent measurements.
-   - These calibration steps help account for variations in the laser energy, atmospheric conditions, and other factors that could affect the measurements.
-
-By combining the high-resolution imaging capabilities of the RMI with the elemental analysis provided by LIBS, ChemCam offers a powerful tool for studying the composition and structure of rocks and soils on Mars, contributing significantly to our understanding of the planet's geology and potential habitability.
+In summary, the ChemCam LIBS instrument on Curiosity provides a powerful tool for remote elemental analysis, while the RMI offers essential context and verification, working together to enhance the rover's scientific capabilities.
 
 </details>
 
 
 **Judge Analysis:**
 
-- **With-RAG Overall Score:** 3.25 / 5.0 | *Strengths:* Provides a clear overview of the LIBS process and the role of the RMI. Mentions specific details about the laser and plasma generation.
+- **With-RAG Overall Score:** 3.75 / 5.0 | *Strengths:* Accurately describes the basic principles of LIBS and the role of RMI. Mentions key operational details and scientific findings.
 
-- **Without-RAG Overall Score:** 4.0 / 5.0 | *Weaknesses:* Incorrect laser pulse duration (30-50 ns instead of 5 ns), missing specific wavelengths for spectrometers, and no mention of the exact number of laser pulses used.
+- **Without-RAG Overall Score:** 4.0 / 5.0 | *Weaknesses:* Lacks specific details on laser wavelength, power density, and spectrometer ranges; omits mention of dust removal by initial pulses.
 
 
 ---
@@ -816,24 +840,20 @@ SHERLOC and WATSON are complementary optical instruments co-located on the 2-met
 <summary><b>View With-RAG Answer (Grounded)</b></summary>
 
 
-**Latency:** 13.500929594039917s | **Fact Recall:** 30.8% | **Telemetry:** 0.0%
+**Latency:** 14.863715410232544s | **Fact Recall:** 23.1% | **Telemetry:** 0.0%
 
 **Citations:** `['Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 1', 'Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 2']`
 
 
-The SHERLOC deep-UV fluorescence and Raman spectrometer and the WATSON imaging sensor operate in tandem to detect organic compounds and potential biosignatures on the Martian surface through a coordinated approach. SHERLOC, which includes a deep-UV fluorescence spectrometer and a Raman spectrometer, is designed to analyze the chemical composition of rocks and regolith. WATSON, a color imaging sensor, provides context and localization for SHERLOC observations.
+The SHERLOC deep-UV fluorescence and Raman spectrometer and the WATSON imaging sensor operate in tandem to detect organic compounds and potential biosignatures on the Martian surface through a coordinated approach. SHERLOC, which includes a deep-UV laser and a spectrometer, is designed to identify and analyze organic compounds and minerals by exciting them with UV light and measuring the emitted fluorescence and Raman scattered light [Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 1]. WATSON, a color imaging sensor, provides the necessary context and localization for SHERLOC observations [Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 1].
 
-1. **SHERLOC Analysis**: SHERLOC uses a deep-UV laser to excite samples and collect both fluorescence and Raman spectra. The deep-UV laser is capable of exciting organic molecules, which can then emit light at specific wavelengths that can be detected by the spectrometer. This process helps in identifying the presence and nature of organic compounds. [Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 1]
+Specifically, WATSON serves several roles in this process. First, it provides color context imaging of SHERLOC and Planetary Instrument for X-Ray Lithochemistry (PIXL) analysis locations, placing the spatial distribution of organics and mineralogy detected by SHERLOC and the elemental maps generated by PIXL within the context of rock texture and structure [Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 1]. Second, WATSON acquires stand-alone observations of rock structures and textures from the outcrop to the grain scale, which can be crucial for understanding the geological context of the samples [Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 1]. Third, WATSON images rover components and other instruments to monitor their health and condition, ensuring that the instruments are functioning correctly and can be used for further analysis [Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 1].
 
-2. **WATSON Context Imaging**: WATSON, a build-to-print copy of the Mars Science Laboratory (MSL) Mars Hand Lens Imager (MAHLI), provides high-resolution color images of the same targets observed by SHERLOC. These images are crucial for placing the spatial distribution of organics and mineralogy detected by SHERLOC within the context of rock texture and structure. [Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 1]
+When SHERLOC identifies a target of interest, WATSON can be used to capture a suite of nested images of the target, covering a range of fields of view and resolutions to fully interrogate the target. For example, WATSON can acquire a context image (~105 µm/pixel, ~17x13 cm FOV) from 27 cm working distance to support localization of the abraded patch relative to pre-abrasion imaging, and a moderate resolution image from 10 cm (~43 µm/pixel, ~7x5 cm FOV) to capture the 4.5 cm diameter abraded patch in a single image [Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 2]. Additionally, SHERLOC ACI will image the interior of the abraded patch at ~10.1 µm/pixel resolution before and after SHERLOC spectroscopy measurements, providing detailed structural and textural information that can be correlated with the surface characteristics observed by WATSON [Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 2].
 
-3. **Co-Location and Imaging**: WATSON and SHERLOC are not co-boresighted, meaning an arm move is required for them to observe the same target. However, their observations can be straightforwardly co-located. WATSON can acquire a suite of nested images of a single target that cover a range of fields of view and resolutions to fully interrogate a target. For example, WATSON can acquire a context image (~105 µm/pixel, ~17x13 cm FOV) from 27 cm working distance and a moderate resolution image (~43 µm/pixel, ~7x5 cm FOV) from 10 cm to capture the 4.5 cm diameter abraded patch. [Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 2]
+Furthermore, WATSON can also be used to image the interior of the borehole left behind after sample extraction, documenting the structure and texture within the drilled target, and permitting correlation of identifying characteristics on the acquired sample surface with the borehole interior [Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 2]. This imaging capability is particularly important for borehole imaging, as it allows for a comprehensive understanding of the sample's context and potential biosignatures.
 
-4. **Range Finding and Close-Approach Imaging**: WATSON can perform range finding to establish the distance to the target at a given arm position, which allows for more accurate planning of close approach imaging (<4 cm working distance) over challenging targets. This process is essential for close-approach imaging of a sampling target before drilling, as strict contamination controls preclude contact with the surface before sampling. [Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 2]
-
-5. **Borehole Imaging**: WATSON can also image the interior of the borehole left behind after sample extraction, documenting the structure and texture within the drilled target. This imaging can help in correlating identifying characteristics on the acquired sample surface with the borehole interior, providing additional context for SHERLOC observations. [Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 2]
-
-In summary, SHERLOC and WATSON work in concert to provide both chemical analysis and contextual imaging, enabling a comprehensive understanding of the Martian surface and its potential biosignatures. [Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 1]
+In summary, WATSON and SHERLOC work together to provide a comprehensive analysis of the Martian surface, combining the high-resolution imaging capabilities of WATSON with the chemical analysis capabilities of SHERLOC to detect organic compounds and potential biosignatures [Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 1]. [Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 1] [Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 2]
 
 </details>
 
@@ -842,40 +862,37 @@ In summary, SHERLOC and WATSON work in concert to provide both chemical analysis
 <summary><b>View Without-RAG Answer (Baseline)</b></summary>
 
 
-**Latency:** 9.44301986694336s | **Fact Recall:** 23.1% | **Telemetry:** 0.0%
+**Latency:** 9.387950897216797s | **Fact Recall:** 23.1% | **Telemetry:** 0.0%
 
 
 The SHERLOC (Scanning Habitable Environments with Raman & Luminescence for Organics and Chemicals) and WATSON (Wide Angle Topographic Sensor for Operations and Relative Navigation) instruments on the Perseverance rover work in tandem to detect organic compounds and potential biosignatures on Mars. Here's a detailed technical explanation of their operation:
 
-1. **SHERLOC Operation:**
-   - **Excitation Source:** SHERLOC uses a laser to excite samples on the Martian surface. The laser is a pulsed, deep-UV (253.6 nm) light source.
-   - **Fluorescence Detection:** After the laser excites the sample, SHERLOC's camera detects the emitted fluorescence. This fluorescence can be indicative of organic compounds, as certain organic molecules can fluoresce when excited by UV light.
-   - **Raman Spectroscopy:** SHERLOC also performs Raman spectroscopy. When the laser hits a sample, some of the light is scattered at a different wavelength. This scattered light can provide information about the chemical bonds in the sample, which can help identify organic compounds.
-   - **Spectral Analysis:** The data from both fluorescence and Raman spectroscopy is analyzed to identify potential organic compounds and biosignatures.
+1. **SHERLOC Instrument Operation:**
+   - **UV Light Emission:** SHERLOC uses a laser that emits deep-UV light (253.7 nm) to illuminate the Martian surface. This specific wavelength is chosen because it is effective at exciting certain organic compounds and minerals.
+   - **Fluorescence Detection:** The laser's UV light causes any organic molecules or minerals present to fluoresce, emitting light at a longer wavelength. SHERLOC's camera captures this fluorescence, which can indicate the presence of organic compounds.
+   - **Raman Spectroscopy:** In addition to fluorescence, SHERLOC also performs Raman spectroscopy. When the UV light interacts with molecules, it causes a small shift in the energy of the emitted light, known as the Raman shift. This shift provides information about the molecular structure of the compounds.
+   - **Data Analysis:** The fluorescence and Raman spectra are analyzed to identify specific organic compounds or mineralogical features that could be indicative of past life or organic processes.
 
-2. **WATSON Operation:**
-   - **Imaging Sensor:** WATSON is a high-resolution camera that provides wide-angle, high-resolution imaging. It captures detailed images of the Martian surface, which are used to plan the position of the SHERLOC laser.
-   - **Topographic Mapping:** WATSON helps in creating a topographic map of the terrain, which is crucial for navigation and for understanding the context of the samples being analyzed by SHERLOC.
-   - **Relative Navigation:** WATSON's primary function is to assist in the rover's relative navigation, helping the rover avoid obstacles and navigate through complex terrain.
+2. **WATSON Instrument Operation:**
+   - **Imaging Capabilities:** WATSON is a high-resolution camera that provides wide-angle, high-resolution imaging of the Martian surface. It can capture detailed images of the terrain, including the areas where SHERLOC is analyzing samples.
+   - **Contextual Information:** WATSON provides the necessary context for SHERLOC's findings. It can capture images of the same area before and after SHERLOC's analysis, helping to determine the spatial distribution and extent of any organic compounds or biosignatures.
+   - **Navigation and Guidance:** WATSON's primary function is to assist in the rover's navigation and relative navigation. However, it also serves as a valuable tool for scientific analysis by providing detailed images that can be correlated with SHERLOC's data.
 
 3. **Tandem Operation:**
-   - **Sample Selection:** WATSON captures images of the Martian surface, and based on these images, the SHERLOC laser is directed to specific locations. The high-resolution imaging allows for precise targeting of potential organic-rich areas.
-   - **Data Correlation:** The images from WATSON provide context for the SHERLOC data. For example, if WATSON detects a rock formation that appears to be organic-rich, SHERLOC can be directed to that location to perform its analysis.
-   - **Complementary Data:** While SHERLOC provides chemical information about the samples, WATSON's images can help in understanding the geological context and potential sources of organic compounds.
+   - **Sample Selection:** The Perseverance rover's robotic arm can position SHERLOC over a target area. WATSON can capture images of the area before SHERLOC's analysis to provide context.
+   - **Analysis and Correlation:** After SHERLOC has performed its analysis, WATSON can capture additional images to document the results. This allows scientists to correlate the fluorescence and Raman spectra with the visible characteristics of the surface.
+   - **Data Integration:** The data from SHERLOC and WATSON are integrated to provide a comprehensive understanding of the organic compounds and potential biosignatures in the Martian regolith. This integration helps in validating the findings and providing a more complete picture of the Martian environment.
 
-4. **Data Integration:**
-   - The data from SHERLOC and WATSON are integrated to provide a comprehensive understanding of the Martian surface. The chemical information from SHERLOC, combined with the geological context from WATSON, can help scientists identify potential biosignatures and organic compounds.
-
-In summary, SHERLOC and WATSON work together by using WATSON's imaging capabilities to guide SHERLOC's laser to specific locations, and then analyzing the samples with SHERLOC's advanced spectroscopic techniques. This combination allows for a more thorough and contextually rich analysis of the Martian surface, enhancing the chances of detecting organic compounds and potential biosignatures.
+In summary, SHERLOC and WATSON work together by using SHERLOC's deep-UV fluorescence and Raman spectroscopy to detect organic compounds and WATSON's imaging to provide context and additional data for analysis. This combination allows for a more robust and accurate assessment of the Martian surface for signs of past life or organic processes.
 
 </details>
 
 
 **Judge Analysis:**
 
-- **With-RAG Overall Score:** 4.0 / 5.0 | *Strengths:* Provides detailed descriptions of SHERLOC and WATSON operations, including technical specifications and operational procedures.
+- **With-RAG Overall Score:** 4.25 / 5.0 | *Strengths:* Detailed description of SHERLOC and WATSON functionalities, accurate technical details, and clear explanation of their tandem operation.
 
-- **Without-RAG Overall Score:** 3.5 / 5.0 | *Weaknesses:* Incorrect laser wavelength for SHERLOC (253.6 nm instead of 248.6 nm). Misstates WATSON's primary function as relative navigation rather than micro-imaging. Omitted specific details on WATSON's resolution and autofocus capabilities. Hallucinated the term 'Relative Navigation' for WATSON.
+- **Without-RAG Overall Score:** 3.5 / 5.0 | *Weaknesses:* Incorrect laser wavelength for SHERLOC (253.7 nm instead of 248.6 nm), incorrect WATSON acronym, and lack of specific technical details on Raman shift range and fluorescence detection range.
 
 
 ---
@@ -907,20 +924,22 @@ Perseverance carries the most sophisticated robotic sample collection system eve
 <summary><b>View With-RAG Answer (Grounded)</b></summary>
 
 
-**Latency:** 10.512941360473633s | **Fact Recall:** 9.1% | **Telemetry:** 0.0%
+**Latency:** 11.053369045257568s | **Fact Recall:** 0.0% | **Telemetry:** 0.0%
 
-**Citations:** `['Mars_Rotorcraft_Study_Ingenuity.pdf, Page 8', 'Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 2', 'Mars_2020_Astrobiology_Perseverance_Samples.pdf, Page 1', 'Mars_Rotorcraft_Study_Ingenuity.pdf, Page 8; Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 2; Mars_2020_Astrobiology_Perseverance_Samples.pdf, Page 1']`
+**Citations:** `['Mars_Rotorcraft_Study_Ingenuity.pdf, Page 8', 'Mars_2020_Astrobiology_Perseverance_Samples.pdf, Page 1', 'Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 2']`
 
 
-The Mars 2020 Perseverance rover employs a percussive drill, specifically the ROPEC (ROtary PErcussive Coring) drill, to collect rock core samples from Jezero Crater. This drill is designed to be lightweight, weighing only four kilograms, and capable of collecting rock core samples from a wide variety of rock types. The drill can also change bits for different collection methods [Mars_Rotorcraft_Study_Ingenuity.pdf, Page 8].
+The Mars 2020 Perseverance rover uses a percussive drill, designed by Honeybee Robotics, to collect rock core samples from a wide variety of rock types [Mars_Rotorcraft_Study_Ingenuity.pdf, Page 8]. This drill is mounted on the robotic arm of the rover and is capable of changing bits for different collection methods [Mars_Rotorcraft_Study_Ingenuity.pdf, Page 8].
 
-After the samples are collected, they are stored in hermetically sealed containers. Previous rovers used drills to collect regolith but were not able to keep the samples sealed. The current design, such as the ROPEC drill, addresses this by ensuring the samples are stored properly [Mars_Rotorcraft_Study_Ingenuity.pdf, Page 8].
+After collecting the sample, the drill stores the sample in a hermetically sealed container for future analysis [Mars_Rotorcraft_Study_Ingenuity.pdf, Page 8]. The collected rock cores are pencil-sized and oriented in the absolute Martian geographic coordinates [Mars_2020_Astrobiology_Perseverance_Samples.pdf, Page 1].
 
-The caching process involves the Sampling and Caching Subsystem within the rover body. Specifically, the collected rock cores are oriented in absolute Martian geographic coordinates and are stored in the sealed containers. The CacheCam, part of the Sampling and Caching Subsystem, provides limited imaging of the acquired sample at one end, but WATSON (Wide Angle Topographic Sensor for Relative and Independent Camera Head) imaging can observe the interior of the borehole left behind after sample extraction, documenting the structure and texture within the drilled target [Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 2].
+The rover's Sampling and Caching Subsystem is responsible for caching the samples. The collected samples are cached in the rover's Sample Cache, which is designed to store the rock cores for eventual return to Earth [Mars_2020_Astrobiology_Perseverance_Samples.pdf, Page 1]. The cache containers are sealed to protect the samples from contamination and to preserve their integrity for future analysis [Mars_Rotorcraft_Study_Ingenuity.pdf, Page 8].
 
-The overall goal is to cache samples that are likely to preserve biosignatures and address astrobiological questions upon sample return to Earth [Mars_2020_Astrobiology_Perseverance_Samples.pdf, Page 1]. The collected rock cores are pencil-sized, and the rover has conducted four campaigns to explore Jezero crater, drilling eight rock samples from the igneous crater floor and twelve aqueously deposited sedimentary rocks from the western sediment fan and its margin [Mars_2020_Astrobiology_Perseverance_Samples.pdf, Page 1].
+For context and localization of the samples, the WATSON imager provides imaging of the interior of the abraded patch at ~10.1 µm/pixel resolution before and after SHERLOC spectroscopy measurements [Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 2]. This imaging capability allows for the documentation of the structure and texture within the drilled target and the correlation of identifying characteristics on the acquired sample surface with the borehole interior [Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 2].
 
-In summary, the Mars 2020 Perseverance rover uses the ROPEC drill for sample collection, hermetically sealed containers for storage, and the Sampling and Caching Subsystem for caching and imaging the samples [Mars_Rotorcraft_Study_Ingenuity.pdf, Page 8; Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 2; Mars_2020_Astrobiology_Perseverance_Samples.pdf, Page 1].
+The CacheCam, part of the Sampling and Caching Subsystem, provides limited imaging of the acquired sample at one end of the sample [Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 2]. However, WATSON imaging can observe the interior of the borehole left behind after sample extraction, providing more comprehensive documentation of the sample's structure and texture [Mars_2020_SHERLOC_WATSON_Imaging.pdf, Page 2].
+
+The provided NASA documentation does not contain sufficient data to address the specific mechanisms and protocols for hermetically sealing the samples before caching. However, it is implied that the samples are stored in sealed containers to protect them from contamination and preserve their integrity for future analysis [Mars_Rotorcraft_Study_Ingenuity.pdf, Page 8].
 
 </details>
 
@@ -929,56 +948,48 @@ In summary, the Mars 2020 Perseverance rover uses the ROPEC drill for sample col
 <summary><b>View Without-RAG Answer (Baseline)</b></summary>
 
 
-**Latency:** 9.182833671569824s | **Fact Recall:** 9.1% | **Telemetry:** 16.7%
+**Latency:** 10.009639263153076s | **Fact Recall:** 18.2% | **Telemetry:** 0.0%
 
 
-The Mars 2020 Perseverance rover uses a sophisticated suite of mechanisms and protocols to drill, hermetically seal, and cache rock core samples in Jezero Crater for potential future retrieval to Earth. Here's a detailed breakdown of the key components and processes:
+The Mars 2020 Perseverance rover employs a sophisticated suite of mechanisms and protocols to drill, hermetically seal, and cache rock core samples in Jezero Crater for potential future retrieval to Earth. Here's a detailed breakdown of the process:
 
-1. **Sample Acquisition and Handling System (SAHMS):**
-   - The SAHMS is a complex system that includes the Sampling and Caching System (SCS) and the Sample Handling System (SHS).
-   - The SCS consists of the drill, sample tube, and the Sample Tube Manipulator (STM) arm.
-   - The SHS handles the sample tubes after they are filled and sealed.
+1. **Drilling Mechanism:**
+   - The rover uses a rotary-percussive drill, which is mounted on the end of the robotic arm. This drill can operate in two modes: percussive and rotary. The percussive mode uses a hammering action to break through hard rock, while the rotary mode uses a rotating action to grind through softer materials.
+   - The drill bit is capable of penetrating up to 4.5 inches (11.4 cm) into the rock. It can collect samples ranging from 0.8 to 2.0 inches (2 to 5 cm) in length.
 
-2. **Drill Mechanism:**
-   - The drill is located on the end of the turret, which can be rotated and lowered to the surface.
-   - It uses a rotary-percussive mechanism to bore into rocks, creating cylindrical core samples up to 4.5 cm in length.
-   - The drill has a motorized coring bit that rotates and impacts the rock to break it.
+2. **Sample Collection:**
+   - Once the drill has collected a sample, it is transferred to a coring tube within the drill. The coring tube is designed to maintain a clean, uncontaminated sample environment.
+   - The sample is then pushed into a sample tube, which is part of the Sample Caching System (SCS).
 
-3. **Sample Collection and Storage:**
-   - Once the drill has collected a core sample, it is transferred to a sample tube.
-   - The STM arm places the sample tube into a tube carousel, which holds up to 43 sample tubes.
-   - The carousel can store samples in different locations, allowing for strategic placement based on mission needs.
+3. **Sample Tube Mechanism:**
+   - The SCS includes a set of sample tubes, each with a unique ID tag. These tubes are stored in a dedicated cache on the rover.
+   - The sample tube is sealed using a hermetically sealed cap, which is designed to prevent contamination and maintain the integrity of the sample.
 
-4. **Sealing and Preservation:**
-   - Each sample tube is sealed using a hermetically sealed cap.
-   - The sealing process involves a cap that is crimped onto the tube using a motorized mechanism.
-   - The cap is designed to create a vacuum seal, ensuring that the sample remains uncontaminated and preserved for future analysis.
+4. **Sealing and Caching:**
+   - The sample tube is sealed using a hermetically sealed cap, which is designed to prevent contamination and maintain the integrity of the sample. The cap is secured using a titanium screw and a Teflon washer.
+   - The sample tube is then stored in a dedicated cache on the rover. Each cache location is carefully chosen to ensure the best possible preservation of the sample.
 
-5. **Sample Caching:**
-   - The cached samples are stored in the sample tubes within the carousel.
-   - The carousel can be rotated to different positions, allowing the rover to place samples in specific locations within the cache.
-   - The caching locations are strategically chosen to maximize the scientific value of the samples and ensure they are protected from the Martian environment.
+5. **Sample Caching System (SCS):**
+   - The SCS is a complex system that includes the drill, sample tubes, and caching mechanism. It is designed to work in conjunction with the Sample Analysis at Mars (SAM) and Planetary Instrument for X-ray Lithochemistry (PIXL) instruments.
+   - The SCS is capable of collecting and caching up to 38 sample tubes, providing a diverse set of samples from different locations and depths within Jezero Crater.
 
-6. **Communication and Coordination:**
-   - The caching process is carefully coordinated with the overall mission plan and scientific objectives.
-   - The rover's computer system manages the caching process, ensuring that samples are collected and stored according to the mission's timeline and priorities.
-   - Data from the caching process is transmitted back to Earth for analysis and mission planning.
+6. **Sample Retrieval Protocol:**
+   - For future retrieval, the samples would need to be collected by a future mission. The Perseverance rover is equipped with a Sample Tube Handling System (STHS) that can manipulate the sample tubes and prepare them for retrieval.
+   - The STHS can place the sample tubes into a specially designed container, which would be returned to Earth by a future mission. This container would be designed to protect the samples during the journey back to Earth and to facilitate their analysis upon arrival.
 
-7. **Future Retrieval Considerations:**
-   - The cached samples are designed to be retrieved by a future mission, likely involving a sample retrieval vehicle and a return spacecraft.
-   - The samples are stored in a way that minimizes contamination and degradation, ensuring they remain scientifically valuable for future analysis.
-   - The caching process is designed to be robust and reliable, with multiple backup systems in place to ensure the samples are preserved even in the event of unexpected issues.
+7. **Sample Analysis:**
+   - While the samples are cached on the rover, they can also be analyzed by the onboard instruments, such as SAM and PIXL. These instruments can provide valuable scientific data about the samples' composition and history, even before they are returned to Earth.
 
-By using these mechanisms and protocols, the Mars 2020 Perseverance rover is able to collect, store, and preserve rock core samples in Jezero Crater, setting the stage for potential future missions to retrieve and analyze these samples on Earth.
+This comprehensive system ensures that the samples collected by the Perseverance rover are well-protected and ready for potential future analysis on Earth, providing a valuable resource for understanding the geology and potential habitability of Mars.
 
 </details>
 
 
 **Judge Analysis:**
 
-- **With-RAG Overall Score:** 2.5 / 5.0 | *Strengths:* Mentions key components like ROPEC drill and hermetic sealing.
+- **With-RAG Overall Score:** 2.75 / 5.0 | *Strengths:* Mentions key components like the percussive drill and hermetic sealing, and references to relevant documentation.
 
-- **Without-RAG Overall Score:** 3.25 / 5.0 | *Weaknesses:* Contains inaccuracies in sample dimensions, tube count, and sealing process; omits specific details about the Adaptive Caching Assembly and Three Forks Depot.
+- **Without-RAG Overall Score:** 3.25 / 5.0 | *Weaknesses:* Contains several factual inaccuracies, such as incorrect drill penetration depth, sample length, and number of sample tubes. Includes unverified assumptions about the sealing mechanism and sample retrieval protocol.
 
 
 ---
@@ -1014,17 +1025,20 @@ The Ingenuity Mars Helicopter achieved humanity's first powered, controlled aero
 <summary><b>View With-RAG Answer (Grounded)</b></summary>
 
 
-**Latency:** 6.90103816986084s | **Fact Recall:** 8.3% | **Telemetry:** 12.5%
+**Latency:** 10.382853746414185s | **Fact Recall:** 8.3% | **Telemetry:** 12.5%
 
-**Citations:** `['Source Document: Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 1', 'Source Document: Mars_Rotorcraft_Study_Ingenuity.pdf, Page 7']`
+**Citations:** `['Mars_Rotorcraft_Study_Ingenuity.pdf, Page 7', 'Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 1', 'Mars_Rotorcraft_Study_Ingenuity.pdf, Page 3', 'Mars_Rotorcraft_Study_Ingenuity.pdf, Page 4', 'Mars_Rotorcraft_Study_Ingenuity.pdf, Page 1']`
 
 
-The Ingenuity Mars Helicopter generates sufficient lift to fly in the thin Martian atmosphere by operating at much higher speeds and having larger surface area rotors compared to Earth-based helicopters. The Martian atmosphere has a pressure averaging 6.36 millibars, which is 0.6% the pressure of Earth's atmosphere. This results in a low average air density of 0.02 kg/m³, just 1.6% of Earth's 1.225 kg/m³. To compensate for the thin air with low density, rotor blades require a larger surface area and must operate at much higher speeds than they would on Earth for the same mission.
+The Ingenuity Mars Helicopter generates sufficient lift to fly in the thin Martian atmosphere by operating at much higher speeds and with larger surface areas for its rotor blades compared to Earth-based helicopters. The Martian atmosphere has a pressure averaging 6.36 millibars, which is 0.6% the pressure of Earth's atmosphere, and an average air density of 0.02 kg/m³, just 1.6% of Earth's 1.225 kg/m³ [Mars_Rotorcraft_Study_Ingenuity.pdf, Page 7].
 
-Ingenuity has a total mass of 1.8 kg and operates with a flight speed of ~10 m/s, with original flight specifications of about 90 seconds over a range of 180 meters. It has two rotors on each of its four arms, one optimized for hover and one for cruise. The rotor speed also has an upper bound due to rotor tip speed constraints.
+Ingenuity has a total mass of 1.8 kg and operates with a flight speed of ~10 m/s, with original flight specifications of about 90 seconds over a range of 180 meters [Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 1]. The helicopter has two rotors on each of its four arms, with one optimized for hover and one for cruise [Mars_Rotorcraft_Study_Ingenuity.pdf, Page 3].
 
-[Source Document: Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 1]
-[Source Document: Mars_Rotorcraft_Study_Ingenuity.pdf, Page 7]
+The rotor speed also has an upper bound due to rotor tip speed constraints, but the exact rotor speed is not explicitly stated in the provided excerpts. However, the Ingenuity's rotor blades are designed to operate at much higher speeds than they would on Earth for the same mission, to compensate for the thin air and low density [Mars_Rotorcraft_Study_Ingenuity.pdf, Page 7].
+
+The physical dimensions of Ingenuity are not explicitly detailed in the provided excerpts, but it is noted that the Mars Science Helicopter concept vehicles, including a small advanced coaxial design, have the same rotor size as Ingenuity [Mars_Rotorcraft_Study_Ingenuity.pdf, Page 4]. The Ingenuity is part of the Mars 2020 mission as a technology demonstrator for extraterrestrial flight [Mars_Rotorcraft_Study_Ingenuity.pdf, Page 1].
+
+For more detailed specifications and rotor performance, one would need to refer to the specific technical reports and studies cited, such as the rotor performance studies [16, 17, 18] and rotor blade aerodynamic optimization for advanced Martian rotorcraft [19, 20, 21] [Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 1].
 
 </details>
 
@@ -1033,43 +1047,40 @@ Ingenuity has a total mass of 1.8 kg and operates with a flight speed of ~10 m/s
 <summary><b>View Without-RAG Answer (Baseline)</b></summary>
 
 
-**Latency:** 6.022718667984009s | **Fact Recall:** 8.3% | **Telemetry:** 12.5%
+**Latency:** 6.766801357269287s | **Fact Recall:** 8.3% | **Telemetry:** 0.0%
 
 
-The Ingenuity Mars Helicopter generates sufficient lift to fly in the thin Martian atmosphere through a combination of its lightweight design, large rotor diameter, and high rotor speed. Here are the key technical details:
+The Ingenuity Mars Helicopter, developed by NASA's Jet Propulsion Laboratory, is designed to operate in the thin Martian atmosphere, which has about 1% of Earth's atmospheric density. To generate sufficient lift, the helicopter employs several innovative design features:
 
-1. Physical Dimensions:
-- Rotor Diameter: 4 feet 11 inches (1.2 meters)
-- Height: 4 pounds (1.8 kilograms)
-- Rotor Spin Rate: 2,400 RPM (revolutions per minute)
+1. Rotor Configuration and Dimensions:
+   - Rotor Diameter: 4 feet 9 inches (1.4 meters)
+   - Rotor Spin Rate: 2,400 RPM (revolutions per minute)
+   - Blade Tip Speed: 29 meters per second (about 65 mph or 105 km/h)
+   - Rotor Material: The rotors are made of carbon fiber composites, which are lightweight yet strong enough to withstand the stresses of operation in the thin Martian atmosphere.
 
-2. Rotor Configuration:
-- Ingenuity has two counter-rotating carbon fiber rotors, each with a diameter of 4 feet 1 inch (1.21 meters). The rotors are mounted on a central hub and spin in opposite directions to counteract torque.
+2. Lift Generation:
+   - The high rotor spin rate and large diameter allow the helicopter to generate enough lift to overcome its weight in the thin Martian air. At 1.6 times the density of Earth's atmosphere at the surface, the air is still much thinner than Earth's, requiring a higher spin rate to achieve the necessary lift.
+   - The rotors are designed to create a significant amount of lift at the lower atmospheric density, using a combination of blade design and aerodynamic principles.
 
-3. Lift Generation:
-- The Martian atmosphere is much thinner than Earth's, with only about 1% of Earth's atmospheric density at the surface. To generate lift, Ingenuity's rotors must spin much faster than a helicopter on Earth.
-- At its nominal operating speed of 2,400 RPM, the tips of the rotors travel at about 200 mph (320 km/h) relative to the ground.
-- The high spin rate and large rotor diameter allow the rotors to move a significant volume of air, creating the necessary lift to support the helicopter's weight in the thin Martian air.
+3. Power and Control:
+   - The helicopter is powered by a solar panel that charges a lithium-ion battery, allowing it to operate during the day and at night.
+   - Ingenuity uses a complex system of sensors, including accelerometers, gyroscopes, and a camera, to maintain stability and control during flight.
+   - The helicopter's flight control system is designed to handle the unique challenges of operating in the Martian atmosphere, including dust storms and temperature fluctuations.
 
-4. Power and Control:
-- Ingenuity is powered by a solar panel and has a battery to store energy for nighttime operations.
-- The helicopter uses a complex control system to maintain stability and control its flight path. This includes adjusting the rotor speed and tilt to achieve desired maneuvers.
+4. Flight Performance:
+   - Ingenuity is capable of performing short flights of up to 90 seconds, covering distances of up to 164 feet (50 meters) in a single flight.
+   - The helicopter can hover, move forward, backward, and side-to-side, and perform a controlled descent to land safely.
 
-5. Flight Performance:
-- Ingenuity can achieve vertical takeoff and landing, as well as forward flight, backward flight, and hovering.
-- The maximum altitude it can reach is about 10 feet (3 meters) above the ground.
-- The maximum speed during forward flight is about 2 mph (3 km/h).
-
-These design features enable Ingenuity to operate successfully in the challenging atmospheric conditions of Mars, where the low air density presents significant challenges for traditional helicopter designs.
+In summary, the Ingenuity Mars Helicopter generates sufficient lift through its large rotor diameter and high spin rate, allowing it to operate in the thin Martian atmosphere. Its physical dimensions and rotor configuration are optimized for this unique environment, enabling it to perform short flights and gather valuable data about the potential for future aerial exploration on Mars.
 
 </details>
 
 
 **Judge Analysis:**
 
-- **With-RAG Overall Score:** 2.5 / 5.0 | *Strengths:* Provides some correct details on atmospheric conditions and rotor speed.
+- **With-RAG Overall Score:** 3.0 / 5.0 | *Strengths:* Provides some accurate details on atmospheric conditions and rotor design principles.
 
-- **Without-RAG Overall Score:** 4.0 / 5.0 | *Weaknesses:* Incorrectly states the height of the vehicle as 4 pounds (1.8 kilograms) instead of 0.49 meters. Incorrectly states the rotor diameter as 4 feet 1 inch instead of 4 feet. Incorrectly states the rotor tip speed as 200 mph (320 km/h) instead of Mach 0.70 to 0.75. Incorrectly states the maximum altitude as 10 feet (3 meters) instead of 10 meters. Incorrectly states the maximum speed as 2 mph (3 km/h) instead of 10 mph (16 km/h).
+- **Without-RAG Overall Score:** 3.25 / 5.0 | *Weaknesses:* Incorrect rotor diameter, incorrect atmospheric density comparison, incorrect blade tip speed, and incorrect rotor configuration. Misses details on rotor geometry, blade structure, and specific power metrics.
 
 
 ---
@@ -1101,36 +1112,26 @@ Following the extraordinary 72-flight campaign of Ingenuity (which ended in Janu
 <summary><b>View With-RAG Answer (Grounded)</b></summary>
 
 
-**Latency:** 13.120700120925903s | **Fact Recall:** 9.1% | **Telemetry:** 20.0%
+**Latency:** 10.008925676345825s | **Fact Recall:** 9.1% | **Telemetry:** 0.0%
 
-**Citations:** `['Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 2', 'Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 7', 'Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 10', 'Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 1']`
+**Citations:** `['Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 2', 'Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 7', 'Mars_Rotorcraft_Study_Ingenuity.pdf, Page 4', 'Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 1']`
 
 
 The key structural, aeroelastic, and modal considerations identified in the 2026 NASA structural analysis of next-generation Mars Science Helicopter (MSH) rotor blades compared to Ingenuity are as follows:
 
-1. **Structural Analysis and Design**:
-   - The MSH concept was a hexacopter designed to carry dedicated payload for independent science investigations on Mars, whereas Ingenuity was a coaxial rotor configuration [Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 2].
-   - Structural analyses were performed on the MSH’s load-bearing components, including the rotor arms and frame/fuselage [Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 2].
+1. **Structural Analysis**:
+   - The MSH concept was a hexacopter designed to carry dedicated payload for independent science investigations on Mars, unlike Ingenuity which had a coaxial rotor configuration [Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 2].
+   - Structural analyses were performed on the MSH’s load-bearing components, including the rotor arms and frame/fuselage, to ensure airworthiness standards for flight in the Martian atmosphere [Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 2].
 
 2. **Aeroelastic Considerations**:
    - Blade flexibility may yield elastic deformation that may negatively influence aerodynamic performance, especially for thin blades designed for the Martian atmosphere [Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 7].
-   - The aeroelastic and performance predictions of the MSH rotor blades were studied to ensure airworthiness standards for flight in the Martian atmosphere [Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 10].
+   - The structural design and weight optimization of the blades are critical to maintain structural integrity while ensuring optimal aerodynamic performance [Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 7].
 
 3. **Modal Considerations**:
-   - The structural design and aeromechanical analysis of unconventional blades for future Mars rotorcraft were investigated [Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 10].
+   - The MSH was a proposed vehicle concept that would perform science investigations independently of a land-based vehicle, indicating the need for robust modal analysis to ensure stability and control during flight [Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 2].
+   - The performance results from the study indicate that optimized rotor design enables a substantial increase in science payload capability, hover time, and range compared to the first-generation Ingenuity design [Mars_Rotorcraft_Study_Ingenuity.pdf, Page 4].
 
-4. **Performance and Payload**:
-   - The MSH was designed to carry a payload of approximately 5 kg, compared to Ingenuity’s lack of a dedicated payload [Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 2].
-   - The MSH had a nominal vehicle mass of approximately 31 kg, whereas Ingenuity had a mass of 1.8 kg [Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 2].
-
-5. **Rotor Performance Predictions**:
-   - Performance predictions of a next-generation Mars Science Helicopter were made to enable larger rotorcraft such as the MSH platform [Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 10].
-
-6. **Scalability and Future Development**:
-   - The development of next-generation Martian rotorcraft has shifted from pure technology demonstration to science mission operation and potential assistance for human space exploration [Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 2].
-   - The structural design for advanced Martian rotorcraft needs to mature to bridge the gap between the best practices of the spacecraft and aircraft communities [Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 1].
-
-These considerations highlight the advancements in structural and aerodynamic performance necessary for future Mars rotorcraft, particularly in terms of payload capacity and operational capabilities. [Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 2, 7, 10]
+These considerations highlight the need for advanced structural and aerodynamic design to support the operational requirements of next-generation Mars rotorcraft. The MSH concept aims to bridge the gap between spacecraft and aircraft best practices to ensure the feasibility and viability of successful mission performance [Mars_Science_Helicopter_Blade_Structural_Analysis_2026.pdf, Page 1].
 
 </details>
 
@@ -1139,56 +1140,55 @@ These considerations highlight the advancements in structural and aerodynamic pe
 <summary><b>View Without-RAG Answer (Baseline)</b></summary>
 
 
-**Latency:** 8.228513479232788s | **Fact Recall:** 9.1% | **Telemetry:** 0.0%
+**Latency:** 7.5552754402160645s | **Fact Recall:** 9.1% | **Telemetry:** 0.0%
 
 
 Based on my general knowledge, the 2026 NASA structural analysis of the next-generation Mars Science Helicopter (MSH) rotor blades would likely consider several key factors compared to the Ingenuity helicopter. While I don't have access to the specific 2026 analysis, I can provide a technical overview of the considerations that would be relevant:
 
 1. Structural Integrity:
    - Material selection: The MSH may use advanced composite materials for improved strength-to-weight ratio and durability in the Martian environment.
-   - Load-bearing capacity: Increased payload and operational requirements may necessitate stronger and more robust blade structures.
-   - Fatigue resistance: Longer mission duration and more frequent operations would require enhanced fatigue resistance.
+   - Blade design: Optimized airfoil shapes and cross-sections for better lift and reduced drag.
+   - Joint and hinge design: More robust mechanisms to handle increased payload and higher operational temperatures.
 
 2. Aeroelasticity:
-   - Blade twist and pitch control: Advanced aeroelastic analysis would be crucial for optimizing blade twist and pitch control during flight.
-   - Vibration and flutter suppression: More sophisticated vibration and flutter suppression systems may be implemented to ensure stable and efficient flight.
-   - Blade deformation: Detailed modeling of blade deformation under various flight conditions would be necessary.
+   - Blade flexibility: Analysis of blade deflection and twist under various operating conditions.
+   - Flutter characteristics: Ensuring the helicopter can operate safely at higher speeds and altitudes.
+   - Vibration modes: Identifying and mitigating potential resonance frequencies that could cause structural failure.
 
 3. Modal Analysis:
-   - Natural frequencies: Accurate determination of natural frequencies to avoid resonance with operational modes.
-   - Mode shapes: Detailed analysis of mode shapes to understand blade behavior under different loads and conditions.
-   - Dynamic response: Evaluation of dynamic response to various inputs, including wind gusts and terrain interactions.
+   - Natural frequencies: Determining the helicopter's natural modes of vibration to avoid resonance with operational loads.
+   - Mode shapes: Visualizing how the structure deforms during different modes of vibration.
+   - Dynamic response: Evaluating how the helicopter responds to external disturbances like wind gusts.
 
 4. Environmental Considerations:
-   - Martian atmospheric conditions: Special attention would be given to the thin Martian atmosphere, low air density, and low pressure.
-   - Dust accumulation: Analysis of dust accumulation and its impact on blade performance and aerodynamics.
-   - Temperature variations: Consideration of extreme temperature fluctuations between day and night on Mars.
+   - Martian atmospheric conditions: Accounting for the thin, cold Martian atmosphere with lower air density and higher dust content.
+   - Dust accumulation: Designing for reduced impact of dust on aerodynamic performance and structural integrity.
+   - Temperature variations: Ensuring materials and components can withstand extreme temperature swings.
 
-5. Operational Requirements:
-   - Increased mission duration: Longer operational periods would require more robust structural design.
-   - Higher payload capacity: Potentially larger payloads may necessitate stronger and more efficient rotor blades.
-   - Improved performance: Enhanced performance metrics such as lift, thrust, and efficiency would be key considerations.
+5. Performance Enhancements:
+   - Increased lift: Optimizing blade design for higher lift-to-drag ratios.
+   - Extended range: Improving endurance and range through more efficient blade design.
+   - Payload capacity: Allowing for larger payloads or additional scientific instruments.
 
-6. Manufacturing and Assembly:
-   - Precision manufacturing: Advanced manufacturing techniques and quality control measures would be essential for precise blade assembly.
-   - Assembly accuracy: Ensuring proper alignment and balance of the rotor system during assembly.
-   - Inspection and testing: Rigorous inspection and testing protocols to verify blade integrity and performance.
+6. Safety and Reliability:
+   - Redundancy: Implementing backup systems for critical components.
+   - Fault tolerance: Designing systems to continue operation in the event of partial failure.
+   - Reducing risk: Minimizing the likelihood of catastrophic failure through rigorous testing and design validation.
 
-7. Safety and Reliability:
-   - Redundancy: Implementation of redundant systems to ensure continued operation in case of blade failure.
-   - Failure modes: Comprehensive analysis of potential failure modes and their impact on overall system performance.
-   - Safety margins: Maintaining adequate safety margins to account for uncertainties and potential anomalies.
+7. Integration with Mars 2026 Mission:
+   - Compatibility with mission requirements: Ensuring the helicopter can operate within the constraints of the overall mission.
+   - Interoperability: Designing the helicopter to work seamlessly with other Mars 2026 mission assets.
 
-These considerations would form the basis of the 2026 NASA structural analysis for the next-generation Mars Science Helicopter rotor blades, building upon the lessons learned from the successful Ingenuity mission while addressing the unique challenges of extended operations on Mars.
+These considerations would be part of a comprehensive structural analysis to ensure the next-generation Mars Science Helicopter can perform its mission objectives more effectively than Ingenuity while operating in the challenging Martian environment.
 
 </details>
 
 
 **Judge Analysis:**
 
-- **With-RAG Overall Score:** 3.25 / 5.0 | *Strengths:* Provides some correct details on MSH design and payload, mentions key documents.
+- **With-RAG Overall Score:** 3.0 / 5.0 | *Strengths:* Mentions key differences in design and some structural considerations.
 
-- **Without-RAG Overall Score:** 3.0 / 5.0 | *Weaknesses:* Lacks specific details and numbers from the 2026 NASA analysis, includes unverified assumptions, and misses key technical points such as aeroelastic flap-lag dynamics, composite laminate tailoring, and fatigue endurance specific to MSH.
+- **Without-RAG Overall Score:** 2.75 / 5.0 | *Weaknesses:* Lacks specific details and numbers from the 2026 analysis, includes unverified assumptions and omissions (e.g., no mention of MSH's 6-rotor hexacopter design, specific Mach regimes, or composite laminate tailoring details).
 
 
 ---
@@ -1225,18 +1225,16 @@ The NASA Space Launch System (SLS) Core Stage—the structural and propulsive ba
 <summary><b>View With-RAG Answer (Grounded)</b></summary>
 
 
-**Latency:** 9.388347148895264s | **Fact Recall:** 9.1% | **Telemetry:** 0.0%
+**Latency:** 8.052592039108276s | **Fact Recall:** 9.1% | **Telemetry:** 0.0%
 
-**Citations:** `['Artemis_I_Flight_Results_and_Path_Forward.pdf, Page 4', 'Artemis_SLS_Rocket_Artemis_II_Readiness_2026.pdf, Page 8', 'Artemis_SLS_Rocket_Artemis_II_Readiness_2026.pdf, Page 2']`
+**Citations:** `['Artemis_I_Flight_Results_and_Path_Forward.pdf, Page 4', 'Artemis_SLS_Rocket_Artemis_II_Readiness_2026.pdf, Page 8', 'Artemis_I_Flight_Results_and_Path_Forward.pdf, Page 2']`
 
 
-The Space Launch System (SLS) Core Stage is powered by four RS-25 liquid hydrogen/liquid oxygen (LH2/LOX) engines. The propellants used are liquid hydrogen for fuel and liquid oxygen for oxidizer. The RS-25 engines are capable of producing a sea-level thrust of 418,000 pounds (1,890 kN) and a vacuum thrust of 512,000 pounds (2,300 kN) [Artemis_I_Flight_Results_and_Path_Forward.pdf, Page 4].
+The Space Launch System (SLS) Core Stage is powered by four RS-25 liquid hydrogen/liquid oxygen (LH2/LOX) engines. The propellants used are liquid hydrogen for fuel and liquid oxygen for oxidizer. The RS-25 engines are capable of producing sea level thrust of 418,000 pounds (1,890 kN) and vacuum thrust of 512,000 pounds (2,300 kN) [Artemis_I_Flight_Results_and_Path_Forward.pdf, Page 4].
 
-At liftoff, the SLS Core Stage combines with two five-segment solid rocket boosters (SRBs). The SRBs provide an initial thrust of 3.6 million pounds (16.2 million N) each, totaling 7.2 million pounds (32.4 million N) [Artemis_I_Flight_Results_and_Path_Forward.pdf, Page 4]. The RS-25 engines and SRBs work together to generate the necessary thrust for the ascent phase of the mission. The RS-25 engines ignite after the SRBs have completed their burn, providing continuous thrust to the vehicle [Artemis_SLS_Rocket_Artemis_II_Readiness_2026.pdf, Page 8].
+At liftoff, the SLS Core Stage combines with two five-segment solid rocket boosters. The solid rocket boosters are powered by solid propellant, with each booster producing 3.6 million pounds (16,000 kN) of thrust, totaling 7.2 million pounds (32,000 kN) for both [Artemis_I_Flight_Results_and_Path_Forward.pdf, Page 4].
 
-The SLS Core Stage and SRBs are integrated at the launch site, with the SRBs attached to the core stage via the launch vehicle stage adapter (LVSA). The core stage, containing the RS-25 engines, is mated to the upper stage and the Orion spacecraft [Artemis_SLS_Rocket_Artemis_II_Readiness_2026.pdf, Page 2].
-
-The provided NASA documentation does not contain sufficient data to address the cryogenic temperatures of the propellants. However, the RS-25 engines are designed to operate with liquid hydrogen at -423°F (-253°C) and liquid oxygen at -297°F (-183°C) [Artemis_I_Flight_Results_and_Path_Forward.pdf, Page 4].
+The RS-25 engines and solid rocket boosters are integrated into the SLS configuration as follows: The RS-25 engines are located in the core stage, while the solid rocket boosters are attached to the core stage via the launch vehicle stage adapter (LVSA) [Artemis_SLS_Rocket_Artemis_II_Readiness_2026.pdf, Page 8]. The combined thrust at liftoff for the Block 1 configuration is 8.8 million pounds (39,100 kN) [Artemis_I_Flight_Results_and_Path_Forward.pdf, Page 2].
 
 </details>
 
@@ -1245,41 +1243,45 @@ The provided NASA documentation does not contain sufficient data to address the 
 <summary><b>View Without-RAG Answer (Baseline)</b></summary>
 
 
-**Latency:** 7.773442506790161s | **Fact Recall:** 36.4% | **Telemetry:** 0.0%
+**Latency:** 7.310850143432617s | **Fact Recall:** 36.4% | **Telemetry:** 0.0%
 
 
 The Space Launch System (SLS) Core Stage is powered by a combination of RS-25 engines and Solid Rocket Boosters (SRBs). Here's a detailed technical breakdown:
 
 1. RS-25 Engines:
-   - The SLS Core Stage is equipped with four RS-25 engines, which are derived from the Space Shuttle Main Engines.
+   - The SLS Core Stage uses four RS-25 engines, which are derived from the Space Shuttle Main Engines.
    - Each RS-25 engine produces approximately 512,000 pounds of thrust.
-   - The propellants used are liquid hydrogen (LH2) and liquid oxygen (LOX).
-   - The LH2 is stored at a cryogenic temperature of -423°F (-253°C), while the LOX is stored at -297°F (-183°C).
-   - The engines are fueled by the LH2 and LOX stored in the Core Stage's liquid hydrogen tank and liquid oxygen tank, respectively.
+   - The engines are fueled by liquid hydrogen (LH2) and liquid oxygen (LOX).
+   - Cryogenic temperatures for LH2 and LOX are -423°F (-253°C) and -297°F (-183°C), respectively.
+   - The engines are arranged in a crossfire configuration, with two on each side of the stage.
 
 2. Solid Rocket Boosters (SRBs):
-   - The SLS Core Stage is also equipped with two SRBs, which provide additional thrust during the initial phase of the launch.
-   - Each SRB produces approximately 3.3 million pounds of thrust.
-   - The propellant used in the SRBs is a composite solid fuel, primarily composed of ammonium perchlorate and hydroxyl-terminated polybutadiene (HTPB).
-   - The SRBs are ignited by pyrotechnic devices and burn for about 2 minutes before being jettisoned.
+   - The SLS Core Stage also uses two SRBs, which are located at the base of the stage.
+   - Each SRB produces about 3.3 million pounds of thrust.
+   - The SRBs are fueled by a mixture of aluminum and ammonium perchlorate, with a rubber binder.
+   - The SRBs are ignited simultaneously with the RS-25 engines, providing an initial boost to the rocket.
 
 3. Combining RS-25 Engines and SRBs at Liftoff:
-   - At liftoff, the SRBs provide the initial thrust, which is crucial for overcoming the Earth's gravity and reaching the necessary velocity to transition from vertical to horizontal flight.
-   - The SRBs are ignited by pyrotechnic devices, which are triggered by the launch controller.
-   - Once the SRBs have burned out and been jettisoned, the RS-25 engines take over, providing continuous thrust throughout the ascent phase.
-   - The RS-25 engines are ignited by pyrotechnic igniters, which are also triggered by the launch controller.
-   - The engines and SRBs work together to provide the necessary thrust to lift the SLS Core Stage and its payload into orbit.
+   - At liftoff, the SRBs provide the initial thrust, which is crucial for overcoming gravity and reaching the speed needed to ignite the RS-25 engines.
+   - The SRBs burn for about 2 minutes, after which they are jettisoned and fall into the ocean.
+   - The RS-25 engines ignite shortly after SRB separation, providing continuous thrust throughout the first stage of the flight.
+   - The combined thrust from the RS-25 engines and the SRBs is approximately 8.8 million pounds of thrust at liftoff.
 
-In summary, the SLS Core Stage uses a combination of RS-25 engines and SRBs for propulsion. The RS-25 engines use cryogenic propellants (LH2 and LOX) stored in the Core Stage, while the SRBs use solid propellant. The SRBs provide initial thrust at liftoff, with the RS-25 engines taking over for the remainder of the ascent phase.
+4. Cryogenic Management:
+   - The LH2 and LOX tanks in the Core Stage are pressurized and maintained at cryogenic temperatures to keep the propellants in a liquid state.
+   - The tanks are insulated to minimize heat transfer and maintain the required temperatures.
+   - The propellants are fed to the engines through a network of pipes and valves, which are designed to handle the extreme cold and pressure conditions.
+
+This propulsion architecture provides the necessary thrust and performance for the SLS to achieve the required trajectories for its various missions, including crewed and uncrewed deep space exploration.
 
 </details>
 
 
 **Judge Analysis:**
 
-- **With-RAG Overall Score:** 3.75 / 5.0 | *Strengths:* Accurately describes the RS-25 engines, SRBs, and their thrust values. Correctly identifies the propellants and their cryogenic temperatures.
+- **With-RAG Overall Score:** 4.25 / 5.0 | *Strengths:* Accurate thrust values, correct propellants, and proper integration of RS-25 engines and SRBs.
 
-- **Without-RAG Overall Score:** 3.75 / 5.0 | *Weaknesses:* Incorrect SRB thrust value (3.3 million lbf instead of 3.6 million lbf). Incorrect SRB propellant composition (HTPB instead of PBAN). Omitted Core Stage dimensions and propellant volumes. Missed details on RS-25 engine configuration and thrust levels. Incorrect SRB burn time (2 minutes instead of approximately 2 minutes and 10 seconds).
+- **Without-RAG Overall Score:** 3.75 / 5.0 | *Weaknesses:* Incorrect SRB thrust value, incorrect propellant mixture for SRBs, and incorrect RS-25 engine arrangement.
 
 
 ---
@@ -1317,7 +1319,7 @@ Launched on **November 16, 2022, at 1:47 a.m. EST**, the uncrewed Artemis I miss
 <summary><b>View With-RAG Answer (Grounded)</b></summary>
 
 
-**Latency:** 7.52309250831604s | **Fact Recall:** 8.3% | **Telemetry:** 0.0%
+**Latency:** 8.59658694267273s | **Fact Recall:** 0.0% | **Telemetry:** 0.0%
 
 **Citations:** `['Artemis_I_Flight_Results_and_Path_Forward.pdf, Page 4', 'Artemis_I_Flight_Results_and_Path_Forward.pdf, Page 1']`
 
@@ -1327,13 +1329,14 @@ The key flight performance metrics, translunar injection parameters, and reentry
 1. **Launch and Initial Orbit Insertion:**
    - The SLS core stage and boosters inserted the ICPS and Orion into an initial Earth orbit at a velocity of 25,579.86 ft./sec. (7,796.74 m/sec.), which was 6.58 ft./sec. (2.01 m/sec.) off nominal, a difference of 0.026%. [Artemis_I_Flight_Results_and_Path_Forward.pdf, Page 4]
 
-2. **Translunar Injection (TLI):**
-   - The mission did not provide specific details on the translunar injection parameters. However, it is mentioned that the mission sent an uncrewed Orion spacecraft into a distant retrograde orbit about the Moon. [Artemis_I_Flight_Results_and_Path_Forward.pdf, Page 1]
+2. **Translunar Injection:**
+   - The mission sent an uncrewed Orion spacecraft into a distant retrograde orbit about the Moon. [Artemis_I_Flight_Results_and_Path_Forward.pdf, Page 1]
+   - The predicted orbital insertion parameters were 975 mi. (1,560 km) by 16 mi. (25.7 km), with actual parameters being 972.1 mi. (1,564 km) by 16 mi. (25.7 km), a difference of 0.30%. [Artemis_I_Flight_Results_and_Path_Forward.pdf, Page 4]
 
 3. **Reentry:**
-   - The Orion spacecraft splashed down approximately 80 miles off the coast of Baja, California, at the conclusion of the 25-day mission on December 11. [Artemis_I_Flight_Results_and_Path_Forward.pdf, Page 1]
+   - Orion splashed down approximately 80 miles off the coast of Baja, California, at the conclusion of the mission on December 11. [Artemis_I_Flight_Results_and_Path_Forward.pdf, Page 1]
 
-The provided NASA documentation does not contain sufficient data to address this aspect: [Specific reentry parameters or detailed reentry results].
+The provided NASA documentation does not contain sufficient data to address this aspect: specific reentry performance metrics or detailed translunar injection parameters beyond the orbital insertion details.
 
 </details>
 
@@ -1342,46 +1345,37 @@ The provided NASA documentation does not contain sufficient data to address this
 <summary><b>View Without-RAG Answer (Baseline)</b></summary>
 
 
-**Latency:** 8.311524152755737s | **Fact Recall:** 8.3% | **Telemetry:** 0.0%
+**Latency:** 7.779368877410889s | **Fact Recall:** 0.0% | **Telemetry:** 33.3%
 
 
-During the uncrewed Artemis I test flight, several key flight performance metrics, translunar injection parameters, and reentry results were recorded. Here is a detailed technical summary based on my internal training:
+During the uncrewed Artemis I test flight, the Space Launch System (SLS) and Orion spacecraft demonstrated several key flight performance metrics, translunar injection parameters, and reentry results. Here is a detailed technical summary based on my internal training:
 
 Flight Performance Metrics:
-1. Launch Performance: The Space Launch System (SLS) rocket successfully lifted off from Kennedy Space Center's Launch Pad 39B, achieving a nominal launch profile. The rocket's four RS-25 engines and two solid rocket boosters performed as expected, providing the necessary thrust for the mission.
-
-2. Orion Performance: The Orion spacecraft separated from the SLS rocket's Interim Cryogenic Propulsion Stage (ICPS) at the expected time. Orion's service module performed the Trans-Lunar Injection (TLI) burn, placing the spacecraft on a trajectory toward the Moon.
-
-3. Power and Thermal Control: Orion's power systems, including solar arrays and batteries, operated as designed throughout the mission. The spacecraft's thermal control systems maintained the necessary temperatures for all onboard systems.
-
-4. Communication: Orion's communication systems, including the Ka-band antenna, performed well, providing continuous communication with ground stations during the mission.
-
-5. Navigation and Guidance: Orion's navigation and guidance systems accurately tracked the spacecraft's trajectory, allowing for precise course corrections and reentry maneuvers.
+1. Launch Performance: The SLS core stage successfully burned for 8.5 minutes, producing 2.0 million pounds of thrust. The four RS-25 engines operated nominally, achieving a total of 1.6 million pounds of thrust each.
+2. Orion Performance: Orion's service module performed as expected, with the European Service Module's 8 engines firing multiple times to achieve the necessary trajectory. The service module's solar arrays deployed successfully, providing power to the spacecraft.
+3. Trajectory Performance: Orion's trajectory was closely monitored and adjusted as needed, with the spacecraft successfully achieving the required trans-lunar injection (TLI) velocity of approximately 3.65 km/s (12,800 ft/s).
 
 Translunar Injection Parameters:
-1. TLI Burn: The ICPS performed the TLI burn as planned, increasing Orion's velocity to approximately 3.68 km/s (13,000 km/h or 8,000 mph) relative to Earth. This velocity was sufficient to place the spacecraft on a trajectory toward the Moon.
-
-2. Trajectory Correction Maneuvers (TCMs): Orion performed two TCMs to fine-tune the spacecraft's trajectory. The first TCM was executed 10 hours after launch, and the second was performed 30 hours after launch. These maneuvers ensured that Orion was on course for a lunar flyby.
+1. Injection Burn: The service module's 8 engines fired for 6 minutes and 29 seconds, providing the necessary delta-v to achieve the TLI and send Orion on its trajectory to the Moon.
+2. Injection Velocity: As mentioned, Orion achieved a velocity of about 3.65 km/s (12,800 ft/s) at the end of the TLI burn.
+3. Injection Trajectory: Orion's trajectory was carefully calculated to ensure a safe and efficient journey to the Moon, with the spacecraft following a lunar flyby trajectory.
 
 Reentry Results:
-1. Entry Interface: Orion's heat shield successfully protected the spacecraft as it entered the Earth's atmosphere at a speed of approximately 39,800 km/h (24,700 mph).
+1. Entry Interface: Orion reentered Earth's atmosphere at approximately 24,200 mph (38,900 km/h) at an angle of 30 degrees.
+2. Heat Shield Performance: The Avcoat heat shield on Orion's crew module performed as expected, with temperatures reaching over 5,000°F (2,760°C) during reentry.
+3. Parachute Deployment: Orion's three main parachutes deployed successfully, slowing the spacecraft from 340 mph (547 km/h) to a safe splashdown speed of 20 mph (32 km/h).
+4. Splashdown: Orion splashed down in the Pacific Ocean, approximately 270 miles (434 km) west of Baja California, as planned.
 
-2. Parachute Deployment: Orion's three main parachutes deployed as planned, slowing the spacecraft's descent and ensuring a safe splashdown in the Pacific Ocean.
-
-3. Splashdown: Orion splashed down in the Pacific Ocean as planned, marking the successful completion of the mission. The spacecraft's heat shield and parachute systems performed as expected during reentry.
-
-4. Data Collection: Orion's various sensors and instruments collected valuable data during reentry, providing insights into the spacecraft's performance and the effects of high-speed reentry on the heat shield and other systems.
-
-In summary, the uncrewed Artemis I test flight demonstrated the performance and capabilities of the SLS and Orion spacecraft, paving the way for future crewed missions to the Moon.
+Overall, the Artemis I mission demonstrated the readiness of the SLS and Orion spacecraft for crewed missions to the Moon. The flight performance metrics, translunar injection parameters, and reentry results were all within acceptable ranges, with some minor deviations that were expected and managed effectively.
 
 </details>
 
 
 **Judge Analysis:**
 
-- **With-RAG Overall Score:** 3.0 / 5.0 | *Strengths:* Grounded in specific NASA documentation, clear on launch and splashdown details.
+- **With-RAG Overall Score:** 3.75 / 5.0 | *Strengths:* Accurate details on initial orbit insertion velocity and minor discrepancies, well-grounded in provided documentation.
 
-- **Without-RAG Overall Score:** 3.5 / 5.0 | *Weaknesses:* Lacks specific details on Core Stage performance, ICPS insertion accuracy, TLI burn duration and velocity, DRO telemetry, and heat shield issues.
+- **Without-RAG Overall Score:** 3.25 / 5.0 | *Weaknesses:* Incorrect launch date and time; incorrect core stage burn duration and thrust; incorrect TLI burn duration and velocity; incorrect reentry velocity and angle; incorrect splashdown location.
 
 
 ---
@@ -1416,38 +1410,31 @@ NASA's Integrated Lunar Science Strategy shifts lunar exploration from the equat
 <summary><b>View With-RAG Answer (Grounded)</b></summary>
 
 
-**Latency:** 11.032881021499634s | **Fact Recall:** 20.0% | **Telemetry:** 0.0%
+**Latency:** 10.662416219711304s | **Fact Recall:** 20.0% | **Telemetry:** 0.0%
 
-**Citations:** `['Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 27', 'Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 10', 'Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 43', 'Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 33', 'Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 55']`
+**Citations:** `['Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 27', 'Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 10', 'Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 33', 'Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 43', 'Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 53']`
 
 
 The primary scientific exploration objectives and target geological environments defined in NASA's Integrated Lunar Science Strategy for Artemis surface missions at the Lunar South Pole are as follows:
 
-1. **Uncover the Record of Solar System Origin and Early History (LPS-1)**:
-   - The lunar south polar region is targeted for initial exploration to uncover the record of solar system origin and early history. [Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 27]
+1. **Primary Scientific Exploration Objectives:**
+   - **Uncover the Record of Solar System Origin and Early History:** This objective is captured under LPS-1 [Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 27].
+   - **Advance Understanding of Geologic Processes Affecting Planetary Bodies:** This objective is captured under LPS-2 [Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 27].
 
-2. **Advance Understanding of Geologic Processes Affecting Planetary Bodies (LPS-2)**:
-   - The south polar region is also a key target for advancing understanding of the geologic processes affecting planetary bodies. [Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 27]
+2. **Target Geological Environments:**
+   - The Lunar South Pole is the initial exploration target, with the ultimate goal of global access [Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 27].
+   - Specific challenges include the South Pole-Aitken (SPA) Basin Sample Return, Lunar Geophysical Network, Cryogenic Volatile Sample Return, Lunar Chronology, Lunar Formation and Evolution, and Lunar Volatiles [Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 10].
 
-3. **Specific Lunar Science Challenges**:
-   - The south pole is identified as a critical area for addressing several major lunar science challenges, including:
-     - South Pole-Aitken (SPA) Basin Sample Return
-     - Lunar Geophysical Network
-     - Cryogenic Volatile Sample Return
-     - Lunar Chronology
-     - Lunar Formation and Evolution
-     - Lunar Volatiles [Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 10]
+3. **Supporting Infrastructure:**
+   - Geologic mapping is a critical component, with NASA working closely with the USGS to define a coordinated geologic mapping effort for the lunar south pole [Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 33].
 
-4. **Geologic Mapping**:
-   - A coordinated and sustained geologic mapping effort of the Moon, particularly the lunar south pole, is essential to support short- and long-term exploration. [Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 43]
+4. **Mission-Supporting Infrastructure:**
+   - NASA is continuing to assemble an Artemis Science Team to identify and advocate for the highest-priority science questions for Artemis [Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 43].
 
-5. **Science Team and Exploration Planning**:
-   - An Artemis Science Team is being assembled to identify and advocate for the highest-priority science questions to be addressed for Artemis. [Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 33]
+5. **Strategic Directions:**
+   - The strategy includes developing a South Pole Aitken sample return and exploration science definition team to further flesh out science objectives and measurement requirements [Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 53].
 
-6. **Mission-Supporting Infrastructure**:
-   - Infrastructure supporting the mission, such as the development of a South Pole Aitken sample return and exploration science definition team, is critical. [Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 55]
-
-These objectives and challenges are central to the Artemis program's strategy for lunar exploration and science, emphasizing the importance of the lunar south polar region for both scientific and exploration purposes. [Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Page 27, 10, 33, 43, 55]
+These objectives and environments are central to the Artemis Program's scientific goals and will guide the exploration and mission planning for the Lunar South Pole. [Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf, Pages 27, 10, 33, 43, 53]
 
 </details>
 
@@ -1456,32 +1443,35 @@ These objectives and challenges are central to the Artemis program's strategy fo
 <summary><b>View Without-RAG Answer (Baseline)</b></summary>
 
 
-**Latency:** 6.067214727401733s | **Fact Recall:** 30.0% | **Telemetry:** 0.0%
+**Latency:** 6.225183486938477s | **Fact Recall:** 30.0% | **Telemetry:** 0.0%
 
 
-NASA's Integrated Lunar Science Strategy for Artemis surface missions at the Lunar South Pole focuses on several key scientific exploration objectives and target geological environments. These objectives are designed to support broader lunar science goals and inform future human exploration and potential resource utilization.
+NASA's Integrated Lunar Science Strategy for Artemis surface missions at the Lunar South Pole focuses on several key scientific exploration objectives and target geological environments. These objectives are designed to support the overall Artemis program goals of lunar exploration and preparation for future missions to Mars.
 
 Primary Scientific Exploration Objectives:
-1. Investigate the lunar south polar volatile-rich environment: This includes studying the distribution, composition, and behavior of water ice and other volatiles in permanently shadowed regions (PSRs).
-2. Characterize the geological and geophysical structure of the south pole: This involves mapping and analyzing the topography, stratigraphy, and internal structure of the region.
-3. Understand the south pole's role in the early solar system: This objective aims to study the south pole's geological record to gain insights into the formation and evolution of the Moon and early solar system.
-4. Assess the potential for in-situ resource utilization: This includes evaluating the feasibility of extracting and using resources such as water ice and other volatiles for future human missions.
+1. Investigate the lunar South Pole's unique geological and environmental characteristics, including permanently shadowed regions (PSRs) and areas with potential water ice deposits.
+2. Characterize the lunar South Pole's regolith and surface materials to understand their composition and potential resources.
+3. Study the South Pole's geological history, including the formation and evolution of the lunar crust in this region.
+4. Assess the potential for lunar South Pole regions to support long-term human habitation and operations.
+5. Conduct in-situ resource utilization (ISRU) experiments to demonstrate the extraction and use of lunar materials.
 
 Target Geological Environments:
-1. Permanently Shadowed Regions (PSRs): These areas, primarily located in the Shackleton Crater, are of particular interest due to their potential to harbor significant amounts of water ice and other volatiles. The PSRs provide a unique environment for studying the long-term preservation of volatiles and their potential role in the Moon's geological history.
-2. South Polar Highlands: This region, located outside the PSRs, is of interest for its potential to preserve ancient lunar materials and provide insights into the Moon's early history. The highlands may contain samples of the lunar crust that have been less altered by later geological processes.
-3. South Polar Craters: Large craters in the south polar region, such as Shackleton, offer opportunities to study the geological and geophysical structure of the Moon. The crater walls and floors may expose subsurface materials and provide insights into the Moon's internal structure and composition.
+1. Permanently Shadowed Regions (PSRs): These areas are of particular interest due to their potential to harbor water ice deposits. The PSRs are located in deep craters near the lunar poles, where sunlight never reaches, and temperatures remain extremely cold.
+2. High-Latitude Volcanic Terrains: These areas, including the South Pole-Aitken Basin, offer insights into the Moon's volcanic history and the distribution of lunar mare basalts.
+3. South Pole-Aitken Basin: This is the largest known impact basin in the solar system, providing a unique opportunity to study the Moon's deep interior and the geological processes that have shaped its surface.
+4. High-Reflection Areas: These regions, often associated with ice deposits, are of interest for their potential to support future human missions and scientific research.
+5. Regolith and Surface Materials: The diverse regolith and surface materials in the lunar South Pole offer opportunities to study the Moon's geological history and the effects of space weathering.
 
-These objectives and target environments are designed to provide a comprehensive understanding of the lunar south pole and support the broader goals of the Artemis program, including preparing for future human exploration and potential resource utilization.
+The Artemis program aims to use these scientific objectives and target environments to advance our understanding of the Moon and prepare for future human missions to the lunar surface and beyond. The data collected from these missions will inform the development of technologies and strategies for sustainable lunar exploration and potential future Mars missions.
 
 </details>
 
 
 **Judge Analysis:**
 
-- **With-RAG Overall Score:** 3.5 / 5.0 | *Strengths:* Provides relevant details and references to the Artemis Lunar Science Strategy document.
+- **With-RAG Overall Score:** 3.0 / 5.0 | *Strengths:* Cites specific documents and pages, mentions key objectives and environments.
 
-- **Without-RAG Overall Score:** 4.0 / 5.0 | *Weaknesses:* Lacks specific details on thermal telemetry, isotopic ratios, and impact chronology; omits mention of specific craters like Haworth, Shoemaker, and Faustini.
+- **Without-RAG Overall Score:** 3.75 / 5.0 | *Weaknesses:* Lacks specific details on thermal telemetry, isotopic ratios, and cryogenic conditions; misses specific craters and exact temperatures; omits details on drilling, cryogenic return, and ISRU ground-truthing.
 
 
 ---
@@ -1517,20 +1507,18 @@ Under NASA's NextSTEP Appendix H and Sustaining Lunar Development (Option A/B an
 <summary><b>View With-RAG Answer (Grounded)</b></summary>
 
 
-**Latency:** 8.276738166809082s | **Fact Recall:** 18.2% | **Telemetry:** 0.0%
+**Latency:** 6.5843706130981445s | **Fact Recall:** 18.2% | **Telemetry:** 0.0%
 
 **Citations:** `['Artemis_Human_Landing_System_HLS_Update_2025.pdf, Page 10', 'Artemis_Human_Landing_System_HLS_Update_2025.pdf, Page 4', 'Artemis_Human_Landing_System_HLS_Update_2025.pdf, Page 11']`
 
 
-The provided NASA documentation does not contain sufficient data to address the architectural differences, cryogenic propellant requirements, and operational concepts between SpaceX Starship HLS and Blue Origin Blue Moon for Artemis crewed lunar landings. The excerpts focus on the contracts, development progress, and some general capabilities but do not provide detailed technical specifications or operational concepts for the landers. 
+The provided NASA documentation does not contain sufficient data to address the architectural differences, cryogenic propellant requirements, and operational concepts between SpaceX Starship HLS and Blue Origin Blue Moon for Artemis crewed lunar landings. The excerpts primarily discuss the contracts, mission roles, and development progress of the landers but do not provide detailed technical specifications or operational concepts. 
 
-For instance, Excerpts 1, 2, 4, 5, 6, and 7 mention that SpaceX is contracted to provide the lunar landing for Artemis IV and V using the Starship HLS, and Blue Origin is contracted for Artemis V with the Blue Moon MK2 lander. However, they do not provide specific details on the architectural differences or cryogenic propellant requirements.
+For instance, [Artemis_Human_Landing_System_HLS_Update_2025.pdf, Page 10] mentions that Blue Origin is developing the Blue Moon MK2 lander for Artemis V, and [Artemis_Human_Landing_System_HLS_Update_2025.pdf, Page 4] states that SpaceX is contracted to provide the lunar landing for Artemis IV and V, but neither excerpt provides the specific details requested. 
 
-[Artemis_Human_Landing_System_HLS_Update_2025.pdf, Page 10] and [Artemis_Human_Landing_System_HLS_Update_2025.pdf, Page 4] indicate that the HLS program is developing landers that can support increased up-mass and down-mass, and extended EVA duration and frequency, but do not specify the exact capabilities of SpaceX Starship HLS and Blue Origin Blue Moon.
+[Artemis_Human_Landing_System_HLS_Update_2025.pdf, Page 11] notes that both SpaceX and Blue Origin have completed Certification Baseline Reviews for their cargo landers, but it does not specify the differences or requirements for crewed missions. 
 
-[Artemis_Human_Landing_System_HLS_Update_2025.pdf, Page 11] mentions that both SpaceX and Blue Origin have completed Certification Baseline Reviews for their cargo landers, but it does not provide information on the specific requirements or operational concepts for crewed missions.
-
-Therefore, based on the provided excerpts, no detailed technical specifications or operational concepts can be provided for the SpaceX Starship HLS and Blue Origin Blue Moon landers.
+Therefore, based on the provided excerpts, the necessary technical details to fully answer the query are not available.
 
 </details>
 
@@ -1539,33 +1527,36 @@ Therefore, based on the provided excerpts, no detailed technical specifications 
 <summary><b>View Without-RAG Answer (Baseline)</b></summary>
 
 
-**Latency:** 6.981588840484619s | **Fact Recall:** 18.2% | **Telemetry:** 0.0%
+**Latency:** 5.869692087173462s | **Fact Recall:** 18.2% | **Telemetry:** 0.0%
 
 
-Based on my general knowledge, here are the key architectural differences, cryogenic propellant requirements, and operational concepts between SpaceX Starship HLS and Blue Origin Blue Moon for Artemis crewed lunar landings:
+Based on my general knowledge, here are the key architectural differences, cryogenic propellant requirements, and operational concepts between SpaceX Starship HLS and Blue Origin Blue Moon for potential Artemis crewed lunar landings:
 
 Architectural Differences:
-1. Starship HLS is a fully reusable, vertically landing spacecraft designed to carry both crew and cargo. It consists of a superstructure with a nose cone, landing legs, and a large propellant tank. The Super Heavy booster is a separate, reusable rocket that launches the Starship to orbit.
-2. Blue Moon is a lander designed to carry crew and cargo to the lunar surface. It is a smaller, more compact vehicle compared to Starship, with a cylindrical descent stage and a smaller ascent stage. Blue Moon is intended to be launched on a reusable New Glenn rocket.
+1. Starship is a fully reusable, two-stage-to-orbit vehicle designed for both crew and cargo. It stands 50 meters tall and has a diameter of 9 meters. Blue Moon is a lander designed to carry a crew of four and has a diameter of 8 meters.
+2. Starship uses methane and liquid oxygen as propellants. Blue Moon uses a combination of liquid hydrogen and liquid oxygen.
+3. Starship is designed for multiple flights and rapid turnaround. Blue Moon is intended to be a single-use lander.
 
 Cryogenic Propellant Requirements:
-1. Starship HLS is designed to use methane and liquid oxygen as propellants. The Starship can carry up to 300, 000 liters of methane and 300, 000 liters of LOX for a single flight. The Super Heavy booster can carry up to 2, 000, 000 liters of LOX and 1, 500, 000 liters of methane.
-2. Blue Moon is also designed to use liquid oxygen and methane as propellants. However, the specific propellant quantities for Blue Moon are not publicly disclosed.
+1. Starship requires approximately 160,000 kg of methane and 240,000 kg of liquid oxygen for a trans-lunar injection (TLI) mission.
+2. Blue Moon requires about 120,000 kg of liquid hydrogen and 240,000 kg of liquid oxygen for a TLI mission.
 
 Operational Concepts:
-1. Starship HLS is intended to be launched from Kennedy Space Center in Florida, with the Super Heavy booster and Starship separating in Earth orbit. The Starship would then perform a trans-lunar injection burn to reach the Moon. Upon lunar descent, Starship would use its engines to land on the lunar surface. For return to Earth, Starship would perform a trans-Earth injection burn and land in the Pacific Ocean.
-2. Blue Moon is intended to be launched from Kennedy Space Center on a New Glenn rocket. After reaching lunar orbit, Blue Moon would perform a trans-lunar injection burn and land on the lunar surface. For return to Earth, Blue Moon would perform a trans-Earth injection burn and land on the lunar surface, with the ascent stage launching the crew back to orbit and eventually to Earth.
+1. Starship would be launched from Kennedy Space Center, Florida, and perform a direct ascent to the lunar surface. It would land in the South Pole-Aitken Basin or another designated area.
+2. Blue Moon would be launched from Kennedy Space Center and would first dock with a lunar orbiting spacecraft. It would then perform a powered descent to the lunar surface and land in the polar regions.
 
-These are the general technical differences based on publicly available information. Both systems are still in development and may undergo changes as they progress through testing and certification processes.
+Both vehicles are designed to support long-term lunar exploration and habitation. Starship is part of SpaceX's broader Mars colonization plans and could potentially be used for multiple Artemis missions. Blue Moon is specifically designed for the Artemis program and would be the first dedicated lunar lander since Apollo.
+
+It's important to note that these details are based on publicly available information and may not reflect the most up-to-date or finalized designs. Both companies are continuously evolving their concepts and requirements.
 
 </details>
 
 
 **Judge Analysis:**
 
-- **With-RAG Overall Score:** 1.5 / 5.0 | *Strengths:* Acknowledges lack of specific data in provided documentation.
+- **With-RAG Overall Score:** 2.0 / 5.0 | *Strengths:* Clear and precise language, acknowledges lack of data in provided documentation.
 
-- **Without-RAG Overall Score:** 2.75 / 5.0 | *Weaknesses:* Incorrect propellant details for Blue Moon, missing key operational concepts, and inaccurate mission profiles.
+- **Without-RAG Overall Score:** 3.25 / 5.0 | *Weaknesses:* Contains inaccuracies in vehicle dimensions, propellant requirements, and operational details; lacks specific mission profiles and in-space refueling concepts.
 
 
 ---
@@ -1600,24 +1591,25 @@ NASA launched Hubble Servicing Mission 3A (STS-103) aboard Space Shuttle Discove
 <summary><b>View With-RAG Answer (Grounded)</b></summary>
 
 
-**Latency:** 9.06519079208374s | **Fact Recall:** 16.7% | **Telemetry:** 16.7%
+**Latency:** 8.741276741027832s | **Fact Recall:** 8.3% | **Telemetry:** 0.0%
 
-**Citations:** `['Hubble_Space_Telescope_Servicing_Mission.pdf, Page 1']`
+**Citations:** `['Hubble_Space_Telescope_Servicing_Mission.pdf, Page 1', 'Hubble_Space_Telescope_Servicing_Mission.pdf, Page 2']`
 
 
-Hubble Servicing Mission 3A (SM3A) was launched ahead of schedule due to concerns about the failure of additional gyroscopes, which could have left Hubble unable to perform its science mission. Specifically, three gyroscopes were the minimum required for normal operations, and after three of Hubble's six gyroscopes failed, NASA managers were concerned that another gyroscope might soon fail, leaving Hubble unable to conduct its science mission. Therefore, an early servicing mission, SM3A, was scheduled for December 1999 to avoid an extended down period [Hubble_Space_Telescope_Servicing_Mission.pdf, Page 1].
+Hubble Servicing Mission 3A (SM3A) was launched ahead of schedule due to concerns about the failure of additional gyroscopes, which could have left the Hubble Space Telescope unable to perform its science mission [Hubble_Space_Telescope_Servicing_Mission.pdf, Page 1].
 
-During STS-103, the third servicing mission, the following avionics, gyroscope, and guidance upgrades were installed:
+During STS-103, the following specific avionics, gyroscope, and guidance upgrades were installed:
 
-1. **Gyroscopes**: All six gyroscopes were replaced. Additionally, a guidance sensor and Hubble's main computer were also replaced. Astronauts worked in pairs on four alternating days to complete these tasks [Hubble_Space_Telescope_Servicing_Mission.pdf, Page 1].
+1. **Gyroscopes**: All six gyroscopes were replaced [Hubble_Space_Telescope_Servicing_Mission.pdf, Page 1].
+2. **Guidance Sensor**: A guidance sensor was replaced [Hubble_Space_Telescope_Servicing_Mission.pdf, Page 1].
+3. **Main Computer**: The main computer was installed [Hubble_Space_Telescope_Servicing_Mission.pdf, Page 1].
+4. **Transmitter**: A new transmitter was installed [Hubble_Space_Telescope_Servicing_Mission.pdf, Page 1].
+5. **Data Recorder**: A solid state data recorder was installed [Hubble_Space_Telescope_Servicing_Mission.pdf, Page 1].
+6. **Thermal Coverings**: New thermal coverings were applied to the exterior [Hubble_Space_Telescope_Servicing_Mission.pdf, Page 1].
 
-2. **Main Computer**: The main computer was replaced as part of the upgrade process.
+Additionally, the Fine Guidance Sensor (FGS) was refurbished and upgraded in a "round-robin" fashion, with one FGS being replaced per servicing mission [Hubble_Space_Telescope_Servicing_Mission.pdf, Page 2]. The FGS that was replaced during SM3A was designated as the prime FGS for astrometric science [Hubble_Space_Telescope_Servicing_Mission.pdf, Page 1].
 
-3. **Guidance Sensor**: The guidance sensor was replaced, and the Fine Guidance Sensor (FGS) was refurbished and upgraded in a "round-robin" fashion, with one FGS being replaced per servicing mission. By the conclusion of SM4, all three FGSs would have been brought up to optimum condition [Hubble_Space_Telescope_Servicing_Mission.pdf, Pages 1-2].
-
-4. **Other Upgrades**: A new transmitter, a solid-state data recorder, and voltage/temperature improvement kits were installed on the six batteries. Additionally, new thermal coverings were applied to the exterior of the telescope [Hubble_Space_Telescope_Servicing_Mission.pdf, Page 1].
-
-These upgrades were crucial to maintaining Hubble's scientific performance and ensuring it could continue its mission for as long as possible [Hubble_Space_Telescope_Servicing_Mission.pdf, Page 1].
+The specific activities and upgrades mentioned above were crucial for maintaining Hubble's scientific performance and ensuring its continued operation [Hubble_Space_Telescope_Servicing_Mission.pdf, Page 1].
 
 </details>
 
@@ -1626,31 +1618,33 @@ These upgrades were crucial to maintaining Hubble's scientific performance and e
 <summary><b>View Without-RAG Answer (Baseline)</b></summary>
 
 
-**Latency:** 6.857956886291504s | **Fact Recall:** 8.3% | **Telemetry:** 16.7%
+**Latency:** 5.7602293491363525s | **Fact Recall:** 16.7% | **Telemetry:** 33.3%
 
 
-Hubble Servicing Mission 3A (SM3A), also known as Space Shuttle Mission STS-103, was launched ahead of schedule due to the critical need to replace the Hubble Space Telescope's Advanced Diagnostic Multiplexer (ADM) board, which had failed in 1999. This failure impacted the telescope's ability to process and transmit scientific data effectively. The ADM board is crucial for the Hubble's data handling and processing, and its failure posed a significant risk to the telescope's scientific operations.
+Hubble Servicing Mission 3A (SM3A), also known as Space Shuttle Mission STS-103, was launched ahead of schedule due to the failure of one of the Hubble Space Telescope's Fine Guidance Sensors (FGS). Specifically, the FGS2 experienced a critical failure in 1999, which left only three of the six FGSs operational. This situation was a significant concern because the FGSs are crucial for guiding and stabilizing the telescope's pointing accuracy.
 
-During STS-103, which took place from December 19, 1999, to January 6, 2000, the crew of Space Shuttle Discovery installed several key upgrades and repairs to the Hubble Space Telescope. Specifically, the mission included the following avionics, gyroscope, and guidance upgrades:
+The mission was accelerated to address this issue and to install new avionics, gyroscope, and guidance upgrades. The primary objectives of STS-103 were to replace the failed FGS2, install new Rate Sensor Units (RSUs) to replace the aging gyroscopes, and to upgrade the on-board computer systems.
 
-1. **Advanced Diagnostic Multiplexer (ADM) Replacement**: The primary task was to replace the ADM board, which was the main data processor for the Hubble. The new ADM board, known as ADM2, was installed to restore full functionality to the telescope's data handling systems.
+During STS-103, the following upgrades and replacements were performed:
 
-2. **Fine Guidance Sensor (FGS) Upgrade**: The FGSs are critical for the telescope's pointing and tracking capabilities. During this mission, the crew installed new FGS3, which was a significant upgrade over the existing FGSs. This upgrade improved the telescope's precision and stability, allowing for more accurate pointing and better scientific observations.
+1. **Fine Guidance Sensors (FGS)**: The crew replaced the failed FGS2 with a new unit. This upgrade was critical to ensure the telescope could maintain its precise pointing capabilities.
 
-3. **Solar Array Drive Electronics (SADE) Upgrade**: The SADEs control the movement of the Hubble's solar arrays. During STS-103, the crew installed new SADEs, which improved the efficiency and reliability of the solar array operation, ensuring the telescope had a stable and reliable power supply.
+2. **Rate Sensor Units (RSUs)**: The RSUs were replaced to provide the telescope with new gyroscopes. These devices measure the telescope's rate of rotation, which is essential for maintaining its orientation in space. The new RSUs included the latest technology, improving the telescope's stability and performance.
 
-4. **Gyroscopes**: The mission also included the replacement of the Hubble's gyroscopes. Gyroscopes are essential for the telescope's attitude control and stabilization. The crew installed new gyroscopes to replace the aging ones, which were critical for maintaining the telescope's precise pointing during observations.
+3. **On-Board Computer Systems**: The mission also involved the installation of new computer hardware and software. This upgrade modernized the telescope's computing capabilities, enhancing its overall functionality and extending its operational life.
 
-These upgrades significantly enhanced the Hubble's operational capabilities and extended its scientific life, allowing it to continue making groundbreaking discoveries in astronomy for many years to come. The success of STS-103 demonstrated the importance of regular servicing missions to maintain and improve the capabilities of space telescopes like Hubble.
+4. **Other Upgrades**: In addition to these primary objectives, the crew also performed several other tasks, including replacing the Power Control Unit (PCU) and installing a new Fine Guidance Sensor Control Electronics (FGS CE) board.
+
+The accelerated launch of STS-103 was a critical step in maintaining the Hubble Space Telescope's scientific capabilities and ensuring its continued operation for years to come.
 
 </details>
 
 
 **Judge Analysis:**
 
-- **With-RAG Overall Score:** 3.75 / 5.0 | *Strengths:* Accurately identifies the main reason for the early launch and mentions key upgrades.
+- **With-RAG Overall Score:** 3.25 / 5.0 | *Strengths:* Mentions key upgrades and the reason for the early launch.
 
-- **Without-RAG Overall Score:** 2.5 / 5.0 | *Weaknesses:* Incorrect reason for early launch, incorrect details on ADM board, incorrect FGS upgrade, incorrect SADE upgrade, and missing critical details on RSUs and computer upgrade.
+- **Without-RAG Overall Score:** 2.75 / 5.0 | *Weaknesses:* Incorrect reason for early launch, missing key details on gyroscope failures, incorrect computer upgrade details, hallucinated additional upgrades.
 
 
 ---
@@ -1694,12 +1688,14 @@ The Saturn V launch vehicle (designated **AS-506**) that propelled the Apollo 11
 <summary><b>View With-RAG Answer (Grounded)</b></summary>
 
 
-**Latency:** 4.460339784622192s | **Fact Recall:** 0.0% | **Telemetry:** 0.0%
+**Latency:** 3.90739107131958s | **Fact Recall:** 0.0% | **Telemetry:** 0.0%
 
-**Citations:** `['Apollo_11_Technical_Information_Summary.pdf, Page 35']`
+**Citations:** `[]`
 
 
-The provided NASA documentation does not contain sufficient data to address this aspect. Specifically, the excerpts do not provide detailed engine configurations, propellant combinations, thrust outputs, or burn durations for the three stages of the Saturn V launch vehicle (AS-506) that launched Apollo 11 to the Moon. [Apollo_11_Technical_Information_Summary.pdf, Page 35] only mentions a measurement breakdown for the launch vehicle and spacecraft, but does not specify the detailed parameters requested.
+The provided NASA documentation does not contain sufficient data to address this aspect.
+
+[The excerpts do not provide specific details about the engine configurations, propellant combinations, thrust outputs, and burn durations of the three stages of the Saturn V launch vehicle (AS-506) that launched Apollo 11 to the Moon.]
 
 </details>
 
@@ -1708,39 +1704,39 @@ The provided NASA documentation does not contain sufficient data to address this
 <summary><b>View Without-RAG Answer (Baseline)</b></summary>
 
 
-**Latency:** 7.156377792358398s | **Fact Recall:** 7.7% | **Telemetry:** 0.0%
+**Latency:** 8.29897689819336s | **Fact Recall:** 23.1% | **Telemetry:** 0.0%
 
 
-The Saturn V launch vehicle that launched Apollo 11 to the Moon (AS-506) was a three-stage rocket with the following engine configurations, propellant combinations, thrust outputs, and burn durations for each stage:
+The Saturn V launch vehicle that launched Apollo 11 to the Moon (AS-506) consisted of three main stages, each with specific engine configurations, propellant combinations, thrust outputs, and burn durations. Here is a detailed breakdown:
 
-First Stage (S-IC):
-- Engine Configuration: 5 F-1 engines
-- Propellant Combinations: Liquid oxygen (LOX) and liquid hydrogen (LH2) for the J-2 engines in the upper stages, but the F-1 engines used a different propellant combination.
-- Thrust Output: Each F-1 engine produced 1,522,000 lbf (671,000 kgf) of thrust. The total thrust for the first stage was 7,628,000 lbf (3,414,000 kgf).
-- Burn Duration: Approximately 2 minutes and 20 seconds
+### Stage I (S-IC)
+- **Engine Configuration**: 5 F-1 engines
+- **Propellant Combinations**: Liquid oxygen (LOX) and liquid hydrogen (LH2) for the J-2 engines in the upper stages, but for the S-IC, the propellants were kerosene (RP-1) and LOX.
+- **Thrust Output**: Each F-1 engine produced 1,522,000 lbf (673,000 kgf) of thrust. The total thrust for the S-IC stage was 7,628,000 lbf (3,414,000 kgf).
+- **Burn Duration**: Approximately 2 minutes and 30 seconds. The engines shut down after the stage had completed its burn and separated from the vehicle.
 
-Second Stage (S-II):
-- Engine Configuration: 5 J-2 engines
-- Propellant Combinations: Liquid oxygen (LOX) and liquid hydrogen (LH2)
-- Thrust Output: Each J-2 engine produced 212,000 lbf (95,000 kgf) of thrust. The total thrust for the second stage was 1,060,000 lbf (475,000 kgf).
-- Burn Duration: Approximately 6 minutes and 10 seconds
+### Stage II (S-II)
+- **Engine Configuration**: 5 J-2 engines
+- **Propellant Combinations**: Liquid oxygen (LOX) and liquid hydrogen (LH2)
+- **Thrust Output**: Each J-2 engine produced 232,000 lbf (103,000 kgf) of thrust. The total thrust for the S-II stage was 1,160,000 lbf (517,000 kgf).
+- **Burn Duration**: Approximately 6 minutes and 30 seconds. The engines shut down after the stage had completed its burn and separated from the vehicle.
 
-Third Stage (S-IVB):
-- Engine Configuration: 1 J-2 engine
-- Propellant Combinations: Liquid oxygen (LOX) and liquid hydrogen (LH2)
-- Thrust Output: The J-2 engine produced 212,000 lbf (95,000 kgf) of thrust.
-- Burn Duration: Two burns - the first lasted about 5 minutes and 53 seconds, and the second lasted about 2 minutes and 30 seconds
+### Stage III (S-IVB)
+- **Engine Configuration**: 1 J-2 engine
+- **Propellant Combinations**: Liquid oxygen (LOX) and liquid hydrogen (LH2)
+- **Thrust Output**: The J-2 engine produced 232,000 lbf (103,000 kgf) of thrust.
+- **Burn Duration**: The S-IVB stage had two burns. The first burn lasted about 6 minutes and 30 seconds, during which the engine shut down and the stage separated. The second burn, known as Trans Lunar Injection (TLI), lasted approximately 5 minutes and 47 seconds, after which the engine shut down and the stage separated, leaving the Apollo Command/Service Module (CSM) and Lunar Module (LM) to continue their journey to the Moon.
 
-The Saturn V AS-506 that launched Apollo 11 had a total height of 363 feet (110.6 meters) and a total weight of approximately 6.1 million pounds (2.8 million kg) at liftoff. The first stage burned its fuel, separated, and fell into the Atlantic Ocean. The second and third stages continued to the Moon, with the third stage later used as a lunar module launch vehicle.
+This configuration allowed the Saturn V to achieve the necessary velocity to escape Earth's gravitational pull and reach the Moon. The engines and propellant combinations were carefully chosen to provide the required thrust and efficiency for each stage of the mission.
 
 </details>
 
 
 **Judge Analysis:**
 
-- **With-RAG Overall Score:** 1.5 / 5.0 | *Strengths:* Mentions the correct document reference.
+- **With-RAG Overall Score:** 1.25 / 5.0 | *Strengths:* Clear statement of lack of information.
 
-- **Without-RAG Overall Score:** 3.5 / 5.0 | *Weaknesses:* Incorrect propellant combination for the first stage (should be RP-1 and LOX, not LH2). Slight inaccuracies in thrust outputs and burn durations. Unverified assumption about the third stage's use as a lunar module launch vehicle.
+- **Without-RAG Overall Score:** 3.5 / 5.0 | *Weaknesses:* Incorrect propellant for S-IC stage, incorrect thrust values for F-1 and J-2 engines, incorrect burn durations for S-IC and S-IVB stages, and missing specific details on S-IVB propellant quantities.
 
 
 ---
@@ -1780,31 +1776,26 @@ The Apollo 11 Lunar Module (LM) *Eagle* and the Mars Science Laboratory (MSL) *C
 <summary><b>View With-RAG Answer (Grounded)</b></summary>
 
 
-**Latency:** 14.56312894821167s | **Fact Recall:** 0.0% | **Telemetry:** 0.0%
+**Latency:** 8.363805055618286s | **Fact Recall:** 0.0% | **Telemetry:** 0.0%
 
-**Citations:** `['Apollo_11_Technical_Information_Summary.pdf, Page 83', 'Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 11']`
+**Citations:** `['Apollo_11_Technical_Information_Summary.pdf, Page 83', 'Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 1', 'Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 11']`
 
 
-The provided NASA documentation does not contain sufficient data to address this aspect.
+The provided NASA documentation does not contain sufficient data to address the detailed comparison of the descent propulsion system, guidance control, and terminal touchdown mechanics of the Apollo 11 Lunar Module (Eagle) with the Entry, Descent, and Landing (EDL) Sky Crane of Curiosity on Mars. The excerpts focus primarily on the Curiosity mission and do not provide comprehensive details about the Apollo 11 Lunar Module's descent system.
 
-However, based on the excerpts, we can compare the descent propulsion system, guidance control, and terminal touchdown mechanics of the Apollo 11 Lunar Module (Eagle) with the Entry, Descent, and Landing (EDL) Sky Crane of Curiosity on Mars.
+However, based on the information provided:
 
-### Apollo 11 Lunar Module (Eagle)
-- **Descent Propulsion System**: The Lunar Module (LM) had a descent engine that provided the thrust necessary for the descent from lunar orbit to the lunar surface. [Apollo_11_Technical_Information_Summary.pdf, Page 83]
-- **Guidance Control**: The LM was equipped with a Reaction Control System (RCS) for attitude control during the descent. [Apollo_11_Technical_Information_Summary.pdf, Page 83]
-- **Terminal Touchdown Mechanics**: The LM used a combination of RCS thrusters and the descent engine to achieve a soft landing on the lunar surface. The descent engine provided the primary thrust, while the RCS thrusters were used for fine control and to null horizontal velocities. [Apollo_11_Technical_Information_Summary.pdf, Page 83]
+- The Apollo 11 Lunar Module (Eagle) had a descent propulsion system consisting of a Reaction Control System (RCS) that provided thrust capability for maneuvering during the descent. [Apollo_11_Technical_Information_Summary.pdf, Page 83]
 
-### Mars Science Laboratory (Curiosity) EDL Sky Crane
-- **Descent Propulsion System**: The Curiosity rover used a combination of a supersonic parachute and a descent stage equipped with rocket engines. The descent stage included a Sky Crane system that lowered the rover to the surface. [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 1, 11]
-- **Guidance Control**: The EDL system included a guided entry phase where the spacecraft was steered using the guidance system. The powered descent segment involved a series of sub-segments, including a powered approach, constant velocity accordion, and constant deceleration. [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 11]
-- **Terminal Touchdown Mechanics**: The Sky Crane system was designed to lower the rover to the surface using a series of rocket engines. The descent rate was slowed from 32 m/s to 0.75 m/s during the constant deceleration phase. [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 11]
+- The Lunar Module had a descent engine and four retractable landing gear assemblies. [Apollo_11_Technical_Information_Summary.pdf, Page 83]
 
-### Comparison
-- **Descent Propulsion**: The Apollo 11 LM used a single descent engine, while Curiosity used a combination of a supersonic parachute and rocket engines. [Apollo_11_Technical_Information_Summary.pdf, Page 83] [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 11]
-- **Guidance Control**: Apollo 11 used RCS for attitude control, while Curiosity had a more complex guided entry and powered descent system. [Apollo_11_Technical_Information_Summary.pdf, Page 83] [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 11]
-- **Terminal Touchdown**: Both systems used a combination of primary thrust and fine control to achieve a soft landing. However, the Curiosity Sky Crane system was more complex and innovative, involving a series of sub-segments to ensure precise landing. [Apollo_11_Technical_Information_Summary.pdf, Page 83] [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 11]
+- The Curiosity mission utilized a unique EDL system architecture that included a Sky Crane system for precise landing. [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 1]
 
-In summary, while both the Apollo 11 LM and the Curiosity EDL system used descent engines for primary thrust, the Curiosity system incorporated additional guidance and control mechanisms, including a Sky Crane, to achieve a more precise landing. [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 11] [Apollo_11_Technical_Information_Summary.pdf, Page 83]
+- The Powered Descent Segment of Curiosity involved several sub-segments, including a powered approach, constant velocity accordion, constant deceleration, and the Sky Crane. [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 11]
+
+- The Sky Crane system was designed to lower the rover to the surface using cables, allowing the descent stage to fly away to a safe distance. [Mars_Curiosity_MSL_EDL_Assessment.pdf, Page 11]
+
+For a detailed comparison, additional technical documentation on the Apollo 11 Lunar Module's descent system would be necessary. [Apollo_11_Technical_Information_Summary.pdf, Page 83]
 
 </details>
 
@@ -1813,33 +1804,60 @@ In summary, while both the Apollo 11 LM and the Curiosity EDL system used descen
 <summary><b>View Without-RAG Answer (Baseline)</b></summary>
 
 
-**Latency:** 8.252239227294922s | **Fact Recall:** 7.1% | **Telemetry:** 0.0%
+**Latency:** 9.903042078018188s | **Fact Recall:** 0.0% | **Telemetry:** 0.0%
 
 
-The Apollo 11 Lunar Module (LM) and the Entry, Descent, and Landing (EDL) Sky Crane of the Mars Science Laboratory (MSL) Curiosity rover represent two very different approaches to landing on the Moon and Mars, respectively. Here's a detailed comparison of their descent propulsion systems, guidance and control, and terminal touchdown mechanics:
+The Apollo 11 Lunar Module (LM) and the Entry, Descent, and Landing (EDL) system of the Curiosity rover on Mars, while both designed for landing on another celestial body, have distinct differences in their propulsion systems, guidance and control mechanisms, and touchdown procedures.
 
-1. Descent Propulsion System:
-   - Apollo 11 LM: The LM had two engines for descent - the Descent Propulsion System (DPS). This system consisted of a single 310 lbf (1.37 kN) throttleable engine. The DPS was used for both powered descent and landing on the lunar surface. The engine could be throttled to control the rate of descent.
-   - Curiosity Sky Crane: The EDL system used a separate descent stage with eight 22 lbf (0.97 kN) rocket engines for powered descent. These engines were not throttleable and were used to control the rate of descent and position the rover during the final approach to the surface.
+### Apollo 11 Lunar Module (Eagle)
+**Descent Propulsion System:**
+- The LM used a single descent engine for both vertical descent and lateral movement. This engine was capable of both forward and backward thrust, allowing for precise control during the landing.
+- The engine was fueled by a mixture of hypergolic propellants (UDMH and Aerozine-50).
 
-2. Guidance and Control:
-   - Apollo 11 LM: The LM used an inertial guidance system for most of the descent, with star sensors for navigation. The astronauts had manual control for the final approach to the lunar surface. The LM's guidance system was designed to navigate to a specific landing site, but the astronauts had the ability to make manual corrections if necessary.
-   - Curiosity Sky Crane: The EDL system used a combination of inertial guidance, star sensors, and a radar altimeter for navigation. The system was fully autonomous, with no direct human control. The radar altimeter provided critical altitude data for the final approach, allowing the system to adjust the rate of descent and position the rover accurately.
+**Guidance and Control:**
+- The LM's guidance and control were primarily managed by the Lunar Module Guidance Computer (LMGC). The computer provided guidance for the descent and landing.
+- The LM had a system of gyros and accelerometers to provide inertial guidance. The crew also had manual control options to override the computer if necessary.
+- The LM used a combination of radar and visual cues to determine its altitude and velocity during the descent.
 
-3. Terminal Touchdown Mechanics:
-   - Apollo 11 LM: The LM touched down on the lunar surface with its descent engine still firing. The engine was shut down just before touchdown, and the LM settled onto the surface. The astronauts had to manually control the final descent to ensure a safe landing.
-   - Curiosity Sky Crane: The Sky Crane used a complex system of cables and a hovering descent stage. After the rover was lowered to the surface, the descent stage separated and flew away, leaving the rover stationary on the surface. This approach allowed for a more precise landing and reduced the risk of damage to the rover during touchdown.
+**Terminal Touchdown Mechanics:**
+- The LM had four landing legs that were deployed just before touchdown. These legs were designed to absorb the impact of landing.
+- The descent engine was throttled down to a hover just before touchdown, allowing the crew to make final adjustments. The engine was then shut down, and the LM landed under its own weight.
 
-In summary, the Apollo 11 LM descent was a more hands-on process with some manual control, while the Curiosity Sky Crane was fully autonomous. The LM used a single, throttleable engine for both descent and landing, whereas the Sky Crane used multiple, non-throttleable engines for powered descent. The landing mechanics were also quite different, with the LM landing with its engine still firing, while the Sky Crane involved a separate descent stage that separated from the rover after touchdown.
+### Curiosity Rover (Mars Science Laboratory)
+**Entry, Descent, and Landing (EDL) System:**
+- Curiosity used a complex EDL system that included a heat shield, parachute, and rocket-powered descent stage known as the Sky Crane.
+- The heat shield protected the rover during atmospheric entry.
+- The parachute system slowed the descent after the heat shield was jettisoned.
+- The Sky Crane system used a retro-rockets to slow the descent further and lower the rover to the surface on cables.
+
+**Descent Propulsion System:**
+- The Sky Crane used a descent stage with eight retro-rockets for vertical descent and lateral movement.
+- The descent stage was fueled by a mixture of monomethylhydrazine and nitrogen tetroxide.
+
+**Guidance and Control:**
+- The EDL system was managed by the Entry, Descent, and Landing (EDL) software on the rover's computer.
+- The system used a combination of radar and cameras to determine altitude, velocity, and position.
+- The EDL software had to account for the dynamic nature of the Martian atmosphere, which could differ from predictions.
+
+**Terminal Touchdown Mechanics:**
+- The Sky Crane system lowered the rover to the surface on cables. Once the rover was secure, the cables were cut, and the descent stage flew away to a safe distance.
+- The rover touched down on its six wheels, ready to begin its mission.
+
+### Key Differences:
+- **Propulsion:** The LM used a single engine for both descent and lateral movement, while Curiosity's Sky Crane used a descent stage with multiple retro-rockets.
+- **Guidance and Control:** The LM relied on a combination of inertial guidance and manual control, while Curiosity's EDL system was fully automated.
+- **Landing Mechanism:** The LM landed under its own weight, while Curiosity used a Sky Crane to lower the rover to the surface.
+
+These differences reflect the technological advancements in spacecraft design and the unique challenges of landing on different celestial bodies.
 
 </details>
 
 
 **Judge Analysis:**
 
-- **With-RAG Overall Score:** 2.75 / 5.0 | *Strengths:* Provides some correct technical details and comparisons.
+- **With-RAG Overall Score:** 2.25 / 5.0 | *Strengths:* Mentions some correct details about both missions.
 
-- **Without-RAG Overall Score:** 3.5 / 5.0 | *Weaknesses:* Incorrect details on engine thrust and throttleability for both LM and Sky Crane; omits key details on atmospheric environment, propellants, and specific guidance phases.
+- **Without-RAG Overall Score:** 3.5 / 5.0 | *Weaknesses:* Contains inaccuracies in propellant types and engine details. Omissions include specific throttle ranges, atmospheric entry speeds, and the role of human intervention in Apollo LM.
 
 
 ---
@@ -1880,22 +1898,22 @@ which shifts the asteroid's intersection point by thousands of kilometers, easil
 <summary><b>View With-RAG Answer (Grounded)</b></summary>
 
 
-**Latency:** 14.340712785720825s | **Fact Recall:** 9.1% | **Telemetry:** 0.0%
+**Latency:** 10.62056016921997s | **Fact Recall:** 9.1% | **Telemetry:** 0.0%
 
-**Citations:** `['DART_Kinetic_Impactor_Deflection_Results.pdf, Page 4', 'DART_Kinetic_Impactor_Deflection_Results.pdf, Page 7', 'DART_Planetary_Defense_Technical_Report.pdf, Page 10', 'DART_Kinetic_Impactor_Deflection_Results.pdf, Page 17']`
+**Citations:** `['DART_Kinetic_Impactor_Deflection_Results.pdf, Page 4', 'DART_Kinetic_Impactor_Deflection_Results.pdf, Page 3', 'DART_Kinetic_Impactor_Deflection_Results.pdf, Page 17', 'DART_Planetary_Defense_Technical_Report.pdf, Page 39']`
 
 
-The DART mission provided insights into the momentum transfer efficiency in kinetic impact deflection, which is crucial for understanding the effectiveness of such methods. The momentum transfer efficiency, denoted as \(\beta\), is a key parameter that quantifies how the ejecta produced during a deflection attempt contributes to the momentum imparted to the target asteroid. According to [DART_Kinetic_Impactor_Deflection_Results.pdf, Page 4], DART demonstrated that \(\beta\) can be defined for any arbitrary direction in space, and \(\beta!\) (associated with the orbital motion of Dimorphos at the moment of impact) was directly constrained by DART measurements. Additionally, \(\beta"\) (associated with the optimal deflection direction for a potential Earth-impacting object) serves as a figure of merit for the design of future kinetic impact deflection attempts.
+The DART mission provided insights into the momentum transfer efficiency in kinetic impact deflection, which is a key aspect of planetary defense. The momentum transfer efficiency, denoted as \(\beta\), is a critical parameter that quantifies how the ejecta produced during a deflection attempt contributes to the momentum imparted to the target asteroid. The DART mission demonstrated that the ejecta can significantly enhance the momentum transfer, potentially making \(\beta > 1\). [DART_Kinetic_Impactor_Deflection_Results.pdf, Page 4]
 
-The momentum transfer efficiency \(\beta\) can be greater than 1 due to the ejecta produced during the impact, which effectively gives an extra push to the target asteroid, enhancing the momentum transfer. [DART_Kinetic_Impactor_Deflection_Results.pdf, Page 7] states that impact simulations indicated that there could be considerable enhancement to the momentum transferred to Dimorphos because of the ejecta produced, depending on the material strength, impact conditions, and other properties of the asteroid and the impactor.
+The kinetic impact method involves the impactor spacecraft depositing its own momentum on the target, but the kinetic energy liberated in the hypervelocity collision can excavate and eject a large amount of material. The recoil impulse from this ejecta can exceed the directly delivered momentum, greatly enhancing the deflection effect. [DART_Kinetic_Impactor_Deflection_Results.pdf, Page 3]
 
-In terms of effectiveness, the kinetic impact method can be highly effective, as demonstrated by the DART mission. The DART mission successfully altered the orbit of the asteroid Didymos B (Dimorphos) by about 11 minutes, indicating a significant deflection. [DART_Planetary_Defense_Technical_Report.pdf, Page 10] notes that the required value of 7.3 seconds was derived from ensuring the post-impact orbital period was determined with an accuracy of at least 10%, even if only the minimum 73-second period change resulted from DART's impact.
+In terms of effectiveness, the DART mission showed that the momentum transfer efficiency \(\beta\) can be constrained using the DART measurements and later results from Hera. This efficiency is crucial for predicting the ejecta response and optimizing the deflection direction for a potential Earth-impacting object. [DART_Kinetic_Impactor_Deflection_Results.pdf, Page 3]
 
-Regarding warning time, the DART mission provided valuable data that can be used to predict the ejecta response over a range of kinetic impactor and asteroid surface properties, which can be crucial for planning future deflection missions. [DART_Kinetic_Impactor_Deflection_Results.pdf, Page 17] mentions that once the potential for Earth impact is recognized, a variety of mission trajectories to intercept the object for flyby, rendezvous, or kinetic impact will be calculated using standard techniques. Each kinetic impactor trajectory will predict the relative velocity vector at impact as well as the optimum deflection direction for mitigating the danger to Earth.
+Regarding warning time, the DART mission demonstrated that sufficient time can be available between the impact and a potential Earth-impacting scenario to refine simulation and laboratory experiment capabilities. This allows for better predictions of the ejecta response and the design of a future kinetic impactor mission. [DART_Kinetic_Impactor_Deflection_Results.pdf, Page 17]
 
-In comparison to slow-push methods like gravity tractors, kinetic impactors can be more effective in terms of the required change in the asteroid's trajectory. However, the warning time for a kinetic impactor mission is typically shorter than that for a gravity tractor, which can exert a continuous gravitational pull over a longer period. The operational risk for a kinetic impactor is higher due to the need for a precise impact, but it can be more straightforward to implement in a crisis situation.
+Operational risk is a significant factor in comparing kinetic impact to slow-push methods like gravity tractors. The DART mission highlighted that a planetary defense spacecraft may need to be built within a much shorter timeframe than DART, posing programmatic challenges. In contrast, gravity tractors operate over extended periods, which can mitigate some of the risks associated with rapid spacecraft development. [DART_Planetary_Defense_Technical_Report.pdf, Page 39]
 
-In summary, the DART mission provided critical insights into the momentum transfer efficiency \(\beta\) and the effectiveness of kinetic impactors in asteroid deflection. While kinetic impactors can be highly effective and require less warning time, they come with higher operational risks compared to slow-push methods like gravity tractors. [DART_Kinetic_Impactor_Deflection_Results.pdf, Page 4] [DART_Planetary_Defense_Technical_Report.pdf, Page 10] [DART_Kinetic_Impactor_Deflection_Results.pdf, Page 17] [DART_Kinetic_Impactor_Deflection_Results.pdf, Page 7]
+In summary, the DART mission provided evidence that kinetic impact can be highly effective in asteroid deflection due to the momentum transfer enhancement parameter \(\beta\). However, the operational risks and time constraints for rapid mission development are significant. Gravity tractors, while slower, offer a potentially safer and more sustainable approach to planetary defense. [DART_Planetary_Defense_Technical_Report.pdf, Page 39]
 
 </details>
 
@@ -1904,50 +1922,45 @@ In summary, the DART mission provided critical insights into the momentum transf
 <summary><b>View Without-RAG Answer (Baseline)</b></summary>
 
 
-**Latency:** 8.026571989059448s | **Fact Recall:** 9.1% | **Telemetry:** 0.0%
+**Latency:** 8.907297849655151s | **Fact Recall:** 9.1% | **Telemetry:** 0.0%
 
 
-The DART mission demonstrated the mathematical physics of momentum transfer in kinetic impact deflection through a high-velocity collision between the spacecraft and the asteroid. The key principles involve the conservation of momentum and the impulse-momentum theorem.
+The DART (Double Asteroid Redirection Test) mission demonstrated the kinetic impactor technique for asteroid deflection. The mathematical physics of momentum transfer in kinetic impact deflection involves the transfer of the spacecraft's momentum to the asteroid through a high-speed collision. This momentum transfer changes the asteroid's velocity, which over time can alter its orbit.
 
-When DART impacted Dimorphos, the spacecraft's mass and velocity imparted a significant impulse to the asteroid. The momentum transfer equation can be expressed as:
+The momentum transfer equation is given by:
+\[ \Delta v = \frac{m_{\text{impactor}} \cdot v_{\text{impactor}}}{m_{\text{target}}} \]
+Where:
+- \( \Delta v \) is the change in velocity of the asteroid
+- \( m_{\text{impactor}} \) is the mass of the impactor (DART)
+- \( v_{\text{impactor}} \) is the velocity of the impactor relative to the asteroid
+- \( m_{\text{target}} \) is the mass of the asteroid
 
-Δp = FΔt = mΔv
+For DART, the impactor (DART itself) had a mass of about 600 kg and impacted Dimorphos at a relative velocity of approximately 6.6 km/s. The target asteroid Dimorphos has an estimated mass of about 130 million kg. The calculated change in velocity for Dimorphos was on the order of millimeters per second.
 
-Where Δp is the change in momentum, F is the force, Δt is the time of impact, m is the mass of the asteroid, and Δv is the change in velocity. The force is related to the spacecraft's mass and velocity, while the change in velocity is a function of the asteroid's mass and the spacecraft's mass.
+Kinetic impact compared to slow-push methods like gravity tractors:
 
-The kinetic impact method is generally considered more effective for smaller, faster-moving asteroids that are detected with shorter warning times. This is because:
+1. **Effectiveness:**
+   - **Kinetic Impact:** Effective for larger, more massive asteroids that require a significant change in velocity. The DART mission demonstrated a 1% change in the asteroid's orbital period, which is a significant result for a small-scale test.
+   - **Gravity Tractor:** Effective for smaller asteroids or those with less mass. The gravitational force exerted by a spacecraft can gradually change the asteroid's trajectory over time.
 
-1. Kinetic impact can produce a significant change in an asteroid's trajectory with a single, high-velocity collision.
-2. The required change in velocity (Δv) for a kinetic impact is typically smaller than that needed for gravitational methods, making it more feasible for smaller asteroids.
+2. **Warning Time:**
+   - **Kinetic Impact:** Requires a relatively short warning time, as the impactor can be launched and reach the asteroid within a few months. This is advantageous for near-term threats.
+   - **Gravity Tractor:** Requires a much longer warning time, as the gravitational force is much weaker and the change in trajectory is gradual. This method is more suitable for long-term planning.
 
-In terms of warning time, kinetic impact methods can be more practical for asteroids detected with shorter notice. The DART mission, for example, had a warning time of about 10 months, which is relatively short compared to the years or decades needed for gravitational methods.
+3. **Operational Risk:**
+   - **Kinetic Impact:** The risk is primarily in the successful delivery of the impactor to the asteroid. There is a risk of the impactor missing the target or failing to impact at the correct location or angle. However, the impact is a one-time event.
+   - **Gravity Tractor:** The risk is in maintaining the spacecraft's position relative to the asteroid over an extended period. The spacecraft must be continuously adjusted to maintain the desired gravitational influence, which can be complex and resource-intensive.
 
-Operational risks for kinetic impact are generally lower than for gravitational methods. Kinetic impactors are simpler in design and require less complex mission planning. However, there are still risks associated with the spacecraft's trajectory, potential failure of the impactor, and the asteroid's response to the impact.
-
-In comparison to slow-push methods like gravity tractors, kinetic impact has the following advantages and disadvantages:
-
-Advantages:
-1. More effective for smaller, faster-moving asteroids with shorter warning times.
-2. Simpler mission design and execution.
-3. Potentially more reliable, as a single, high-velocity impact can achieve the desired deflection.
-
-Disadvantages:
-1. Less flexible in terms of adjusting the deflection over time.
-2. May require more precise targeting and impact timing.
-3. The impact may not always result in the desired trajectory change, especially if the asteroid's structure is not well understood.
-
-Gravity tractors, on the other hand, involve a spacecraft slowly approaching the asteroid and using its gravitational pull to gradually change the asteroid's trajectory. This method is more flexible and can be adjusted over time, but it requires a longer mission duration and a more complex spacecraft design.
-
-In summary, while both kinetic impact and gravity tractors have their advantages, kinetic impact is generally more effective for shorter warning times and smaller asteroids, offering a simpler and potentially more reliable method for asteroid deflection.
+In summary, kinetic impact is effective for rapid response to asteroid threats, requires a shorter warning time, and is a one-time event. Gravity tractors are more suitable for long-term planning, require a longer warning time, and involve continuous operation. The choice between these methods depends on the specific characteristics of the asteroid and the available time for intervention.
 
 </details>
 
 
 **Judge Analysis:**
 
-- **With-RAG Overall Score:** 3.5 / 5.0 | *Strengths:* Provides detailed discussion on momentum transfer efficiency and compares kinetic impactors with gravity tractors.
+- **With-RAG Overall Score:** 3.75 / 5.0 | *Strengths:* Accurately discusses momentum transfer efficiency and the role of ejecta, mentions key parameters and comparisons with gravity tractors.
 
-- **Without-RAG Overall Score:** 3.25 / 5.0 | *Weaknesses:* Lacks specific equations, numbers, and mission details from DART; omits key points like momentum enhancement factor and cumulative displacement calculation.
+- **Without-RAG Overall Score:** 3.75 / 5.0 | *Weaknesses:* Contains minor inaccuracies in technical details (e.g., impactor mass, velocity, and momentum transfer equation), and omits the momentum enhancement factor β and the cumulative orbital position displacement calculation.
 
 
 ---
