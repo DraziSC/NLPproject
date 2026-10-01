@@ -25,7 +25,7 @@ class SequentialThinkingTracker:
         thought: str = "",
         next_thought_needed: bool = True,
         thought_number: int = 1,
-        total_thoughts: int = 3,
+        total_thoughts: int = 2,
         is_revision: Optional[bool] = False,
         revises_thought: Optional[int] = None,
         branch_from_thought: Optional[int] = None,
@@ -33,6 +33,10 @@ class SequentialThinkingTracker:
         needs_more_thoughts: Optional[bool] = False,
         **kwargs
     ) -> Dict[str, Any]:
+        # Cap planned thoughts to 2 for reliable reasoning without runaway context expansion
+        effective_total = min(max(int(total_thoughts or 2), 1), 2)
+        curr_step = int(thought_number or 1)
+
         if not thought:
             for alt_key in ("step", "reasoning", "analysis", "content", "query", "text"):
                 if alt_key in kwargs:
@@ -42,8 +46,8 @@ class SequentialThinkingTracker:
                 thought = "Reasoning step registered."
 
         thought_entry = {
-            "thought_number": thought_number,
-            "total_thoughts": total_thoughts,
+            "thought_number": curr_step,
+            "total_thoughts": effective_total,
             "thought": thought,
             "is_revision": is_revision,
             "revises_thought": revises_thought,
@@ -52,19 +56,25 @@ class SequentialThinkingTracker:
         }
         self.thoughts.append(thought_entry)
         
-        status = "IN_PROGRESS" if next_thought_needed else "READY_FOR_SYNTHESIS"
-        if needs_more_thoughts:
-            status = "EXPANDING_PLAN"
+        # Enforce synthesis once step 2 or target is reached to avoid autoregressive looping
+        if curr_step >= effective_total or curr_step >= 2:
+            is_next_needed = False
+            status = "READY_FOR_SYNTHESIS"
+            feedback = f"Thought {curr_step}/{effective_total} registered. Plan complete. Proceed with final grounded synthesis now."
+        else:
+            is_next_needed = bool(next_thought_needed)
+            status = "IN_PROGRESS" if is_next_needed else "READY_FOR_SYNTHESIS"
+            feedback = (
+                f"Thought {curr_step}/{effective_total} registered. "
+                f"{'Continue reasoning steps.' if is_next_needed else 'Plan complete. Proceed with grounded synthesis.'}"
+            )
 
         return {
             "status": status,
-            "thought_number": thought_number,
-            "total_thoughts_planned": total_thoughts,
+            "thought_number": curr_step,
+            "total_thoughts_planned": effective_total,
             "history_length": len(self.thoughts),
-            "feedback": (
-                f"Thought {thought_number}/{total_thoughts} registered. "
-                f"{'Continue reasoning steps.' if next_thought_needed else 'Plan complete. Proceed with grounded synthesis.'}"
-            )
+            "feedback": feedback
         }
 
     def reset(self):

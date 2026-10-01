@@ -830,6 +830,12 @@ def generate_rag_response(
     llm_start = time.time()
     try:
         if mcp_active:
+            try:
+                import sequential_thinking_server
+                sequential_thinking_server.GLOBAL_TRACKER.reset()
+            except Exception:
+                pass
+
             # Agentic ReAct Loop with all 3 MCP servers
             mcp_sys_prompt = (
                 f"{RAG_SYSTEM_PROMPT}\n\n"
@@ -854,7 +860,7 @@ def generate_rag_response(
                     model=model,
                     messages=messages,
                     tools=MCP_MANAGER.ollama_tools,
-                    options={"temperature": temperature, "num_ctx": 8192}
+                    options={"temperature": temperature, "num_ctx": 8192, "num_predict": 768}
                 )
                 assistant_msg = response["message"]
                 messages.append(assistant_msg)
@@ -915,7 +921,7 @@ def generate_rag_response(
                 synth_resp = client.chat(
                     model=model,
                     messages=messages,
-                    options={"temperature": temperature, "num_ctx": 8192}
+                    options={"temperature": temperature, "num_ctx": 8192, "num_predict": 1024}
                 )
                 raw_answer = synth_resp["message"].get("content", "")
 
@@ -929,7 +935,7 @@ def generate_rag_response(
                     {"role": "system", "content": RAG_SYSTEM_PROMPT},
                     {"role": "user", "content": user_prompt}
                 ],
-                options={"temperature": temperature, "num_ctx": 8192}
+                options={"temperature": temperature, "num_ctx": 8192, "num_predict": 1024}
             )
             raw_answer = response["message"]["content"]
 
@@ -981,7 +987,7 @@ def generate_baseline_response(
                 {"role": "system", "content": BASELINE_SYSTEM_PROMPT},
                 {"role": "user", "content": user_prompt}
             ],
-            options={"temperature": temperature, "num_ctx": 8192}
+            options={"temperature": temperature, "num_ctx": 8192, "num_predict": 1024}
         )
         answer_text = response["message"]["content"]
     except Exception as e:

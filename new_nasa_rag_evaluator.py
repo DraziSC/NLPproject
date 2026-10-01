@@ -205,7 +205,7 @@ def judge_answer_with_llm(
                 {"role": "system", "content": JUDGE_SYSTEM_PROMPT},
                 {"role": "user", "content": prompt}
             ],
-            options={"temperature": 0.0, "num_ctx": 8192}
+            options={"temperature": 0.0, "num_ctx": 8192, "num_predict": 1024}
         )
         content = resp["message"]["content"].strip()
 
