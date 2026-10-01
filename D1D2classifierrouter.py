@@ -303,24 +303,28 @@ def handle_d1_request(user_input: str) -> Dict[str, Any]:
     }
 
 
-def handle_d2_request(user_input: str, chroma_collection, ollama_client, top_k: int = 8) -> Dict[str, Any]:
+def handle_d2_request(user_input: str, chroma_collection, ollama_client, top_k: int = 8, use_mcp: bool = True) -> Dict[str, Any]:
     """
-    Executes Deliverable 2: Expert NASA RAG Agent with ChromaDB retrieval and Qwen2.5:7b.
-    Returns grounded technical answer with citations and retrieval latency.
+    Executes Deliverable 2: Expert NASA RAG Agent with ChromaDB retrieval, Qwen2.5:7b,
+    and 3 MCP servers (Sequential Thinking, NASA APIs, STScI MAST).
     """
-        
     res = generate_rag_response(
         query=user_input,
         collection=chroma_collection,
         client=ollama_client,
-        top_k=top_k
+        top_k=top_k,
+        use_mcp=use_mcp
     )
     citations = res.get("citations") or extract_citations(res["answer"], res.get("retrieved_chunks", []))
+    agent_label = "D2 (NASA Expert RAG + 3 MCP Servers)" if res.get("mcp_active") else "D2 (NASA Space Missions Expert RAG - Local Baseline)"
     return {
-        "agent": "D2 (NASA Space Missions Expert RAG Agent)",
+        "agent": agent_label,
         "response": res["answer"],
         "latency_ms": res["total_latency"] * 1000,
         "citations": citations,
+        "thought_steps": res.get("thought_steps", []),
+        "tool_calls": res.get("tool_calls", []),
+        "mcp_active": res.get("mcp_active", False),
         "retrieved_chunks": len(res.get("retrieved_chunks", [])),
     }
 
@@ -336,8 +340,9 @@ class UnifiedConversationalAssistant:
     seamless interface.
     """
 
-    def __init__(self, threshold: float = DEFAULT_CONFIDENCE_THRESHOLD, force_retrain: bool = False):
+    def __init__(self, threshold: float = DEFAULT_CONFIDENCE_THRESHOLD, force_retrain: bool = False, use_mcp: bool = True):
         self.threshold = threshold
+        self.use_mcp = use_mcp
         self.router = SBERTRouterClassifier()
 
         # Initialize or train router classifier
@@ -352,6 +357,8 @@ class UnifiedConversationalAssistant:
         print("\n[Unified Assistant] Connecting to ChromaDB vector store...")
         self.chroma_collection = build_or_load_vector_db()
         self.ollama_client = get_ollama_client()
+        mcp_status = "ENABLED (Sequential Thinking, NASA APIs, STScI MAST)" if self.use_mcp else "DISABLED (Kill Switch Active)"
+        print(f"[Unified Assistant] Deliverable 2 MCP Subsystems: {mcp_status}")
 
     def process_message(self, user_query: str, top_k: int = 8) -> Dict[str, Any]:
         """
@@ -365,10 +372,12 @@ class UnifiedConversationalAssistant:
 
         # Step 2: Dispatch Logic
         if pred_label == LABEL_D1_CHITCHAT and confidence >= self.threshold:
+            # Deliverable 1: Fast, deterministic rule-based chatbot (NO MCP TOOLS)
             result = handle_d1_request(user_query)
             result["routed_to"] = "D1"
         elif pred_label == LABEL_D2_NASA and confidence >= self.threshold:
-            result = handle_d2_request(user_query, self.chroma_collection, self.ollama_client, top_k=top_k)
+            # Deliverable 2: Expert NASA RAG Agent (with MCP if enabled)
+            result = handle_d2_request(user_query, self.chroma_collection, self.ollama_client, top_k=top_k, use_mcp=self.use_mcp)
             result["routed_to"] = "D2"
         else:
             # Ambiguity / Low-confidence fallback
@@ -443,6 +452,12 @@ Type any message: chat, share how you feel, or ask NASA technical questions.
             print(f"\n{res['agent']}:")
             print(res["response"])
 
+            if res.get("tool_calls"):
+                tools_used = [tc['tool'] for tc in res['tool_calls']]
+                print(f"\n[MCP Tools Executed ({len(res['tool_calls'])}): {', '.join(tools_used)}]")
+            if res.get("thought_steps"):
+                print(f"[Sequential Thoughts ({len(res['thought_steps'])}): {res['thought_steps'][-1][:140]}...]")
+
             if res.get("citations"):
                 print(f"\n[Attributed Citations ({len(res['citations'])}): {', '.join(res['citations'][:3])}]")
             print(f"[Total Response Latency: {res['latency_ms']:.2f}ms]")
@@ -489,11 +504,20 @@ def main():
         action="store_true",
         help="Launch the interactive unified conversational shell",
     )
+    parser.add_argument(
+        "--no-mcp",
+        action="store_true",
+        help="Kill switch: Disable all MCP servers and run standard local ChromaDB RAG for Deliverable 2",
+    )
 
     args = parser.parse_args()
 
-    # Initialize the unified assistant
-    assistant = UnifiedConversationalAssistant(threshold=args.threshold, force_retrain=args.retrain)
+    # Initialize the unified assistant with MCP kill switch support
+    assistant = UnifiedConversationalAssistant(
+        threshold=args.threshold,
+        force_retrain=args.retrain,
+        use_mcp=not args.no_mcp
+    )
 
     if args.query:
         print(f"\n[Utterance]: \"{args.query}\"")
@@ -502,6 +526,11 @@ def main():
         print(f"[Routing Decision]: Routed to {res['routed_to']} ({res['agent']})")
         print(f"                   Confidence: {routing['confidence']*100:.1f}% | Routing Latency: {routing['latency_ms']:.2f}ms")
         print(f"[Response]:\n{res['response']}")
+        if res.get("tool_calls"):
+            tools_used = [tc['tool'] for tc in res['tool_calls']]
+            print(f"[MCP Tools Executed]: {', '.join(tools_used)}")
+        if res.get("thought_steps"):
+            print(f"[Sequential Thoughts]: {res['thought_steps']}")
         if res.get("citations"):
             print(f"[Citations]: {res['citations']}")
         return

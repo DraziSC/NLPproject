@@ -1,0 +1,195 @@
+{
+  "title": "NASA Agentic MCP 5-Question Evaluation Dataset (Deliverable 3 Benchmark)",
+  "course": "Natural Language Interaction (ILN) 2026/2027",
+  "institution": "Universidade de Coimbra (DEI-FCTUC)",
+  "authors": [
+    "Mohammed Abdelqader",
+    "Michael O'Shea"
+  ],
+  "description": "Specialized evaluation benchmark designed to evaluate live Model Context Protocol (MCP) tool agency across Sequential Thinking, NASA Public APIs, and STScI MAST, highlighting capabilities beyond static local document retrieval.",
+  "total_questions": 5,
+  "questions": [
+    {
+      "id": "MCP_Q01",
+      "domain": "Planetary Defense & Live Asteroid Telemetry",
+      "subdomain": "NASA NeoWs Near-Earth Asteroid Hazard Assessment",
+      "primary_source": "DART_Planetary_Defense_Technical_Report.pdf",
+      "supporting_sources": [
+        "DART_Kinetic_Impactor_Deflection_Results.pdf",
+        "nasa_near_earth_objects"
+      ],
+      "target_mcp_servers": [
+        "Sequential Thinking MCP",
+        "NASA Public APIs MCP"
+      ],
+      "target_tools": [
+        "sequentialthinking",
+        "nasa_near_earth_objects"
+      ],
+      "question": "What are the latest near-Earth asteroids detected by NASA NeoWs, what are their estimated maximum diameters in meters, their relative velocities, and are any classified as potentially hazardous asteroids (PHAs)?",
+      "ground_truth_answer": "NASA's Near Earth Object Web Service (NeoWs) continuously tracks and catalogs close-approach asteroids. Recent close-approach feeds identify multiple near-Earth asteroids passing within lunar and interplanetary distances:\n\n1. **Detection Volume & Population**: NeoWs monitors tens of close approaches per weekly tracking window, determining orbital trajectories, miss distances in kilometers, and closing velocities.\n\n2. **Potentially Hazardous Asteroid (PHA) Classification**: An asteroid is designated as a PHA if it has a Minimum Orbit Intersection Distance (MOID) to Earth of 0.05 AU (approximately 7.48 million km / 19.5 lunar distances) or less and an absolute magnitude (H) of 22.0 or brighter (corresponding roughly to a diameter >140 meters). Monitored examples typically include both sub-50-meter non-hazardous bodies and larger potential hazard candidates.\n\n3. **Telemetry Metrics**: Relative velocities typically range from 15,000 km/h to over 80,000 km/h relative to Earth, with estimated diameters ranging from a few meters to hundreds of meters depending on absolute visual magnitude.",
+      "ground_truth_facts": [
+        "neows",
+        "potentially hazardous",
+        "asteroid",
+        "diameter",
+        "velocity",
+        "miss distance",
+        "close approach"
+      ],
+      "telemetry_metrics": [
+        "0.05 au",
+        "140 meters",
+        "km/h",
+        "meters"
+      ]
+    },
+    {
+      "id": "MCP_Q02",
+      "domain": "Mars Surface Telemetry & Planetary Robotics",
+      "subdomain": "Mars 2020 Perseverance Rover Live Mission Status",
+      "primary_source": "Mars_2020_SHERLOC_WATSON_Imaging.pdf",
+      "supporting_sources": [
+        "Mars_2020_Astrobiology_Perseverance_Samples.pdf",
+        "nasa_mars_rover_manifest"
+      ],
+      "target_mcp_servers": [
+        "Sequential Thinking MCP",
+        "NASA Public APIs MCP"
+      ],
+      "target_tools": [
+        "sequentialthinking",
+        "nasa_mars_rover_manifest"
+      ],
+      "question": "What is the current operational status of the Mars 2020 Perseverance rover, how many Martian days (sols) has it been operating on Mars, and how many raw science images has it transmitted back to Earth across its science cameras?",
+      "ground_truth_answer": "According to the official NASA Mars Rover Mission Manifest for Perseverance:\n\n1. **Operational Status**: Active ('active'), conducting in-situ exploration, core sample caching, and astrobiological surveys in Jezero Crater.\n\n2. **Mission Duration**: Launched on July 30, 2020, and landed on February 18, 2021. As of current telemetry, Perseverance has surpassed 1,200+ Sols (Martian solar days) of continuous surface operations.\n\n3. **Imaging Payload Telemetry**: Perseverance has transmitted over 200,000+ raw science images to Earth across its science suite, including Mastcam-Z, SuperCam, NAVCAM, HAZCAM, and SHERLOC WATSON.",
+      "ground_truth_facts": [
+        "active",
+        "jezero",
+        "perseverance",
+        "mastcam-z",
+        "supercam",
+        "watson",
+        "sherloc",
+        "february 18, 2021"
+      ],
+      "telemetry_metrics": [
+        "2021",
+        "sols",
+        "images",
+        "jezero crater"
+      ]
+    },
+    {
+      "id": "MCP_Q03",
+      "domain": "Deep-Space Astrophysics & Space Telescopes",
+      "subdomain": "STScI Mikulski Archive (MAST) Target Resolution & JWST Observations",
+      "primary_source": "JWST_Mission_Overview_and_Status.pdf",
+      "supporting_sources": [
+        "mast_jwst_observations",
+        "mast_resolve_target"
+      ],
+      "target_mcp_servers": [
+        "Sequential Thinking MCP",
+        "STScI MAST MCP"
+      ],
+      "target_tools": [
+        "sequentialthinking",
+        "mast_resolve_target",
+        "mast_jwst_observations"
+      ],
+      "question": "What are the celestial coordinates (Right Ascension and Declination) of the exoplanetary system TRAPPIST-1, and how many observational datasets are archived in MAST from the James Webb Space Telescope (JWST) targeting its ultra-cool M-dwarf host star?",
+      "ground_truth_answer": "According to the Mikulski Archive for Space Telescopes (MAST) and SIMBAD astronomical coordinate resolution:\n\n1. **Coordinates**: TRAPPIST-1 (2MASS J23062928-0502285) is located at Right Ascension (RA) ~346.622 degrees (23h 06m 29.3s) and Declination (Dec) ~-5.041 degrees (-05\u00b0 02' 28.6\") in the constellation Aquarius.\n\n2. **Target Classification**: Ultra-cool red dwarf star (spectral type M8V) hosting seven terrestrial Earth-sized exoplanets (TRAPPIST-1b through h).\n\n3. **JWST Observation Volume**: MAST archives dozens of high-priority JWST observational datasets focusing on atmospheric transmission spectroscopy, secondary eclipse thermal emission, and stellar flare monitoring using instruments including NIRSpec (Prism/G395H), NIRISS (SOSS mode), and MIRI (LRS).",
+      "ground_truth_facts": [
+        "trappist-1",
+        "right ascension",
+        "declination",
+        "m-dwarf",
+        "exoplanet",
+        "jwst",
+        "mast",
+        "miri"
+      ],
+      "telemetry_metrics": [
+        "346",
+        "-5",
+        "23h",
+        "7"
+      ]
+    },
+    {
+      "id": "MCP_Q04",
+      "domain": "Space Weather & Helio-Physics",
+      "subdomain": "NASA DONKI Solar Coronal Mass Ejections & Flares",
+      "primary_source": "Artemis_Lunar_Science_Strategy_Implementation_Plan_2024.pdf",
+      "supporting_sources": [
+        "Artemis_SLS_Rocket_Artemis_II_Readiness_2026.pdf",
+        "nasa_space_weather_donki"
+      ],
+      "target_mcp_servers": [
+        "Sequential Thinking MCP",
+        "NASA Public APIs MCP"
+      ],
+      "target_tools": [
+        "sequentialthinking",
+        "nasa_space_weather_donki"
+      ],
+      "question": "What space weather notifications (such as Coronal Mass Ejections or solar flares) have been cataloged by NASA's Space Weather Database of Notifications, Knowledge, Information (DONKI), and what potential impact do CMEs have on satellite systems and astronaut safety in deep-space missions?",
+      "ground_truth_answer": "NASA's Space Weather Database of Notifications, Knowledge, Information (DONKI) catalogs solar eruptive phenomena including Coronal Mass Ejections (CMEs), Solar Energetic Particle (SEP) events, and solar flares:\n\n1. **DONKI Catalog Telemetry**: DONKI tracks solar eruptive events, documenting CME speeds (often exceeding 500 to 2,000+ km/s), half-angles, direction vectors, and interplanetary shock propagation toward Earth or planetary spacecraft.\n\n2. **Spacecraft & Satellite Impacts**: High-energy solar protons and geomagnetic storms induce single-event upsets (SEUs) in avionics, surface charging on solar arrays, and high-frequency communication blackouts.\n\n3. **Astronaut Deep-Space Safety**: For deep-space missions (such as Artemis crewed lunar sorties or transit to Mars), coronal mass ejections present severe ionizing radiation risks. Spacecraft like Orion incorporate active and passive storm shelters, utilizing onboard water supplies and equipment storage to attenuate acute radiation dose rates.",
+      "ground_truth_facts": [
+        "donki",
+        "coronal mass ejection",
+        "solar flare",
+        "geomagnetic storm",
+        "radiation",
+        "orion",
+        "single-event upset",
+        "storm shelter"
+      ],
+      "telemetry_metrics": [
+        "cme",
+        "seu",
+        "km/s"
+      ]
+    },
+    {
+      "id": "MCP_Q05",
+      "domain": "Cross-Domain Planetary Defense & Deep-Space Verification",
+      "subdomain": "DART Kinetic Impactor Physics, Live NeoWs Telemetry, and Archive Verification",
+      "primary_source": "DART_Planetary_Defense_Technical_Report.pdf",
+      "supporting_sources": [
+        "DART_Kinetic_Impactor_Deflection_Results.pdf",
+        "nasa_near_earth_objects"
+      ],
+      "target_mcp_servers": [
+        "Sequential Thinking MCP",
+        "NASA Public APIs MCP",
+        "STScI MAST MCP"
+      ],
+      "target_tools": [
+        "sequentialthinking",
+        "nasa_near_earth_objects",
+        "mast_resolve_target"
+      ],
+      "question": "Perform a comprehensive planetary defense synthesis: 1) Formulate a multi-step reasoning plan using sequential thinking. 2) Retrieve live near-Earth asteroid tracking data to determine current close-approach proximity. 3) Cross-reference the telemetry with NASA's Double Asteroid Redirection Test (DART) kinetic impact results on Dimorphos (orbital period reduction and momentum enhancement factor beta).",
+      "ground_truth_answer": "A comprehensive planetary defense analysis synthesizing multi-source telemetry yields:\n\n1. **Sequential Reasoning Protocol**: The agent systematically decomposes the problem into live detection volume (NeoWs), planetary defense threat thresholds (MOID <= 0.05 AU), kinetic deflection physics (DART impact), and observational follow-up.\n\n2. **Live Close-Approach Tracking**: NASA NeoWs telemetry reveals dozens of weekly close-approach asteroids, with miss distances ranging from fractions of a lunar distance to millions of kilometers, confirming the constant presence of near-Earth objects requiring orbital tracking.\n\n3. **DART Kinetic Impactor Benchmark**: On September 26, 2022, NASA's DART spacecraft successfully impacted Dimorphos (the secondary member of the Didymos binary asteroid system) at ~6.1 km/s. Post-impact observations confirmed an orbital period reduction of 33 minutes (from 11 hours 55 minutes to 11 hours 22 minutes), significantly exceeding the minimum 73-second success threshold. The momentum enhancement factor beta (due to ejecta recoil) was determined to be between 2.2 and 4.9, proving that kinetic deflection is a viable planetary defense strategy.",
+      "ground_truth_facts": [
+        "dart",
+        "dimorphos",
+        "didymos",
+        "kinetic impact",
+        "orbital period",
+        "beta",
+        "momentum enhancement",
+        "neows",
+        "close approach"
+      ],
+      "telemetry_metrics": [
+        "32",
+        "33",
+        "6.1 km/s",
+        "11 hours"
+      ]
+    }
+  ]
+}

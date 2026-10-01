@@ -46,6 +46,13 @@ try:
 except ImportError:
     OLLAMA_AVAILABLE = False
 
+try:
+    import mcp_client_manager
+    MCP_MANAGER = mcp_client_manager.GLOBAL_MCP_MANAGER
+except ImportError:
+    MCP_MANAGER = None
+
+
 
 # -----------------------------------------------------------------------------
 # Configuration & Global Constants
@@ -760,13 +767,20 @@ def generate_rag_response(
     model: str = DEFAULT_LLM_MODEL,
     top_k: int = DEFAULT_TOP_K,
     mission_filter: Optional[str] = None,
-    temperature: float = 0.2
+    temperature: float = 0.2,
+    use_mcp: bool = True
 ) -> Dict[str, Any]:
     """
     End-to-end RAG Generation:
     1. Retrieves top-k chunks from ChromaDB.
     2. Formats grounding context and citation instructions.
-    3. Invokes local Qwen2.5:7b via Ollama.
+    3. If MCP is enabled (Kill switch not triggered):
+       Executes agentic multi-turn tool calling with 3 MCP servers:
+       - Sequential Thinking (reasoning & verification)
+       - NASA APIs (Planetary telemetry, Mars rovers, Asteroids, Space weather)
+       - STScI MAST (Deep-space astrophysics, JWST & Hubble archives)
+    4. If MCP is disabled (Kill switch active):
+       Falls back to static single-pass ChromaDB grounded generation.
     """
     start_time = time.time()
 
@@ -782,30 +796,143 @@ def generate_rag_response(
 
     # Step 2: Context Construction
     context_str = format_rag_context_blocks(retrieved_chunks)
-    user_prompt = (
-        f"Context Excerpts from Official NASA Technical Reports:\n"
-        f"================================================================================\n"
-        f"{context_str}\n"
-        f"================================================================================\n\n"
-        f"User Technical Query: {query}\n\n"
-        f"Instructions: Provide a detailed, technically rigorous response to the query using ONLY "
-        f"the excerpts above. Include exact inline citations [Document Name, Page X] for every key fact, "
-        f"parameter, and specification (e.g. [JWST_Mission_Overview_and_Status.pdf, Page 4]). Use the exact "
-        f"filename from 'Source Document:', not excerpt numbers."
-    )
+    mcp_active = bool(use_mcp and MCP_MANAGER and MCP_MANAGER.enabled and MCP_MANAGER.ollama_tools)
 
-    # Step 3: LLM Generation
+    if mcp_active:
+        user_prompt = (
+            f"Context Excerpts from Official NASA Technical Reports:\n"
+            f"================================================================================\n"
+            f"{context_str}\n"
+            f"================================================================================\n\n"
+            f"User Technical Query: {query}\n\n"
+            f"Instructions:\n"
+            f"1. First, invoke 'sequentialthinking' to plan your analysis, break down the technical metrics requested, and evaluate the excerpts.\n"
+            f"2. If relevant, invoke 'mast_*' for telescope observations or 'nasa_*' for planetary/asteroid telemetry.\n"
+            f"3. Provide a rigorous final response with exact inline citations [Document Name, Page X]."
+        )
+    else:
+        user_prompt = (
+            f"Context Excerpts from Official NASA Technical Reports:\n"
+            f"================================================================================\n"
+            f"{context_str}\n"
+            f"================================================================================\n\n"
+            f"User Technical Query: {query}\n\n"
+            f"Instructions: Provide a detailed, technically rigorous response to the query using ONLY "
+            f"the excerpts above. Include exact inline citations [Document Name, Page X] for every key fact, "
+            f"parameter, and specification (e.g. [JWST_Mission_Overview_and_Status.pdf, Page 4]). Use the exact "
+            f"filename from 'Source Document:', not excerpt numbers."
+        )
+
+    # Step 3: Check Kill Switch & MCP Availability
+    thought_steps = []
+    tool_calls_executed = []
+
     llm_start = time.time()
     try:
-        response = client.chat(
-            model=model,
-            messages=[
-                {"role": "system", "content": RAG_SYSTEM_PROMPT},
+        if mcp_active:
+            # Agentic ReAct Loop with all 3 MCP servers
+            mcp_sys_prompt = (
+                f"{RAG_SYSTEM_PROMPT}\n\n"
+                "AGENTIC REASONING PROTOCOL:\n"
+                "You have access to 3 specialized live MCP tool servers:\n"
+                "1. 'sequentialthinking': MANDATORY - Always call 'sequentialthinking' first (Turn 1) to formulate your "
+                "reasoning plan, assess the retrieved technical documents, and structure your answer.\n"
+                "2. 'nasa_*': Tools for real-time planetary telemetry, Mars rovers, Near-Earth Asteroids (NeoWs), and space weather (DONKI).\n"
+                "3. 'mast_*': Tools for STScI Mikulski Archive deep-space astrophysics (JWST & Hubble observations and target resolution).\n"
+                "Do not skip sequential thinking. Ground all final technical claims and metrics in verified evidence."
+            )
+            messages = [
+                {"role": "system", "content": mcp_sys_prompt},
                 {"role": "user", "content": user_prompt}
-            ],
-            options={"temperature": temperature}
-        )
-        raw_answer = response["message"]["content"]
+            ]
+
+            print(f"\n[Agent ReAct Controller] Starting MCP-augmented generation (Sequential Thinking, NASA APIs, MAST active)...")
+            max_turns = 4
+            raw_answer = ""
+            for turn_idx in range(max_turns):
+                response = client.chat(
+                    model=model,
+                    messages=messages,
+                    tools=MCP_MANAGER.ollama_tools,
+                    options={"temperature": temperature, "num_ctx": 8192}
+                )
+                assistant_msg = response["message"]
+                messages.append(assistant_msg)
+
+                tool_calls = assistant_msg.get("tool_calls")
+                if not tool_calls:
+                    # Model returned text without requesting tools
+                    content = assistant_msg.get("content", "")
+                    if content and content.strip():
+                        raw_answer = content
+                        break
+                    # If empty content with no tool calls, break to synthesis
+                    break
+
+                print(f"\n[Agent Turn {turn_idx + 1}/{max_turns}] LLM requested {len(tool_calls)} MCP tool call(s):")
+                for tc in tool_calls:
+                    fn_name = tc["function"]["name"]
+                    fn_args = tc["function"].get("arguments", {})
+                    tool_calls_executed.append({"tool": fn_name, "args": fn_args})
+
+                    # Unwrap nested dicts if model passes {"object": {...}} or {"parameters": {...}}
+                    effective_args = fn_args
+                    if isinstance(effective_args, dict):
+                        for wk in ("object", "parameters", "input", "args", "arguments"):
+                            if wk in effective_args and isinstance(effective_args[wk], dict):
+                                inner = effective_args[wk]
+                                effective_args = {**{k: v for k, v in effective_args.items() if k != wk}, **inner}
+                                break
+
+                    if fn_name == "sequentialthinking":
+                        t_num = effective_args.get("thought_number", 1)
+                        t_tot = effective_args.get("total_thoughts", "?")
+                        thought_steps.append(effective_args.get("thought", ""))
+                        print(f"  🧠 [Sequential Thinking] Step {t_num}/{t_tot}")
+                    elif fn_name.startswith("nasa_"):
+                        print(f"  🚀 [NASA APIs Tool] Invoking {fn_name}")
+                    elif fn_name.startswith("mast_"):
+                        print(f"  🔭 [STScI MAST Tool] Invoking {fn_name}")
+
+                    # Dispatch via MultiMCPClientManager
+                    tool_res_str = MCP_MANAGER.dispatch_tool(fn_name, fn_args)
+                    messages.append({
+                        "role": "tool",
+                        "content": tool_res_str
+                    })
+
+            # Guaranteed Synthesis Phase: If raw_answer is empty or tools were called, synthesize final grounded answer
+            if not raw_answer.strip():
+                if tool_calls_executed:
+                    print(f"[Agent ReAct Controller] Reasoning complete ({len(tool_calls_executed)} tool calls). Synthesizing final grounded answer...\n")
+                synthesis_prompt = (
+                    "Reasoning and tool execution complete. Now provide your final, comprehensive, and technically "
+                    "rigorous answer to the user's query, grounded strictly in the retrieved official NASA technical "
+                    "documentation and tool findings above. Include exact inline citations [Document Name, Page X] "
+                    "for every key fact, parameter, and specification."
+                )
+                messages.append({"role": "user", "content": synthesis_prompt})
+                synth_resp = client.chat(
+                    model=model,
+                    messages=messages,
+                    options={"temperature": temperature, "num_ctx": 8192}
+                )
+                raw_answer = synth_resp["message"].get("content", "")
+
+            if tool_calls_executed:
+                print(f"[Agent ReAct Controller] Finished reasoning with {len(tool_calls_executed)} MCP tool call(s) executed.\n")
+        else:
+            # Baseline 1-pass ChromaDB generation (Kill Switch Active / Fallback)
+            response = client.chat(
+                model=model,
+                messages=[
+                    {"role": "system", "content": RAG_SYSTEM_PROMPT},
+                    {"role": "user", "content": user_prompt}
+                ],
+                options={"temperature": temperature, "num_ctx": 8192}
+            )
+            raw_answer = response["message"]["content"]
+
         answer_text = resolve_inline_citations(raw_answer, retrieved_chunks)
     except Exception as e:
         answer_text = f"[ERROR: Ollama generation failed: {e}]"
@@ -816,15 +943,19 @@ def generate_rag_response(
 
     return {
         "query": query,
-        "mode": "with_rag",
+        "mode": "with_rag_mcp" if mcp_active else "with_rag",
         "answer": answer_text,
         "retrieved_chunks": retrieved_chunks,
         "citations": citations,
+        "thought_steps": thought_steps,
+        "tool_calls": tool_calls_executed,
+        "mcp_active": mcp_active,
         "retrieval_latency": retrieval_time,
         "generation_latency": generation_time,
         "total_latency": total_latency,
         "model": model
     }
+
 
 
 def generate_baseline_response(
@@ -850,7 +981,7 @@ def generate_baseline_response(
                 {"role": "system", "content": BASELINE_SYSTEM_PROMPT},
                 {"role": "user", "content": user_prompt}
             ],
-            options={"temperature": temperature}
+            options={"temperature": temperature, "num_ctx": 8192}
         )
         answer_text = response["message"]["content"]
     except Exception as e:
@@ -877,15 +1008,18 @@ def interactive_agent_session(
     collection: chromadb.Collection,
     client,
     model: str = DEFAULT_LLM_MODEL,
-    top_k: int = DEFAULT_TOP_K
+    top_k: int = DEFAULT_TOP_K,
+    use_mcp: bool = True
 ):
     """
     Starts an interactive conversation loop where users can ask questions and receive
-    answers grounded in the NASA technical corpus with source citations.
+    answers grounded in the NASA technical corpus with source citations and MCP tools.
     """
+    mcp_status = "ACTIVE (Sequential Thinking + NASA APIs + STScI MAST)" if (use_mcp and MCP_MANAGER and MCP_MANAGER.enabled) else "DISABLED (Kill Switch Active)"
     print("\n" + "=" * 80)
-    print("NASA SPACE EXPLORATION RAG AGENT (OLLAMA + CHROMADB)")
+    print("NASA SPACE EXPLORATION RAG AGENT (OLLAMA + CHROMADB + MCP)")
     print(f"Model: {model} | Collection: {COLLECTION_NAME} (1,600 chunks) | Top-K: {top_k}")
+    print(f"MCP Tool Subsystems: {mcp_status}")
     print("Ask any technical question about NASA flagship missions.")
     print("Commands:")
     print("  '<question>' -> Generates With-RAG answers")
@@ -909,17 +1043,19 @@ def interactive_agent_session(
                 print("1. Querying Baseline (Without-RAG)...")
                 base_resp = generate_baseline_response(q, client, model=model)
                 print("2. Querying Expert Agent (With-RAG)...")
-                rag_resp = generate_rag_response(q, collection, client, model=model, top_k=top_k)
+                rag_resp = generate_rag_response(q, collection, client, model=model, top_k=top_k, use_mcp=use_mcp)
 
                 print("\n" + "=" * 80)
                 print(f"QUERY: \"{q}\"")
                 print("=" * 80)
-                print("\n[WITHOUT RAG (Baseline LLM)]")
+                print("\n[1. WITHOUT RAG (Baseline LLM)]")
                 print(base_resp["answer"])
                 print(f"\n[Latency: {base_resp['total_latency']:.2f}s]")
                 print("-" * 80)
-                print("\n[WITH RAG (Grounded in NASA Technical Corpus)]")
+                print(f"\n[2. WITH RAG ({'Agentic 3-MCP' if rag_resp.get('mcp_active') else 'ChromaDB Local'})]")
                 print(rag_resp["answer"])
+                if rag_resp.get("thought_steps"):
+                    print(f"\n[Sequential Thoughts ({len(rag_resp['thought_steps'])}): {rag_resp['thought_steps'][-1][:120]}...]")
                 print(f"\n[Latency: {rag_resp['total_latency']:.2f}s | Citations: {len(extract_citations(rag_resp['answer']))}]")
                 print("=" * 80)
                 continue
@@ -931,13 +1067,20 @@ def interactive_agent_session(
                 continue
 
             # Standard RAG query
-            print("Searching NASA knowledge base and generating grounded response...")
-            res = generate_rag_response(user_input, collection, client, model=model, top_k=top_k)
+            print(f"Searching NASA knowledge base {'and orchestrating MCP tools ' if use_mcp else ''}to generate grounded response...")
+            res = generate_rag_response(user_input, collection, client, model=model, top_k=top_k, use_mcp=use_mcp)
 
             print("\n" + "=" * 80)
-            print(f"ANSWER (Model: {model} with ChromaDB RAG)")
+            mode_label = "ChromaDB RAG + 3 MCP Servers" if res.get("mcp_active") else "ChromaDB RAG (Local Baseline)"
+            print(f"ANSWER (Model: {model} with {mode_label})")
             print("=" * 80)
             print(res["answer"])
+            if res.get("thought_steps"):
+                print("\n[Sequential Thinking Reasoning Trace]:")
+                for tidx, tstep in enumerate(res["thought_steps"], start=1):
+                    print(f"  Step {tidx}: {tstep}")
+            if res.get("tool_calls"):
+                print(f"\n[MCP Tools Executed: {', '.join([tc['tool'] for tc in res['tool_calls']])}]")
             print("\n" + "-" * 80)
             print(f"Retrieved {len(res['retrieved_chunks'])} source chunks in {res['retrieval_latency']:.3f}s. Total time: {res['total_latency']:.2f}s")
             print("=" * 80)
@@ -999,8 +1142,14 @@ def main():
         default=DEFAULT_LLM_MODEL,
         help=f"Ollama LLM model name (default: {DEFAULT_LLM_MODEL})",
     )
+    parser.add_argument(
+        "--no-mcp",
+        action="store_true",
+        help="Kill switch: Disable all MCP servers and run standard local ChromaDB RAG",
+    )
 
     args = parser.parse_args()
+    use_mcp = not args.no_mcp
 
     # Step 1: Ensure PDF documents exist
     if args.download or not any(DATA_DIR.glob("*.pdf")):
@@ -1025,7 +1174,7 @@ def main():
     if args.compare:
         print(f"\n[Comparing generation for]: \"{args.compare}\"")
         base = generate_baseline_response(args.compare, client, model=args.model)
-        rag = generate_rag_response(args.compare, collection, client, model=args.model, top_k=args.top_k)
+        rag = generate_rag_response(args.compare, collection, client, model=args.model, top_k=args.top_k, use_mcp=use_mcp)
 
         print("\n" + "=" * 80)
         print(f"QUERY: \"{args.compare}\"")
@@ -1034,7 +1183,7 @@ def main():
         print(base["answer"])
         print(f"\nLatency: {base['total_latency']:.2f}s")
         print("\n" + "-" * 80)
-        print("\n[2. WITH RAG (Grounded in NASA Technical Documentation with Citations)]")
+        print(f"\n[2. WITH RAG ({'Agentic 3-MCP' if rag.get('mcp_active') else 'Grounded in NASA Technical Documentation'})]")
         print(rag["answer"])
         print(f"\nLatency: {rag['total_latency']:.2f}s | Citations: {len(extract_citations(rag['answer']))}")
         print("=" * 80)
@@ -1050,9 +1199,10 @@ def main():
             print(f"\nLatency: {resp['total_latency']:.2f}s")
             print("=" * 80)
         else:
-            resp = generate_rag_response(args.query, collection, client, model=args.model, top_k=args.top_k)
+            resp = generate_rag_response(args.query, collection, client, model=args.model, top_k=args.top_k, use_mcp=use_mcp)
             print("\n" + "=" * 80)
-            print(f"QUERY (WITH RAG): \"{args.query}\"")
+            mode_desc = "WITH RAG + 3 MCP SERVERS" if resp.get("mcp_active") else "WITH RAG (LOCAL BASELINE)"
+            print(f"QUERY ({mode_desc}): \"{args.query}\"")
             print("=" * 80)
             print(resp["answer"])
             print("\n" + "-" * 80)
@@ -1062,14 +1212,14 @@ def main():
         return
 
     if args.interactive:
-        interactive_agent_session(collection, client, model=args.model, top_k=args.top_k)
+        interactive_agent_session(collection, client, model=args.model, top_k=args.top_k, use_mcp=use_mcp)
         return
 
     # Default action: run the benchmark suite and generate the report
     list_stored_documents(DATA_DIR)
 
     # default run interactive session if no other flags are provided
-    interactive_agent_session(collection, client, model=args.model, top_k=args.top_k)
+    interactive_agent_session(collection, client, model=args.model, top_k=args.top_k, use_mcp=use_mcp)
 
 if __name__ == "__main__":
     main()
