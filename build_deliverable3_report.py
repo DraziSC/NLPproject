@@ -363,7 +363,7 @@ def create_report():
     add_p(
         "2. Expert Dense RAG Subsystem (Deliverable 2): An authoritative technical advisor grounded in official NASA engineering "
         "reports (JWST, Mars 2020 Perseverance, Ingenuity, Artemis SLS, DART, Hubble, Apollo 11) using persistent vector embeddings, "
-        "semantic sliding-window text chunking, and strict inline document citations [Document_Name.pdf, Page X].",
+        "dynamic semantic text chunking based on cosine distance topic shifts, and strict inline document citations [Document_Name.pdf, Page X].",
         bold_prefix="• "
     )
     add_p(
@@ -474,16 +474,21 @@ def create_report():
         bold_prefix="• "
     )
     add_p(
-        "Semantic Text Chunking: Documents are chunked via a sliding window of 700 characters with 100 characters overlap, "
-        "generating 1,861 semantic chunks indexed with source metadata (filename, page_number, mission_domain). This window size "
-        "was empirically selected to preserve tabular rows and propulsion equations without fragmenting across chunk boundaries.",
+        "Dynamic Embedding-Based Semantic Chunking: Rather than segmenting text at arbitrary, static character windows, D2RAG.py "
+        "implements true semantic chunking (semantic_chunk_text). Extracted text is split into sentences and encoded in a single "
+        "batched pass with all-MiniLM-L6-v2. The pipeline computes cosine distances d_i between adjacent sentences. A dynamic "
+        "breakpoint threshold theta_85 is determined by the 85th percentile of distances across the document. Sentences are "
+        "accumulated into cohesive units, segmenting when a topic shift occurs (d_i >= theta_85, with min_chunk_chars = 150) or "
+        "when approaching the embedding ceiling (max_chunk_chars = 800). This produced 1,861 semantically cohesive chunks with "
+        "metadata tracking (filename, page_number, mission_domain), keeping technical context and propulsion equations intact:",
         bold_prefix="• "
     )
+    add_equation("d_i = 1.0 - (e_i · e_{i+1})  [Split if d_i >= θ_85% and L_curr >= 150]", eq_num="3")
     add_p(
         "Vector Database: Persistent ChromaDB collection using cosine similarity over normalized embeddings:",
         bold_prefix="• "
     )
-    add_equation("sim(q, d) = (e_q · e_d) / (||e_q||_2 · ||e_d||_2)", eq_num="3")
+    add_equation("sim(q, d) = (e_q · e_d) / (||e_q||_2 · ||e_d||_2)", eq_num="4")
     add_p(
         "Top-K Retrieval & Grounded Generation: Top-K = 8 excerpts are retrieved in ~40 ms and assembled into an authoritative "
         "context block. The prompt enforces strict grounding: all claims must cite official documents in the exact format "
@@ -607,13 +612,13 @@ def create_report():
         "Fact Recall (%): Lexical and semantic presence of ground-truth physical constants, subsystem names, and acronyms:",
         bold_prefix="• "
     )
-    add_equation("Fact Recall = |F_candidate ∩ F_reference| / |F_reference|", eq_num="4")
+    add_equation("Fact Recall = |F_candidate ∩ F_reference| / |F_reference|", eq_num="5")
     add_p(
         "Telemetry Metric Coverage (%): Exact numerical verification of physical quantities, temperatures (K), velocities (km/s), "
         "masses, and orbital periods against official NASA mission reports:",
         bold_prefix="• "
     )
-    add_equation("Telemetry Coverage = |T_candidate ∩ T_reference| / |T_reference|", eq_num="5")
+    add_equation("Telemetry Coverage = |T_candidate ∩ T_reference| / |T_reference|", eq_num="6")
     add_p(
         "Inline Citation Density & Alignment: Frequency of verified citations adhering to the [Document.pdf, Page X] format "
         "and their exact cross-document alignment with ground-truth source PDFs.",
@@ -629,7 +634,7 @@ def create_report():
         bold_prefix="• "
     )
 
-    add_h2("4.2 Full 20-Question Benchmark Results", page_break_before=True)
+    add_h2("4.2 Full 20-Question Benchmark Results")
     add_p(
         "Table 3 summarizes the empirical results across the full 20-question aerospace benchmark suite, reflecting the latest "
         "evaluation run recorded in data/nasa_eval_results.md:"
@@ -699,7 +704,7 @@ def create_report():
         "orbital period change on Dimorphos), and momentum enhancement factor beta:",
         bold_prefix="• "
     )
-    add_equation("ΔP = β m v_imp = m v_imp + p_ejecta  (where β = 2.2 to 4.9)", eq_num="6")
+    add_equation("ΔP = β m v_imp = m v_imp + p_ejecta  (where β = 2.2 to 4.9)", eq_num="7")
     add_p(
         "4. The Latency-Grounding Trade-off: While the agentic MCP pipeline achieved verified epistemic grounding (+23.3% telemetry gain "
         "on live queries), it incurred an average latency of 23.66 s (vs 9.07 s for ungrounded generation). The fail-safe --no-mcp kill switch "
